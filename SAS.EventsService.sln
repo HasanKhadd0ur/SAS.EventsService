@@ -1,0 +1,76 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{90D441D3-AD9C-49A5-9061-6C80E60EF9CB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{44FFAB02-96BE-4648-983F-47100963F13D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{FE7AC48F-39B7-4D35-B24E-0BBF335350F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{4A3CFC04-CCC4-47A4-88AF-B3DA5BED09E6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{08612399-C109-4B59-8284-320445A824D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAS.EventsService.Infrastructure.Services", "src\SAS.EventsService.Infrastructure\SAS.EventsService.Infrastructure.Services\SAS.EventsService.Infrastructure.Services.csproj", "{D679B3AD-F7E7-4D5A-BAC2-02209CDC452E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{41AC5869-59F2-443D-BC25-D386BB49E346}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAS.EventsService.Application", "src\SAS.EventsService.Application\SAS.EventsService.Application.csproj", "{43603CC4-8585-42D3-BE9D-10F6A59B2F7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAS.EventService.Domain", "src\SAS.EventService.Domain\SAS.EventService.Domain.csproj", "{3AEE6866-7668-4E05-A1EA-51AF81E4DA9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAS.EventService.Infrastructure.Persistence", "src\SAS.EventsService.Infrastructure\SAS.EventService.Infrastructure.Persistence\SAS.EventService.Infrastructure.Persistence.csproj", "{87CFC1BD-B7EA-4661-9503-95C1B0672AB7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence", "{1099F783-D892-4C9D-AEFE-9D0BC5C30043}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAS.EventsService.Presentation", "src\SAS.EventsService.Presentation\SAS.EventsService.Presentation.csproj", "{FE4950C3-B20C-4C8C-BB7C-BE4A2FDA6752}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D679B3AD-F7E7-4D5A-BAC2-02209CDC452E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D679B3AD-F7E7-4D5A-BAC2-02209CDC452E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D679B3AD-F7E7-4D5A-BAC2-02209CDC452E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D679B3AD-F7E7-4D5A-BAC2-02209CDC452E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43603CC4-8585-42D3-BE9D-10F6A59B2F7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43603CC4-8585-42D3-BE9D-10F6A59B2F7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43603CC4-8585-42D3-BE9D-10F6A59B2F7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43603CC4-8585-42D3-BE9D-10F6A59B2F7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AEE6866-7668-4E05-A1EA-51AF81E4DA9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AEE6866-7668-4E05-A1EA-51AF81E4DA9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AEE6866-7668-4E05-A1EA-51AF81E4DA9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AEE6866-7668-4E05-A1EA-51AF81E4DA9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87CFC1BD-B7EA-4661-9503-95C1B0672AB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87CFC1BD-B7EA-4661-9503-95C1B0672AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87CFC1BD-B7EA-4661-9503-95C1B0672AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87CFC1BD-B7EA-4661-9503-95C1B0672AB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE4950C3-B20C-4C8C-BB7C-BE4A2FDA6752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE4950C3-B20C-4C8C-BB7C-BE4A2FDA6752}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE4950C3-B20C-4C8C-BB7C-BE4A2FDA6752}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE4950C3-B20C-4C8C-BB7C-BE4A2FDA6752}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{44FFAB02-96BE-4648-983F-47100963F13D} = {90D441D3-AD9C-49A5-9061-6C80E60EF9CB}
+		{FE7AC48F-39B7-4D35-B24E-0BBF335350F2} = {90D441D3-AD9C-49A5-9061-6C80E60EF9CB}
+		{4A3CFC04-CCC4-47A4-88AF-B3DA5BED09E6} = {90D441D3-AD9C-49A5-9061-6C80E60EF9CB}
+		{08612399-C109-4B59-8284-320445A824D7} = {90D441D3-AD9C-49A5-9061-6C80E60EF9CB}
+		{D679B3AD-F7E7-4D5A-BAC2-02209CDC452E} = {41AC5869-59F2-443D-BC25-D386BB49E346}
+		{41AC5869-59F2-443D-BC25-D386BB49E346} = {4A3CFC04-CCC4-47A4-88AF-B3DA5BED09E6}
+		{43603CC4-8585-42D3-BE9D-10F6A59B2F7B} = {44FFAB02-96BE-4648-983F-47100963F13D}
+		{3AEE6866-7668-4E05-A1EA-51AF81E4DA9E} = {FE7AC48F-39B7-4D35-B24E-0BBF335350F2}
+		{87CFC1BD-B7EA-4661-9503-95C1B0672AB7} = {1099F783-D892-4C9D-AEFE-9D0BC5C30043}
+		{1099F783-D892-4C9D-AEFE-9D0BC5C30043} = {4A3CFC04-CCC4-47A4-88AF-B3DA5BED09E6}
+		{FE4950C3-B20C-4C8C-BB7C-BE4A2FDA6752} = {08612399-C109-4B59-8284-320445A824D7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0DF55D47-9F79-4AF4-B741-B89D4323FB0C}
+	EndGlobalSection
+EndGlobal
