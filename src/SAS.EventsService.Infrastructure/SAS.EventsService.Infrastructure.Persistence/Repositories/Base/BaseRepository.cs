@@ -1,0 +1,66 @@
+﻿
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using SAS.EventsService.Infrastructure.Persistence.AppDataContext;
+using SAS.EventsService.SharedKernel.Entities;
+using SAS.EventsService.SharedKernel.Repositories;
+using SAS.EventsService.SharedKernel.Utilities;
+
+namespace SAS.EventsService.Infrastructure.Persistence.Repositories.Base
+{
+    public class BaseRepository<T, TId> : IRepository<T, TId> where T : BaseEntity<TId>
+    {
+        protected AppDbContext _dbContext;
+        internal DbSet<T> dbSet;
+        public BaseRepository(AppDbContext context)
+        {
+            _dbContext = context;
+
+            dbSet = context.Set<T>();
+        }
+        public async Task<T> AddAsync(T entity)
+        {
+            EntityEntry<T> entry = await dbSet.AddAsync(entity);
+            await _dbContext.SaveChangesAsync();
+            return entry.Entity;
+
+        }
+
+        public async Task<IEnumerable<T>> ListAsync()
+        {
+            return await dbSet.ToListAsync();
+        }
+        public async Task<IEnumerable<T>> ListAsync(ISpecification<T> specification)
+        {
+            var q = ApplySpecification(specification);
+
+            return await q.ToListAsync();
+        }
+
+        public Task DeleteAsync(T entity)
+        {
+            _dbContext.Set<T>().Remove(entity);
+            return _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<T> GetByIdAsync(TId id, ISpecification<T> specification = null)
+        {
+            var q = ApplySpecification(specification);
+            return await q.SingleOrDefaultAsync(e => e.Id.Equals(id));
+        }
+
+        public async Task<T> UpdateAsync(T entity)
+        {
+            _dbContext.Entry(entity).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
+            return entity;
+        }
+
+        protected IQueryable<T> ApplySpecification(ISpecification<T> specification)
+        {
+            return SpecificationEvaluator<T, TId>.GetQuery(dbSet.AsQueryable(), specification);
+        }
+
+    }
+
+}
