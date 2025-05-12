@@ -1,30 +1,29 @@
 ﻿using SAS.EventsService.SharedKernel.DomainEvents;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SAS.EventsService.SharedKernel.Entities
 {
     /// <summary>
     /// The BaseEntity class serves as a foundation for all domain entities.
     /// </summary>
-    public class BaseEntity<TId>
+    public class BaseEntity<TId> : IEquatable<BaseEntity<TId>>
     {
         public TId Id { get; set; }
 
         /// <summary>
         /// Events List 
         /// </summary>
-        public List<IDomainEvent> Events = new();
-
+        public List<IDomainEvent> Events { get; private set; } = new List<IDomainEvent>();
 
         #region Domain Events Management 
+
         /// <summary>
         /// Add a domain event to the events list 
         /// </summary>
-        /// <param name="eventItem"></param>
+        /// <param name="eventItem">The event to be added</param>
         public void AddDomainEvent(IDomainEvent eventItem)
         {
-            Events ??= new List<IDomainEvent>();
             Events.Add(eventItem);
         }
 
@@ -33,16 +32,16 @@ namespace SAS.EventsService.SharedKernel.Entities
         /// </summary>
         public void ClearDomainEvents()
         {
-            Events?.Clear();
+            Events.Clear();
         }
 
         /// <summary>
-        /// Remove a domain events from the list of the domains events
+        /// Remove a domain event from the list of domain events
         /// </summary>
-        /// <param name="eventItem"></param>
+        /// <param name="eventItem">The event to be removed</param>
         public void RemoveDomainEvent(IDomainEvent eventItem)
         {
-            Events?.Remove(eventItem);
+            Events.Remove(eventItem);
         }
 
         #endregion Domain Events Management
@@ -50,19 +49,19 @@ namespace SAS.EventsService.SharedKernel.Entities
         #region Operators Overloading
 
         /// <summary>
-        /// Equals Operator to Equals the entities based on there IDs
+        /// Equals operator to compare entities based on their IDs
         /// </summary>
-        /// <param name="first"></param>
-        /// <param name="second"></param>
-        /// <returns>the eguality of the two entities based on there IDs</returns>
-        public static bool operator ==(BaseEntity first, BaseEntity second)
+        /// <param name="first">First entity</param>
+        /// <param name="second">Second entity</param>
+        /// <returns>true if entities have the same ID, otherwise false</returns>
+        public static bool operator ==(BaseEntity<TId> first, BaseEntity<TId> second)
         {
-            if (first is null && second is null)
+            if (ReferenceEquals(first, null) && ReferenceEquals(second, null))
             {
                 return true;
             }
 
-            if (first is null || second is null)
+            if (ReferenceEquals(first, null) || ReferenceEquals(second, null))
             {
                 return false;
             }
@@ -71,55 +70,46 @@ namespace SAS.EventsService.SharedKernel.Entities
         }
 
         /// <summary>
-        /// Not Equals operator 
+        /// Not equals operator 
         /// </summary>
-        /// <param name="first"></param>
-        /// <param name="second"></param>
-        /// <returns>the non equlaity of two entities based on there IDs</returns>
-
-        public static bool operator !=(BaseEntity first, BaseEntity second)
+        /// <param name="first">First entity</param>
+        /// <param name="second">Second entity</param>
+        /// <returns>true if entities don't have the same ID, otherwise false</returns>
+        public static bool operator !=(BaseEntity<TId> first, BaseEntity<TId> second)
         {
             return !(first == second);
         }
 
         /// <summary>
-        /// Equals the entity with other Entity based on there IDs
+        /// Compares the entity with another entity based on their IDs
         /// </summary>
-        /// <param name="other"></param>
-        /// <returns>true if the two entity has the same IDs else false</returns>
-        public bool Equals(BaseEntity other)
+        /// <param name="other">Another entity</param>
+        /// <returns>true if the entities have the same ID, otherwise false</returns>
+        public bool Equals(BaseEntity<TId> other)
         {
             if (other is null || other.GetType() != GetType())
             {
                 return false;
             }
 
-            return other.Id == Id;
+            return EqualityComparer<TId>.Default.Equals(Id, other.Id);
         }
 
         public override bool Equals(object obj)
         {
-            // Check if the two have same type.
             if (obj is null || obj.GetType() != GetType())
             {
                 return false;
             }
 
-            // Check If the obj if of type Entity.
-            if (obj is not BaseEntity entity)
-            {
-                return false;
-            }
-
-            return entity.Id == Id;
+            return Equals(obj as BaseEntity<TId>);
         }
 
         public override int GetHashCode()
         {
-            return Id.GetHashCode();
+            return EqualityComparer<TId>.Default.GetHashCode(Id);
         }
+
         #endregion Operators Overloading
-
     }
-
 }

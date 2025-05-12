@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="DomainEvents\" />
-    <Folder Include="Entities\" />
     <Folder Include="CQRS\" />
     <Folder Include="DomainErrors\" />
     <Folder Include="DomainExceptions\" />
