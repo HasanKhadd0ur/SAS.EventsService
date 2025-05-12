@@ -8,11 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CASolution.SharedKernel" Version="1.0.1" />
+    <ProjectReference Include="..\SAS.EventsService.SharedKernel\SAS.EventsService.SharedKernel.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SAS.EventsService.SharedKernel\SAS.EventsService.SharedKernel.csproj" />
+    <Folder Include="Events\DomainEvents\" />
+    <Folder Include="Events\DomainErrors\" />
   </ItemGroup>
 
 </Project>
