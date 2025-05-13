@@ -8,6 +8,7 @@ namespace SAS.EventsService.SharedKernel.Utilities
         Task SaveChangesAsync(CancellationToken cancellationToken = default);
         void BeginTransaction();
         Task Rollback();
+        Task DispatchEventsAsync<TId>();
     }
 
 }

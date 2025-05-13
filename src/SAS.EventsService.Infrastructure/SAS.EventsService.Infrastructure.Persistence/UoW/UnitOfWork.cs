@@ -30,7 +30,7 @@ namespace SAS.EventsService.Infrastructure.Persistence.UoW
         #region UOW Operations
         public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            await DispatchEventsAsync<Guid>();
+            //await DispatchEventsAsync<Guid>();
 
             await _dbContext.SaveChangesAsync(cancellationToken);
 
@@ -67,7 +67,7 @@ namespace SAS.EventsService.Infrastructure.Persistence.UoW
         }
         #endregion UOW Operations
         #region Process  Events 
-        private async Task DispatchEventsAsync<TId>()
+        public async Task DispatchEventsAsync<TId>()
         {
             // list for the processed event 
             var processedDomainEvents = new List<IDomainEvent>();
