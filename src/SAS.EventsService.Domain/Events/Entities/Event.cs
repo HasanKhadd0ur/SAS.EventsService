@@ -7,8 +7,8 @@ namespace SAS.EventsService.Domain.Events.Entities
     public class Event : BaseEntity<Guid>
     {
 
-        public DateTime CreatedAT { get; set; }
-        public DateTime LastUpdatedAT { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime LastUpdatedAt { get; set; }
         public EventInfo EventInfo { get; set; }
         public Topic Topic { get; set; }
         public Location Location { get; set; }
@@ -18,6 +18,7 @@ namespace SAS.EventsService.Domain.Events.Entities
     public record EventInfo(
         string Title,
         string Summary,
-        int SentimentScore
+        int SentimentScore,
+        string SentimentLabel
         );
 }

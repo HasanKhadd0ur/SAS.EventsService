@@ -1,6 +1,6 @@
 ﻿using SAS.EventsService.SharedKernel.DomainErrors;
 
-namespace SAS.EventsService.Domain.Common.Errors
+namespace SAS.EventsService.Domain.Events.DomainErrors
 {
     public static class MessageErrors
     {

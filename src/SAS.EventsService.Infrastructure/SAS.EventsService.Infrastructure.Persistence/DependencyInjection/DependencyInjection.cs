@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SAS.EventsService.Domain.Events.Repositories;
+using SAS.EventsService.Domain.Topics.Repositories;
 using SAS.EventsService.Infrastructure.Persistence.AppDataContext;
 using SAS.EventsService.Infrastructure.Persistence.Repositories.Base;
 using SAS.EventsService.Infrastructure.Persistence.Repositories.Events;
