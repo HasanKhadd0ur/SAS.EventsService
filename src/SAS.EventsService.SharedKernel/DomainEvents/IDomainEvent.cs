@@ -5,7 +5,7 @@ namespace SAS.EventsService.SharedKernel.DomainEvents
 {
     public interface IDomainEvent : INotification
     {
-        public DateTime DateOccurred { get; set; }
+        //public DateTime DateOccurred { get; set; };
 
     }
 }
