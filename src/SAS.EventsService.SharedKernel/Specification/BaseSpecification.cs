@@ -13,6 +13,9 @@ namespace SAS.EventsService.SharedKernel.Specification
         {
             Criteria = criteria;
         }
+        public BaseSpecification()
+        {;
+        }
         public Expression<Func<T, bool>> Criteria { get; set; }
         public List<Expression<Func<T, object>>> Includes { get; } = new List<Expression<Func<T, object>>>();
         public List<string> IncludeStrings { get; set; } = new List<string>();
