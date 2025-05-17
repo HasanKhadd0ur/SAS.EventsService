@@ -30,8 +30,8 @@ namespace SAS.EventsService.Infrastructure.Persistence.EntitiesConfiguration
             });
 
             // Configure DateTime properties
-            builder.Property(e => e.CreatedAT).IsRequired();
-            builder.Property(e => e.LastUpdatedAT).IsRequired();
+            builder.Property(e => e.CreatedAt).IsRequired();
+            builder.Property(e => e.LastUpdatedAt).IsRequired();
 
             // Relationships
             builder.HasOne(e => e.Location)

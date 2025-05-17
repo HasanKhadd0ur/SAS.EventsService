@@ -1,5 +1,8 @@
 using SAS.EventsService.API.DependencyInjection;
 using SAS.EventsService.Infrastructure.Persistence.DependencyInjection;
+using SAS.EventsService.Application.DependencyInjection;
+using SAS.EventsService.Presentation.DependencyInjection;
+using SAS.EventsService.Infrastructure.Services.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +15,9 @@ var configuration = builder.Configuration;
 // adding dependency injection 
 builder.Services
     .AddAPI(configuration)
+    .AddApplication()
+    .AddPresentation()
+    .AddInfrastructureSevices(configuration)
     .AddPersistence(configuration);
                 
 builder.Services.AddControllers();

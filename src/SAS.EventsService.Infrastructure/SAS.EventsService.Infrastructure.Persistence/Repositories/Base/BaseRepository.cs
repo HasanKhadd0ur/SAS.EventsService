@@ -60,7 +60,11 @@ namespace SAS.EventsService.Infrastructure.Persistence.Repositories.Base
         {
             return SpecificationEvaluator<T, TId>.GetQuery(dbSet.AsQueryable(), specification);
         }
-
+        public async Task<T?> FirstOrDefaultAsync(ISpecification<T> spec)
+        {
+            var query = ApplySpecification(spec);
+            return await query.FirstOrDefaultAsync();
+        }
     }
 
 }
