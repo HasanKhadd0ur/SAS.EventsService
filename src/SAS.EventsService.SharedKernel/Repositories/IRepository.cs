@@ -53,5 +53,6 @@ namespace SAS.EventsService.SharedKernel.Repositories
         /// <param name="entity">The entity to delete.</param>
         /// <returns>A task that represents the asynchronous operation.</returns>
         Task DeleteAsync(T entity);
+        Task<T> FirstOrDefaultAsync(ISpecification<T> spec);
     }
 }

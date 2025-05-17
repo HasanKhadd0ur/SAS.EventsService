@@ -18,8 +18,6 @@ namespace SAS.EventsService.Application.DependencyInjection
             services.AddMyMediatR()
                 .AddMappers();
 
-
-
             return services;
         }
 
@@ -32,7 +30,7 @@ namespace SAS.EventsService.Application.DependencyInjection
             // Registers pipeline behaviors
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
-
+            
             // Registers FluentValidation validators from the current assembly
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             return services;
@@ -47,6 +45,8 @@ namespace SAS.EventsService.Application.DependencyInjection
             services.AddAutoMapper(cfg =>
             {
                 cfg.AddProfile<EventProfile>();
+                cfg.AddProfile<TopicProfile>();
+
             });
 
 

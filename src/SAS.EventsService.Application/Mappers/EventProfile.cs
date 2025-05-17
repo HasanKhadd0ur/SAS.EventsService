@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using SAS.EventService.Domain.Entities;
 using SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent;
+using SAS.EventsService.Application.Topics.Common;
 using SAS.EventsService.Domain.Events.Entities;
 
 namespace SAS.EventsService.Application.Mapping
@@ -29,4 +31,12 @@ namespace SAS.EventsService.Application.Mapping
                 .ForMember(dest => dest.LastUpdatedAt, opt => opt.Ignore());
         }
     }
+    public class TopicProfile : Profile
+    {
+        public TopicProfile()
+        {
+            CreateMap<Topic, TopicDTO>();
+        }
+    }
+
 }
