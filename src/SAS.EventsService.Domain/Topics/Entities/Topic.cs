@@ -6,5 +6,9 @@ namespace SAS.EventService.Domain.Entities
     {
         public string Name { get; set; }
 
+        public void UpdateName(String Name)
+        {
+            this.Name = Name;
+        }
     }
 }

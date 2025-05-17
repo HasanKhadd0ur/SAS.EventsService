@@ -7,4 +7,5 @@ namespace SAS.EventService.Domain.Entities
     public interface IUserInterestsRepository : IRepository<UserInterestRegion, Guid>
     {
     }
+
 }
