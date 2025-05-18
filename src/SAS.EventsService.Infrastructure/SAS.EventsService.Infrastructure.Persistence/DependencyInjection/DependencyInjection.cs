@@ -51,7 +51,7 @@ namespace SAS.EventsService.Infrastructure.Persistence.DependencyInjection
             services.AddScoped<IEventsRepository, EventsRepository>();
             services.AddScoped<ILocationsRepository, LocationsRepository>();
             services.AddScoped<ITopicsRepository, TopicsRepository>();
-
+            services.AddScoped<IMessagesRepository, MessagesRepository>();
             services.AddScoped<IRegionsRepository, RegionsRepository>();
             return services;
 

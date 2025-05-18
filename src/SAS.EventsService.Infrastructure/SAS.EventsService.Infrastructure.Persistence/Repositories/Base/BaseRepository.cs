@@ -1,4 +1,5 @@
 ﻿
+using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using SAS.EventsService.Infrastructure.Persistence.AppDataContext;
@@ -60,6 +61,11 @@ namespace SAS.EventsService.Infrastructure.Persistence.Repositories.Base
         {
             return SpecificationEvaluator<T, TId>.GetQuery(dbSet.AsQueryable(), specification);
         }
+        public async Task AddRangeAsync(IEnumerable<T> entities)
+        {
+            await _dbContext.BulkInsertAsync(entities.ToList());
+        }
+
         public async Task<T?> FirstOrDefaultAsync(ISpecification<T> spec)
         {
             var query = ApplySpecification(spec);
