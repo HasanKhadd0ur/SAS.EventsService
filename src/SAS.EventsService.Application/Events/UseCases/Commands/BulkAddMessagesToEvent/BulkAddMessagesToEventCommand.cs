@@ -1,0 +1,8 @@
+﻿using Ardalis.Result;
+using SAS.EventsService.Application.Events.Common;
+using SAS.EventsService.SharedKernel.CQRS.Commands;
+
+namespace SAS.EventsService.Application.Events.UseCases.Commands.BulkAddMessagesToEvent
+{
+    public record BulkAddMessagesToEventCommand(Guid EventId, List<MessageDTO> NewMessages) : ICommand<Result>;
+}

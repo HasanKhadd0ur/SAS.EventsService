@@ -9,10 +9,11 @@ using SAS.EventsService.Domain.Regions.Repositories;
 using SAS.EventsService.SharedKernel.Utilities;
 using SAS.EventsService.Domain.Common.Errors;
 using SAS.EventsService.Domain.Regions.Entities;
+using SAS.EventsService.Domain.Events.DomainEvents;
 
 namespace SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent
 {
-    public class CreateEventFromDetectionHandler : ICommandHandler<CreateEventFromDetectionCommand, Result<Guid>>
+    public class CreateEventFromDetectionCommandHandler : ICommandHandler<CreateEventFromDetectionCommand, Result<Guid>>
     {
         private readonly ITopicsRepository _topicRepo;
         private readonly IRegionsRepository _regionRepo;
@@ -20,16 +21,18 @@ namespace SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent
         private readonly IEventsRepository _eventRepo;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IIdProvider _idProvider;
+        private readonly IDateTimeProvider _dateTimeProvider;
         private readonly IMapper _mapper;
 
-        public CreateEventFromDetectionHandler(
+        public CreateEventFromDetectionCommandHandler(
             ITopicsRepository topicRepo,
             IRegionsRepository regionRepo,
             ILocationsRepository locationRepo,
             IEventsRepository eventRepo,
             IUnitOfWork unitOfWork,
             IIdProvider idProvider,
-            IMapper mapper)
+            IMapper mapper,
+            IDateTimeProvider dateTimeProvider)
         {
             _topicRepo = topicRepo;
             _regionRepo = regionRepo;
@@ -38,6 +41,7 @@ namespace SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent
             _unitOfWork = unitOfWork;
             _idProvider = idProvider;
             _mapper = mapper;
+            _dateTimeProvider = dateTimeProvider;
         }
 
         public async Task<Result<Guid>> Handle(CreateEventFromDetectionCommand request, CancellationToken cancellationToken)
@@ -51,7 +55,7 @@ namespace SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent
             if (region is null)
             {
                 // If region doesn't exist, we can either throw an error or create it
-                var regionId = _idProvider.GenerateId<string>(); // Generate a new ID for the region
+                var regionId = _idProvider.GenerateId<Region>(request.RegionName); // Generate a new ID for the region
                 region = new Region { Id=regionId,Name= request.RegionName };
                 await _regionRepo.AddAsync(region);
             }
@@ -60,7 +64,7 @@ namespace SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent
             var location = await _locationRepo.GetByCoordinatesAsync(request.Latitude, request.Longitude);
             if (location is null)
             {
-                var locationId = _idProvider.GenerateId<Guid>();
+                var locationId = _idProvider.GenerateId<Location>(request.Latitude,request.Longitude);
                 location = _mapper.Map<Location>(request);
                 location.Id = locationId;
                 await _locationRepo.AddAsync(location);
@@ -68,12 +72,28 @@ namespace SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent
 
             
             // Create event with mapped data
-            var eventId = _idProvider.GenerateId<Guid>();
+            var eventId = _idProvider.GenerateId<Event>();
 
             // Map the CreateEventFromDetectionCommand to the Event entity using AutoMapper
             var @event = _mapper.Map<Event>(request);
 
             @event.EventInfo = request.EventInfo; // Ensure EventInfo is set from the request
+            
+            @event.Location = location;
+            @event.Region = region;
+            @event.Topic = topic;
+
+            @event.CreatedAt = _dateTimeProvider.UtcNow;
+
+            @event.UpdateLastModifiedTime(@event.CreatedAt);
+
+            // Add domain Event ( Event Detected)
+            @event.AddDomainEvent(new EventDetected(
+                EventId: @event.Id,
+                Title: @event.EventInfo.Title,
+                RegionName: region.Name,
+                CreatedAt: @event.CreatedAt
+            ));
 
             @event.Id = eventId;
             

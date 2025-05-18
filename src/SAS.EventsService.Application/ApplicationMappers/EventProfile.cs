@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 using SAS.EventService.Domain.Entities;
+using SAS.EventsService.Application.Events.Common;
 using SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent;
 using SAS.EventsService.Application.Topics.Common;
 using SAS.EventsService.Domain.Events.Entities;
+using SAS.EventsService.Domain.Events.ValueObjects;
+using SAS.EventsService.Domain.Regions.Entities;
 
 namespace SAS.EventsService.Application.Mapping
 {
@@ -29,6 +32,17 @@ namespace SAS.EventsService.Application.Mapping
                 // Timestamps will be set by the constructor or after mapping
                 .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
                 .ForMember(dest => dest.LastUpdatedAt, opt => opt.Ignore());
+
+                CreateMap<CreateEventFromDetectionCommand, EventInfo>()
+                 .ConstructUsing(src => src.EventInfo);
+
+                CreateMap<Event, EventDTO>();
+            
+                CreateMap<Location, LocationDTO>();
+
+                CreateMap<Message, MessageDTO>();
+                CreateMap<MessageDTO, Message>();
+
         }
     }
     public class TopicProfile : Profile

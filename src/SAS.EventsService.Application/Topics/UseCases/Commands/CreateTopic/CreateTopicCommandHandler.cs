@@ -22,7 +22,7 @@ namespace SAS.EventsService.Application.Topics.UseCases.Commands.CreateTopic
 
         public async Task<Result<Guid>> Handle(CreateTopicCommand request, CancellationToken cancellationToken)
         {
-            var topic = new Topic { Id = _idProvider.GenerateId<Guid>(), Name = request.Name };
+            var topic = new Topic { Id = _idProvider.GenerateId<Topic>(), Name = request.Name };
             await _repo.AddAsync(topic);
             await _unitOfWork.SaveChangesAsync();
             return Result.Success(topic.Id);
