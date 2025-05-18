@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using SAS.EventsService.Application.Contracts.Providers;
 using SAS.EventsService.Infrastructure.Services;
+using SAS.EventsService.Infrastructure.Services.Providers;
 
 namespace SAS.EventsService.Infrastructure.Services.DependencyInjection
 {
@@ -21,6 +22,8 @@ namespace SAS.EventsService.Infrastructure.Services.DependencyInjection
         private static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSingleton<IIdProvider, IdProvider>();
+            services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+
             return services;
         }
 

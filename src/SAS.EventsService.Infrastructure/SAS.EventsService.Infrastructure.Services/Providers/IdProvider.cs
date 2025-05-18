@@ -30,5 +30,6 @@ namespace SAS.EventsService.Infrastructure.Services
             byte[] hash = provider.ComputeHash(Encoding.UTF8.GetBytes(input));
             return new Guid(hash[..16]);
         }
+
     }
 }
