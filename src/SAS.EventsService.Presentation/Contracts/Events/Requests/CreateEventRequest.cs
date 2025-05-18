@@ -1,6 +1,4 @@
-﻿using Ardalis.Result;
-using SAS.EventsService.Domain.Events.Entities;
-using SAS.EventsService.SharedKernel.CQRS.Commands;
+﻿using SAS.EventsService.Domain.Events.ValueObjects;
 
 namespace SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent
 {
@@ -13,6 +11,5 @@ namespace SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent
         double Latitude,
         double Longitude
     );
-
 
 }
