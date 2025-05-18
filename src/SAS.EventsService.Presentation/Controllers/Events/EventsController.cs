@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SAS.EventsService.Application.Events.Common;
 using SAS.EventsService.Application.Events.UseCases.Commands.AddMessageToEvent;
+using SAS.EventsService.Application.Events.UseCases.Commands.BulkAddMessagesToEvent;
 using SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent;
 using SAS.EventsService.Application.Events.UseCases.Commands.UpdateEventInfo;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetAllEvents;
@@ -10,8 +11,10 @@ using SAS.EventsService.Application.Events.UseCases.Queries.GetEventById;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetEventsByArea;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetEventsBySepcification;
 using SAS.EventsService.Domain.Events.ValueObjects;
+using SAS.EventsService.Presentation.Contracts.Events.Requests;
 using SAS.EventsService.Presentation.Controllers.ApiBase;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SAS.EventsService.Presentation.Controllers
@@ -142,6 +145,16 @@ namespace SAS.EventsService.Presentation.Controllers
             var spec = new EventsByDateSpecification(date);
             var result = await _mediator.Send(new GetEventsBySpecificationQuery(spec));
             return HandleResult(result);
+        }
+
+        [HttpPost("{eventId}/messages/bulk")]
+        public async Task<IActionResult> BulkAddMessagesToEvent(Guid eventId, [FromBody] List<MessageDTO> messages)
+        {
+            var command = new BulkAddMessagesToEventCommand(eventId, messages);
+            var result = await _mediator.Send(command);
+
+            return HandleResult(result);
+
         }
 
 

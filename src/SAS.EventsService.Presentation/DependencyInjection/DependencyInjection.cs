@@ -1,5 +1,5 @@
-﻿
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SAS.EventsService.Presentation.Mappers;
 
 namespace SAS.EventsService.Presentation.DependencyInjection
 {
@@ -30,6 +30,12 @@ namespace SAS.EventsService.Presentation.DependencyInjection
         #region Mappers 
         private static IServiceCollection AddMapper(this IServiceCollection services)
         {
+            services.AddAutoMapper(cfg =>
+            {
+                cfg.AddProfile<EventRequestToCommandProfile>();
+
+            });
+
 
 
             return services;
