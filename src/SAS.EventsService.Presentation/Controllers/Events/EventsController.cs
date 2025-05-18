@@ -74,9 +74,10 @@ namespace SAS.EventsService.Presentation.Controllers
         /// </summary>
         /// <returns>A list of all events.</returns>
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] int? pageNumber, [FromQuery] int? pageSize)
         {
-            var result = await _mediator.Send(new GetAllEventsQuery());
+            var query = new GetAllEventsQuery(pageNumber, pageSize);
+            var result = await _mediator.Send(query);
             return HandleResult(result);
         }
 
@@ -157,6 +158,12 @@ namespace SAS.EventsService.Presentation.Controllers
 
         }
 
-
+        [HttpGet("{eventId}/messages")]
+        public async Task<IActionResult> GetMessagesByEvent(Guid eventId)
+        {
+            var query = new GetEventMessagesQuery(eventId);
+            var result = await _mediator.Send(query);
+            return HandleResult(result);
+        }
     }
 }

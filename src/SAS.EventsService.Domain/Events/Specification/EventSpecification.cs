@@ -79,3 +79,12 @@ public class EventsByLocationRadiusSpecification : BaseEventSpecification
 
     private static double ToRadians(double deg) => deg * (Math.PI / 180);
 }
+
+public class EventWithMessagesByIdSpecification : BaseSpecification<Event>
+{
+    public EventWithMessagesByIdSpecification(Guid eventId)
+        : base(e => e.Id == eventId)
+    {
+        AddInclude(e => e.Messages);
+    }
+}
