@@ -1,7 +1,17 @@
 ﻿using SAS.EventsService.Domain.Events.Entities;
 using SAS.EventsService.SharedKernel.Specification;
 
-public class EventsByTopicNameSpecification : BaseSpecification<Event>
+public class BaseEventSpecification : BaseSpecification<Event>
+{
+    public BaseEventSpecification() : base()
+    {
+        AddInclude(e => e.Location );
+        AddInclude(e => e.Topic);
+
+    }
+}
+
+public class EventsByTopicNameSpecification : BaseEventSpecification
 {
     public EventsByTopicNameSpecification(string topicName) : base()
     {
@@ -9,7 +19,7 @@ public class EventsByTopicNameSpecification : BaseSpecification<Event>
     }
 }
 
-public class EventsByRegionNameSpecification : BaseSpecification<Event>
+public class EventsByRegionNameSpecification : BaseEventSpecification
 {
     public EventsByRegionNameSpecification(string regionName) : base()
     {
@@ -17,7 +27,7 @@ public class EventsByRegionNameSpecification : BaseSpecification<Event>
     }
 }
 
-public class EventsByLastUpdatedAfterSpecification : BaseSpecification<Event>
+public class EventsByLastUpdatedAfterSpecification : BaseEventSpecification
 {
     public EventsByLastUpdatedAfterSpecification(DateTime lastUpdatedAfter) : base()
     {
@@ -25,14 +35,14 @@ public class EventsByLastUpdatedAfterSpecification : BaseSpecification<Event>
     }
 }
 
-public class EventsByCreatedAtBetweenSpecification : BaseSpecification<Event>
+public class EventsByCreatedAtBetweenSpecification : BaseEventSpecification
 {
     public EventsByCreatedAtBetweenSpecification(DateTime from, DateTime to) : base()
     {
         Criteria = e => e.CreatedAt >= from && e.CreatedAt <= to;
     }
 }
-public class EventsByDateSpecification : BaseSpecification<Event>
+public class EventsByDateSpecification : BaseEventSpecification
 {
     public EventsByDateSpecification(DateTime date) : base()
     {
@@ -43,7 +53,7 @@ public class EventsByDateSpecification : BaseSpecification<Event>
     }
 }
 
-public class EventsByLocationRadiusSpecification : BaseSpecification<Event>
+public class EventsByLocationRadiusSpecification : BaseEventSpecification
 {
     public EventsByLocationRadiusSpecification(double latitude, double longitude, double radiusInKm)
     {

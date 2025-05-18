@@ -19,7 +19,12 @@ namespace SAS.EventsService.Domain.Events.Entities
         public Location Location { get; set; }
         public Region Region { get; set; }
         public ICollection<Message> Messages { get; set; }
-        
+
+        public Event()
+        {
+            Messages = new List<Message>();
+        }
+
         public void AddMessage(Message message)
         {
             if (message == null) {
