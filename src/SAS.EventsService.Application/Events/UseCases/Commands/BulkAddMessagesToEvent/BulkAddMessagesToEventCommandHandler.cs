@@ -16,19 +16,22 @@ namespace SAS.EventsService.Application.Events.UseCases.Commands.BulkAddMessages
         private readonly IMapper _mapper;
         private readonly IDateTimeProvider _dateTimeProvider;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IIdProvider _idProvider;
 
         public BulkAddMessagesToEventCommandHandler(
             IEventsRepository eventsRepository,
             IMessagesRepository messagesRepository,
             IMapper mapper,
             IDateTimeProvider dateTimeProvider,
-            IUnitOfWork unitOfWork)
+            IUnitOfWork unitOfWork, 
+            IIdProvider idProvider)
         {
             _eventsRepository = eventsRepository;
             _messagesRepository = messagesRepository;
             _mapper = mapper;
             _dateTimeProvider = dateTimeProvider;
             _unitOfWork = unitOfWork;
+            _idProvider = idProvider;
         }
 
         public async Task<Result> Handle(BulkAddMessagesToEventCommand request, CancellationToken cancellationToken)
@@ -42,6 +45,8 @@ namespace SAS.EventsService.Application.Events.UseCases.Commands.BulkAddMessages
             foreach (var message in messages)
             {
                 message.EventId = @event.Id;
+                message.Id = _idProvider.GenerateId<Message>();
+
             }
 
             await _messagesRepository.AddRangeAsync(messages); // assumes this method exists

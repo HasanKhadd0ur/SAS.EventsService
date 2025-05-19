@@ -41,7 +41,9 @@ namespace SAS.EventsService.Application.Mapping
                 CreateMap<Location, LocationDTO>();
 
                 CreateMap<Message, MessageDTO>();
-                CreateMap<MessageDTO, Message>();
+                CreateMap<MessageDTO, Message>()
+                    .ForMember(dest => dest.EventId, opt => opt.Ignore());
+
 
         }
     }

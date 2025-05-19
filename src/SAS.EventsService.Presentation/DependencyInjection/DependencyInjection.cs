@@ -18,10 +18,11 @@ namespace SAS.EventsService.Presentation.DependencyInjection
         #region Configure controllers 
         private static IServiceCollection AddMyControllers(this IServiceCollection services)
         {
-
-            services
-                .AddControllers();
-                //.AddApplicationPart(AssemblyReference.Assembly);
+            services.AddControllers();
+            
+            //services
+            //    .AddControllers();
+            //.AddApplicationPart(AssemblyReference.Assembly);
 
             return services;
         }
