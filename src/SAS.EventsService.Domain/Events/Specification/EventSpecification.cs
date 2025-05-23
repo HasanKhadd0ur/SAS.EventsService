@@ -32,6 +32,8 @@ public class EventsByLastUpdatedAfterSpecification : BaseEventSpecification
     public EventsByLastUpdatedAfterSpecification(DateTime lastUpdatedAfter) : base()
     {
         Criteria = e => e.LastUpdatedAt >= lastUpdatedAfter;
+        OrderByDescending = e => e.LastUpdatedAt;
+
     }
 }
 

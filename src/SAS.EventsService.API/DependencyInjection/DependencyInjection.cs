@@ -58,9 +58,20 @@ namespace SAS.EventsService.API.DependencyInjection
         #region Cors
         private static IServiceCollection AddApiCors(this IServiceCollection services, IConfiguration configuration)
         {
-          
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowFrontendDev",
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200")
+                               .AllowAnyHeader()
+                               .AllowAnyMethod();
+                    });
+            });
+
             return services;
         }
+
         #endregion Cors
 
         #region Middlewares 
