@@ -11,7 +11,6 @@ namespace SAS.EventsService.Presentation.DependencyInjection
                 .AddMapper()
                 .AddMyControllers()
                 ;
-
             return services;
         }
 

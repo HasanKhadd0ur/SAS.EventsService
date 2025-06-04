@@ -18,4 +18,5 @@ namespace SAS.EventsService.Infrastructure.Services.Email
 
         }
     }
+
 }

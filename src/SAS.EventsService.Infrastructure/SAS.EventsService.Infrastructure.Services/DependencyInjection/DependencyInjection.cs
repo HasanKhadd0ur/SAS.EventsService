@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SAS.EventsService.Application.Contracts.LLMs;
 using SAS.EventsService.Application.Contracts.Providers;
 using SAS.EventsService.Infrastructure.Services;
+using SAS.EventsService.Infrastructure.Services.LLMs;
 using SAS.EventsService.Infrastructure.Services.Providers;
 
 namespace SAS.EventsService.Infrastructure.Services.DependencyInjection
@@ -23,6 +25,8 @@ namespace SAS.EventsService.Infrastructure.Services.DependencyInjection
         {
             services.AddSingleton<IIdProvider, IdProvider>();
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+
+            services.AddHttpClient<ILLMClient, GeminiClient>();
 
             return services;
         }

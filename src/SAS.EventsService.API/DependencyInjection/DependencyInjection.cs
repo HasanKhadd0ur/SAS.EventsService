@@ -15,6 +15,9 @@ namespace SAS.EventsService.API.DependencyInjection
                 .AddMyMiddlewares()
                 ;
 
+
+            services.AddOutputCache();
+
             return services;
         }
 

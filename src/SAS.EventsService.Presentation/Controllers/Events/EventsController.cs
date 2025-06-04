@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
+using Mscc.GenerativeAI;
 using SAS.EventsService.Application.Events.Common;
 using SAS.EventsService.Application.Events.UseCases.Commands.AddMessageToEvent;
 using SAS.EventsService.Application.Events.UseCases.Commands.BulkAddMessagesToEvent;
@@ -10,11 +12,15 @@ using SAS.EventsService.Application.Events.UseCases.Queries.GetAllEvents;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetEventById;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetEventsByArea;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetEventsBySepcification;
+using SAS.EventsService.Application.Events.UseCases.Queries.GetTodaySummary;
 using SAS.EventsService.Domain.Events.ValueObjects;
 using SAS.EventsService.Presentation.Contracts.Events.Requests;
 using SAS.EventsService.Presentation.Controllers.ApiBase;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace SAS.EventsService.Presentation.Controllers
@@ -165,5 +171,15 @@ namespace SAS.EventsService.Presentation.Controllers
             var result = await _mediator.Send(query);
             return HandleResult(result);
         }
+
+        [HttpGet("summary/today")]
+        [ResponseCache(Duration = 600)]
+        public async Task<IActionResult> GetTodaySummary()
+        {
+            var result = await _mediator.Send(new SummarizeTodayEventsQuery());
+            return HandleResult(result);
+        }
+
+
     }
 }

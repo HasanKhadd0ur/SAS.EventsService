@@ -25,6 +25,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// for secret key storage 
+builder.Configuration.AddUserSecrets<Program>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -39,6 +42,8 @@ app.UseHttpsRedirection();
 app.UseCors("AllowFrontendDev");
 
 app.UseAuthorization();
+app.UseOutputCache();
+
 
 app.MapControllers();
 
