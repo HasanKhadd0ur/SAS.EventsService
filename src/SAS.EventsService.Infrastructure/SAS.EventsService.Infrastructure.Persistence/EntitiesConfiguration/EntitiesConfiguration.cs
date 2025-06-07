@@ -98,9 +98,9 @@ namespace SAS.EventsService.Infrastructure.Persistence.EntitiesConfiguration
     }
 
     // UserInterestRegion Entity Configuration
-    public class UserInterestRegionEntityConfiguration : IEntityTypeConfiguration<UserInterestRegion>
+    public class UserInterestRegionEntityConfiguration : IEntityTypeConfiguration<UserInterest>
     {
-        public void Configure(EntityTypeBuilder<UserInterestRegion> builder)
+        public void Configure(EntityTypeBuilder<UserInterest> builder)
         {
             builder.HasKey(u => u.Id);  // Set primary key
             builder.HasOne(u => u.Region)  // Relationship with Region
