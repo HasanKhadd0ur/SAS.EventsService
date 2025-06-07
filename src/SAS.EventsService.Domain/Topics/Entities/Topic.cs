@@ -5,10 +5,15 @@ namespace SAS.EventService.Domain.Entities
     public class Topic : BaseEntity<Guid>
     {
         public string Name { get; set; }
+        public string Description { get; set; }
 
         public void UpdateName(String Name)
         {
             this.Name = Name;
+        }
+        public void UpdateDescription(String Description)
+        {
+            this.Description = Description;
         }
     }
 }
