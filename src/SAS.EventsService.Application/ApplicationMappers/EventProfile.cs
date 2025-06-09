@@ -2,6 +2,7 @@
 using SAS.EventService.Domain.Entities;
 using SAS.EventsService.Application.Events.Common;
 using SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent;
+using SAS.EventsService.Application.Regions.Common;
 using SAS.EventsService.Application.Topics.Common;
 using SAS.EventsService.Domain.Events.Entities;
 using SAS.EventsService.Domain.Events.ValueObjects;
@@ -39,9 +40,12 @@ namespace SAS.EventsService.Application.Mapping
                 CreateMap<Event, EventDTO>();
             
                 CreateMap<Location, LocationDTO>();
+                CreateMap<LocationDTO, Location>();
 
                 CreateMap<Message, MessageDTO>();
-                CreateMap<MessageDTO, Message>();
+                CreateMap<MessageDTO, Message>()
+                    .ForMember(dest => dest.EventId, opt => opt.Ignore());
+
 
         }
     }
@@ -52,5 +56,14 @@ namespace SAS.EventsService.Application.Mapping
             CreateMap<Topic, TopicDTO>();
         }
     }
+    public class UserInterestProfile : Profile
+    {
+        public UserInterestProfile()
+        {
+            CreateMap<UserInterest, UserInterestDto>().ReverseMap();
+
+        }
+    }
+
 
 }

@@ -2,8 +2,10 @@
 using SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent;
 using SAS.EventsService.Application.Events.UseCases.Commands.UpdateEventInfo;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetEventsByArea;
+using SAS.EventsService.Application.Regions.UseCases.Commands.CreateTopic;
 using SAS.EventsService.Domain.Events.ValueObjects;
 using SAS.EventsService.Presentation.Contracts.Events.Requests;
+using SAS.EventsService.Presentation.Contracts.Topics.Requests;
 
 namespace SAS.EventsService.Presentation.Mappers
 {
@@ -18,6 +20,15 @@ namespace SAS.EventsService.Presentation.Mappers
             CreateMap<UpdateEventInfoRequest, UpdateEventInfoCommand>();
             
             CreateMap<GetEventsByLocationRadiusRequest,GetEventsByLocationRadiusQuery>();
+        }
+    }
+    public class UserInterestsRequestToCommandProfile : Profile
+    {
+        public UserInterestsRequestToCommandProfile()
+        {
+            // CreateUserInterestRequest → CreateUserInterestCommand
+            CreateMap<CreateUserInterestRequest, CreateUserInterestCommand>();
+
         }
     }
 }

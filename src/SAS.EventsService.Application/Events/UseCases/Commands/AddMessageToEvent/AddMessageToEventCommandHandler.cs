@@ -15,6 +15,7 @@ namespace SAS.EventsService.Application.Events.UseCases.Commands.AddMessageToEve
         private readonly IMessagesRepository _messagesRepository;
         private readonly IMapper _mapper;
         private readonly IDateTimeProvider _dateTimeProvider;
+        private readonly IIdProvider _idProvider;
         private readonly IUnitOfWork _unitOfWork;
 
         public AddMessageToEventCommandHandler(
@@ -22,13 +23,15 @@ namespace SAS.EventsService.Application.Events.UseCases.Commands.AddMessageToEve
             IMessagesRepository messagesRepository,
             IMapper mapper,
             IDateTimeProvider dateTimeProvider,
-            IUnitOfWork unitOfWork)
+            IUnitOfWork unitOfWork, 
+            IIdProvider idProvider)
         {
             _eventsRepository = eventsRepository;
             _messagesRepository = messagesRepository;
             _mapper = mapper;
             _dateTimeProvider = dateTimeProvider;
             _unitOfWork = unitOfWork;
+            _idProvider = idProvider;
         }
 
         public async Task<Result> Handle(AddMessageToEventCommand request, CancellationToken cancellationToken)
@@ -39,6 +42,7 @@ namespace SAS.EventsService.Application.Events.UseCases.Commands.AddMessageToEve
 
             var message = _mapper.Map<Message>(request.NewMessage);
             message.EventId = @event.Id;
+            message.Id = _idProvider.GenerateId<Message>();
             message.CreatedAt = _dateTimeProvider.UtcNow;
 
             await _messagesRepository.AddAsync(message);

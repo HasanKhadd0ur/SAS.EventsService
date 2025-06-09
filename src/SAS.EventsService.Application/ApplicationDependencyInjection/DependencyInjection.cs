@@ -46,6 +46,7 @@ namespace SAS.EventsService.Application.DependencyInjection
             {
                 cfg.AddProfile<EventProfile>();
                 cfg.AddProfile<TopicProfile>();
+                cfg.AddProfile<UserInterestProfile>();
 
             });
 

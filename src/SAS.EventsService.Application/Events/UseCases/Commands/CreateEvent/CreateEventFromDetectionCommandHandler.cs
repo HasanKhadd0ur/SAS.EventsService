@@ -87,6 +87,8 @@ namespace SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent
 
             @event.UpdateLastModifiedTime(@event.CreatedAt);
 
+            @event.Id = eventId;
+
             // Add domain Event ( Event Detected)
             @event.AddDomainEvent(new EventDetected(
                 EventId: @event.Id,
@@ -95,7 +97,6 @@ namespace SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent
                 CreatedAt: @event.CreatedAt
             ));
 
-            @event.Id = eventId;
             
 
             // Save event to repository

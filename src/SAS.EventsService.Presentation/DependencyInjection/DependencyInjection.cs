@@ -11,17 +11,17 @@ namespace SAS.EventsService.Presentation.DependencyInjection
                 .AddMapper()
                 .AddMyControllers()
                 ;
-
             return services;
         }
 
         #region Configure controllers 
         private static IServiceCollection AddMyControllers(this IServiceCollection services)
         {
-
-            services
-                .AddControllers();
-                //.AddApplicationPart(AssemblyReference.Assembly);
+            services.AddControllers();
+            
+            //services
+            //    .AddControllers();
+            //.AddApplicationPart(AssemblyReference.Assembly);
 
             return services;
         }
@@ -33,6 +33,8 @@ namespace SAS.EventsService.Presentation.DependencyInjection
             services.AddAutoMapper(cfg =>
             {
                 cfg.AddProfile<EventRequestToCommandProfile>();
+
+                cfg.AddProfile<UserInterestsRequestToCommandProfile>();
 
             });
 

@@ -10,6 +10,7 @@ using SAS.EventsService.Application.Events.UseCases.Queries.GetAllEvents;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetEventById;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetEventsByArea;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetEventsBySepcification;
+using SAS.EventsService.Application.Events.UseCases.Queries.GetTodaySummary;
 using SAS.EventsService.Domain.Events.ValueObjects;
 using SAS.EventsService.Presentation.Contracts.Events.Requests;
 using SAS.EventsService.Presentation.Controllers.ApiBase;
@@ -74,9 +75,10 @@ namespace SAS.EventsService.Presentation.Controllers
         /// </summary>
         /// <returns>A list of all events.</returns>
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] int? pageNumber, [FromQuery] int? pageSize)
         {
-            var result = await _mediator.Send(new GetAllEventsQuery());
+            var query = new GetAllEventsQuery(pageNumber, pageSize);
+            var result = await _mediator.Send(query);
             return HandleResult(result);
         }
 
@@ -155,6 +157,22 @@ namespace SAS.EventsService.Presentation.Controllers
 
             return HandleResult(result);
 
+        }
+
+        [HttpGet("{eventId}/messages")]
+        public async Task<IActionResult> GetMessagesByEvent(Guid eventId)
+        {
+            var query = new GetEventMessagesQuery(eventId);
+            var result = await _mediator.Send(query);
+            return HandleResult(result);
+        }
+
+        [HttpGet("summary/today")]
+        [ResponseCache(Duration = 600)]
+        public async Task<IActionResult> GetTodaySummary()
+        {
+            var result = await _mediator.Send(new SummarizeTodayEventsQuery());
+            return HandleResult(result);
         }
 
 

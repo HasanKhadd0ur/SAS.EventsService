@@ -18,16 +18,20 @@ namespace SAS.EventsService.Infrastructure.Persistence.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .UseCollation("Arabic_CI_AS")
-                .HasAnnotation("ProductVersion", "6.0.36")
+                .HasAnnotation("ProductVersion", "9.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("SAS.EventService.Domain.Entities.Topic", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -114,6 +118,10 @@ namespace SAS.EventsService.Infrastructure.Persistence.Migrations
                     b.Property<Guid>("EventId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("MessageId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Platform")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -156,27 +164,28 @@ namespace SAS.EventsService.Infrastructure.Persistence.Migrations
                     b.ToTable("Regions");
                 });
 
-            modelBuilder.Entity("SAS.EventsService.Domain.Regions.Entities.UserInterestRegion", b =>
+            modelBuilder.Entity("SAS.EventsService.Domain.Regions.Entities.UserInterest", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("RegionId")
+                    b.Property<string>("InterestName")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("LocationId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("RegionId1")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("RadiusInKm")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RegionId");
-
-                    b.HasIndex("RegionId1");
+                    b.HasIndex("LocationId");
 
                     b.ToTable("UserInterests");
                 });
@@ -201,7 +210,7 @@ namespace SAS.EventsService.Infrastructure.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("SAS.EventsService.Domain.Events.Entities.EventInfo", "EventInfo", b1 =>
+                    b.OwnsOne("SAS.EventsService.Domain.Events.ValueObjects.EventInfo", "EventInfo", b1 =>
                         {
                             b1.Property<Guid>("EventId")
                                 .HasColumnType("uniqueidentifier");
@@ -210,8 +219,8 @@ namespace SAS.EventsService.Infrastructure.Persistence.Migrations
                                 .IsRequired()
                                 .HasColumnType("nvarchar(max)");
 
-                            b1.Property<int>("SentimentScore")
-                                .HasColumnType("int")
+                            b1.Property<double>("SentimentScore")
+                                .HasColumnType("float")
                                 .HasColumnName("SentimentScore");
 
                             b1.Property<string>("Summary")
@@ -255,29 +264,20 @@ namespace SAS.EventsService.Infrastructure.Persistence.Migrations
                     b.Navigation("Event");
                 });
 
-            modelBuilder.Entity("SAS.EventsService.Domain.Regions.Entities.UserInterestRegion", b =>
+            modelBuilder.Entity("SAS.EventsService.Domain.Regions.Entities.UserInterest", b =>
                 {
-                    b.HasOne("SAS.EventsService.Domain.Regions.Entities.Region", "Region")
+                    b.HasOne("SAS.EventsService.Domain.Events.Entities.Location", "Location")
                         .WithMany()
-                        .HasForeignKey("RegionId")
+                        .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SAS.EventsService.Domain.Regions.Entities.Region", null)
-                        .WithMany("UserInterests")
-                        .HasForeignKey("RegionId1");
-
-                    b.Navigation("Region");
+                    b.Navigation("Location");
                 });
 
             modelBuilder.Entity("SAS.EventsService.Domain.Events.Entities.Event", b =>
                 {
                     b.Navigation("Messages");
-                });
-
-            modelBuilder.Entity("SAS.EventsService.Domain.Regions.Entities.Region", b =>
-                {
-                    b.Navigation("UserInterests");
                 });
 #pragma warning restore 612, 618
         }

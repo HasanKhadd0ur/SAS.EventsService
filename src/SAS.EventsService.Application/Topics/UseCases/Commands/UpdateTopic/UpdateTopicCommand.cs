@@ -4,6 +4,6 @@ using SAS.EventsService.SharedKernel.CQRS.Commands;
 
 namespace SAS.EventsService.Application.Topics.UseCases.Commands
 {
-    public record UpdateTopicCommand(Guid Id, string Name) : ICommand<Result>;
+    public record UpdateTopicCommand(Guid Id, string Name, string Description) : ICommand<Result>;
 
 }

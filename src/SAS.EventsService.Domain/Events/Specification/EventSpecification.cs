@@ -32,6 +32,8 @@ public class EventsByLastUpdatedAfterSpecification : BaseEventSpecification
     public EventsByLastUpdatedAfterSpecification(DateTime lastUpdatedAfter) : base()
     {
         Criteria = e => e.LastUpdatedAt >= lastUpdatedAfter;
+        OrderByDescending = e => e.LastUpdatedAt;
+
     }
 }
 
@@ -78,4 +80,13 @@ public class EventsByLocationRadiusSpecification : BaseEventSpecification
     }
 
     private static double ToRadians(double deg) => deg * (Math.PI / 180);
+}
+
+public class EventWithMessagesByIdSpecification : BaseSpecification<Event>
+{
+    public EventWithMessagesByIdSpecification(Guid eventId)
+        : base(e => e.Id == eventId)
+    {
+        AddInclude(e => e.Messages);
+    }
 }

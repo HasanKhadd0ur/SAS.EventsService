@@ -20,7 +20,7 @@ namespace SAS.EventsService.Infrastructure.Persistence.AppDataContext
         public DbSet<Location> Locations { get; set; }
         public DbSet<Region> Regions{ get; set; }
         public DbSet<Topic> Topics { get; set; }
-        public DbSet<UserInterestRegion> UserInterests { get; set; }
+        public DbSet<UserInterest> UserInterests { get; set; }
 
 
 

@@ -25,6 +25,7 @@ namespace SAS.EventsService.Application.Topics.UseCases.Commands
             if (topic is null) return Result.Invalid(TopicErrors.UnExistTopic);
             
             topic.UpdateName(request.Name);
+            topic.UpdateDescription(request.Description);
 
             await _unitOfWork.SaveChangesAsync();
 

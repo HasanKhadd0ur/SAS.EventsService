@@ -14,9 +14,11 @@ namespace SAS.EventsService.Infrastructure.Services
 
         public Guid GenerateId<T>(params object[] keyParts)
         {
-            var combinedKey = string.Join(":", keyParts.Select(k => k?.ToString()?.Trim().ToLowerInvariant()));
-            var input = $"{typeof(T).Name}:{combinedKey}";
-            return GenerateGuidFromString(input);
+
+            return Guid.NewGuid();
+            //var combinedKey = string.Join(":", keyParts.Select(k => k?.ToString()?.Trim().ToLowerInvariant()));
+            //var input = $"{typeof(T).Name}:{combinedKey}";
+            //return GenerateGuidFromString(input);
         }
 
         public Guid GenerateNewId()

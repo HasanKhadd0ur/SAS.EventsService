@@ -3,7 +3,7 @@
     public record EventInfo(
         string Title,
         string Summary,
-        int SentimentScore,
+        double SentimentScore,
         string SentimentLabel
         );
 }

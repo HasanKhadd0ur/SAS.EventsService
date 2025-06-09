@@ -15,6 +15,7 @@ namespace SAS.EventsService.SharedKernel.Utilities
         int Take { get; }
         int Skip { get; }
         bool IsPagingEnabled { get; }
+        void ApplyOptionalPagination(int? pageSize, int? pageNumber);
 
     }
 }

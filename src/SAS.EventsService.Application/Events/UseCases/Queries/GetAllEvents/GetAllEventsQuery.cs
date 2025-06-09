@@ -4,5 +4,7 @@ using SAS.EventsService.SharedKernel.CQRS.Queries;
 
 namespace SAS.EventsService.Application.Events.UseCases.Queries.GetAllEvents
 {
-    public record GetAllEventsQuery() : IQuery<Result<ICollection<EventDTO>>>;
+    public record GetAllEventsQuery(
+        int? PageNumber,
+        int? PageSize) : IQuery<Result<ICollection<EventDTO>>>;
 }

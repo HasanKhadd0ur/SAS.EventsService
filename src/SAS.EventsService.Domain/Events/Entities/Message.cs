@@ -6,6 +6,7 @@ namespace SAS.EventsService.Domain.Events.Entities
     {
         public Guid EventId { get; set; }
         public Event Event { get; set; }
+        public string MessageId { get; set; }
         public string Content { get; set; }
         public string Source { get; set; }
 

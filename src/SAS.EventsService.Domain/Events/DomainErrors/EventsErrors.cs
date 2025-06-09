@@ -9,7 +9,11 @@ public static class EventErrors
 
     public static readonly DomainError SummaryTooLong =
         new("Event.SummaryTooLong", "The event summary exceeds the maximum allowed length.");
+ 
     public static readonly DomainError UnExistEvent =
-        new("Event.UnExistTopic", "Event un exist.");
+        new("Event.UnExistEvent", "Event un exist.");
+
+    public static readonly DomainError NoEvents =
+        new("Event.NoEvents", "There are no events today exist.");
 
 }
