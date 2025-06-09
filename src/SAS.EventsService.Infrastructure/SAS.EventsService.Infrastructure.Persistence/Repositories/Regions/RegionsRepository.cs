@@ -18,4 +18,5 @@ namespace SAS.EventsService.Infrastructure.Persistence.Repositories.Regions
             return await FirstOrDefaultAsync(spec);
         }
     }
+
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SAS.EventService.Domain.Entities;
 using SAS.EventsService.Application.Contracts.Providers;
 using SAS.EventsService.Domain.Events.Repositories;
 using SAS.EventsService.Domain.Regions.Repositories;
@@ -53,6 +54,7 @@ namespace SAS.EventsService.Infrastructure.Persistence.DependencyInjection
             services.AddScoped<ITopicsRepository, TopicsRepository>();
             services.AddScoped<IMessagesRepository, MessagesRepository>();
             services.AddScoped<IRegionsRepository, RegionsRepository>();
+            services.AddScoped<IUserInterestsRepository, UserInterestsRepository>();
             return services;
 
         }

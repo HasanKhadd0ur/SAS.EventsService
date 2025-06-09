@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
-using Mscc.GenerativeAI;
 using SAS.EventsService.Application.Events.Common;
 using SAS.EventsService.Application.Events.UseCases.Commands.AddMessageToEvent;
 using SAS.EventsService.Application.Events.UseCases.Commands.BulkAddMessagesToEvent;
@@ -18,9 +16,6 @@ using SAS.EventsService.Presentation.Contracts.Events.Requests;
 using SAS.EventsService.Presentation.Controllers.ApiBase;
 using System;
 using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace SAS.EventsService.Presentation.Controllers

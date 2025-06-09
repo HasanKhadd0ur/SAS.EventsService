@@ -40,6 +40,7 @@ namespace SAS.EventsService.Application.Mapping
                 CreateMap<Event, EventDTO>();
             
                 CreateMap<Location, LocationDTO>();
+                CreateMap<LocationDTO, Location>();
 
                 CreateMap<Message, MessageDTO>();
                 CreateMap<MessageDTO, Message>()
@@ -59,7 +60,7 @@ namespace SAS.EventsService.Application.Mapping
     {
         public UserInterestProfile()
         {
-            CreateMap<UserInterest, UserInterestDto>();
+            CreateMap<UserInterest, UserInterestDto>().ReverseMap();
 
         }
     }

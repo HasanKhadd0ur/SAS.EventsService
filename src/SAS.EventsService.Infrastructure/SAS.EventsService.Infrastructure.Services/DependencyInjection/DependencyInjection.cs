@@ -25,6 +25,7 @@ namespace SAS.EventsService.Infrastructure.Services.DependencyInjection
         {
             services.AddSingleton<IIdProvider, IdProvider>();
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+            services.AddSingleton<ICurrentUserProvider, CurrentUserProvider>();
 
             services.AddHttpClient<ILLMClient, GeminiClient>();
 

@@ -103,9 +103,9 @@ namespace SAS.EventsService.Infrastructure.Persistence.EntitiesConfiguration
         public void Configure(EntityTypeBuilder<UserInterest> builder)
         {
             builder.HasKey(u => u.Id);  // Set primary key
-            builder.HasOne(u => u.Region)  // Relationship with Region
-                   .WithMany()
-                   .HasForeignKey(u => u.RegionId);
+            //builder.HasOne(u => u.Region)  // Relationship with Region
+            //       .WithMany()
+            //       .HasForeignKey(u => u.RegionId);
         }
     }
 }

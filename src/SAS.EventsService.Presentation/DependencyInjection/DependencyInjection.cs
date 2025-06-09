@@ -34,6 +34,8 @@ namespace SAS.EventsService.Presentation.DependencyInjection
             {
                 cfg.AddProfile<EventRequestToCommandProfile>();
 
+                cfg.AddProfile<UserInterestsRequestToCommandProfile>();
+
             });
 
 
