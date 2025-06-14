@@ -18,6 +18,8 @@ namespace SAS.EventsService.Domain.Events.Entities
         public Topic Topic { get; set; }
         public Location Location { get; set; }
         public Region Region { get; set; }
+        public ICollection<NamedEntity> MentionedEntities { get; set; }
+        public ICollection<NamedEntityMention> NamedEntityMentions { get; set; }
         public ICollection<Message> Messages { get; set; }
 
         public Event()
