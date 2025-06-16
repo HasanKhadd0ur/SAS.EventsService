@@ -25,6 +25,7 @@ namespace SAS.EventsService.Domain.Events.Entities
         public Event()
         {
             Messages = new List<Message>();
+
         }
 
         public void AddMessage(Message message)
@@ -34,6 +35,23 @@ namespace SAS.EventsService.Domain.Events.Entities
             }
             Messages.Add(message);
 
+        }
+        public void AddNamedEntityMention(NamedEntity entity)
+        {
+            if (entity == null)
+                throw new DomainException("NamedEntity cannot be null");
+
+            if (NamedEntityMentions.Any(m => m.NamedEntityId == entity.Id)) return;
+
+            NamedEntityMentions.Add(new NamedEntityMention
+            {
+                EventId = this.Id,
+                NamedEntityId = entity.Id,
+                NamedEntity = entity,
+                Event = this
+            });
+
+            MentionedEntities.Add(entity);
         }
         public void UpdateEventInfo(EventInfo newInfo)
         {
