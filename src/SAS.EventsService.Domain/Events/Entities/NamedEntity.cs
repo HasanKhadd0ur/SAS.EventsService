@@ -4,7 +4,7 @@ namespace SAS.EventsService.Domain.Events.Entities
 {
     public class NamedEntity : BaseEntity<Guid>
     {
-        public String Named { get; set; }
+        public String EntityName { get; set; }
         public Guid TypeId { get; set; }
         public NamedEntityType Type { get; set; }
     }
