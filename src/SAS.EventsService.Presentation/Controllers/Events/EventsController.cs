@@ -44,7 +44,7 @@ namespace SAS.EventsService.Presentation.Controllers
 
 
         [HttpPost("{eventId}/message")]
-        public async Task<IActionResult> AddMessageToEvent(Guid eventId, [FromBody] MessageDTO message)
+        public async Task<IActionResult> AddMessageToEvent(Guid eventId, [FromBody] MessageDto message)
         {
             var command = new AddMessageToEventCommand(eventId, message);
             var result = await _mediator.Send(command);
@@ -150,7 +150,7 @@ namespace SAS.EventsService.Presentation.Controllers
         }
 
         [HttpPost("{eventId}/messages/bulk")]
-        public async Task<IActionResult> BulkAddMessagesToEvent(Guid eventId, [FromBody] List<MessageDTO> messages)
+        public async Task<IActionResult> BulkAddMessagesToEvent(Guid eventId, [FromBody] List<MessageDto> messages)
         {
             var command = new BulkAddMessagesToEventCommand(eventId, messages);
             var result = await _mediator.Send(command);
