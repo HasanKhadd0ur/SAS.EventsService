@@ -11,11 +11,11 @@ namespace SAS.EventsService.Infrastructure.Services.LLMs
         public HttpNERExtractor(HttpClient httpClient)
         {
             _httpClient = httpClient;
-        }
+        }   
 
         public async Task<List<NamedEntityDto>> Extract(string text)
         {
-            var response = await _httpClient.PostAsJsonAsync("/extract", new { text });
+            var response = await _httpClient.PostAsJsonAsync("/ner/extract", new { text });
             response.EnsureSuccessStatusCode();
 
             var result = await response.Content.ReadFromJsonAsync<List<NamedEntityDto>>();
