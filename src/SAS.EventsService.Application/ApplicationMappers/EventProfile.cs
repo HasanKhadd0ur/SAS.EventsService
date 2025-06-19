@@ -2,8 +2,8 @@
 using SAS.EventService.Domain.Entities;
 using SAS.EventsService.Application.Events.Common;
 using SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent;
-using SAS.EventsService.Application.Regions.Common;
 using SAS.EventsService.Application.Topics.Common;
+using SAS.EventsService.Application.UserInterests.Common;
 using SAS.EventsService.Domain.Events.Entities;
 using SAS.EventsService.Domain.Events.ValueObjects;
 using SAS.EventsService.Domain.Regions.Entities;

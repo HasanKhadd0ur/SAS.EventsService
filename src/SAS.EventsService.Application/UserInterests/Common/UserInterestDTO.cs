@@ -1,8 +1,7 @@
 ﻿using SAS.EventsService.Application.Common;
 using SAS.EventsService.Application.Events.Common;
-using SAS.EventsService.Domain.Events.Entities;
 
-namespace SAS.EventsService.Application.Regions.Common
+namespace SAS.EventsService.Application.UserInterests.Common
 {
     public class UserInterestDto : BaseDTO<Guid>
     {

@@ -9,6 +9,6 @@ namespace SAS.EventsService.Application.Contracts.NER
 {
     public interface INamedEntityExtractor
     {
-        List<NamedEntityDto> Extract(string text);
+        Task<List<NamedEntityDto>> Extract(string text);
     }
 }
