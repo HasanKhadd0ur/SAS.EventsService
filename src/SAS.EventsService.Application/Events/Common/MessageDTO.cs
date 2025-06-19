@@ -2,7 +2,7 @@
 
 namespace SAS.EventsService.Application.Events.Common
 {
-    public class MessageDTO : BaseDTO<Guid>
+    public class MessageDto : BaseDTO<Guid>
         {
             public string MessageId { get; set; }
             public string Content { get; set; }

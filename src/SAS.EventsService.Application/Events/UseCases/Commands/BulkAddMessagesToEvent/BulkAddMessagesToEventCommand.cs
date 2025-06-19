@@ -4,5 +4,5 @@ using SAS.EventsService.SharedKernel.CQRS.Commands;
 
 namespace SAS.EventsService.Application.Events.UseCases.Commands.BulkAddMessagesToEvent
 {
-    public record BulkAddMessagesToEventCommand(Guid EventId, List<MessageDTO> NewMessages) : ICommand<Result>;
+    public record BulkAddMessagesToEventCommand(Guid EventId, List<MessageDto> NewMessages) : ICommand<Result>;
 }

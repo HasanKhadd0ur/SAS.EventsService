@@ -8,5 +8,5 @@ namespace SAS.EventsService.Application.Events.UseCases.Queries.GetAllEvents
         Guid EventId,
         int? PageNumber =null,
         int? PageSize=null
-        ) : IQuery<Result<ICollection<MessageDTO>>>;
+        ) : IQuery<Result<ICollection<MessageDto>>>;
 }

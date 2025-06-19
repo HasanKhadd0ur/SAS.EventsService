@@ -10,4 +10,5 @@ namespace SAS.EventsService.Domain.Events.Entities
         public string City { get; set; }
 
     }
+
 }
