@@ -6,6 +6,7 @@ using SAS.EventsService.Application.Events.UseCases.Commands.AddMessageToEvent;
 using SAS.EventsService.Application.Events.UseCases.Commands.BulkAddMessagesToEvent;
 using SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent;
 using SAS.EventsService.Application.Events.UseCases.Commands.UpdateEventInfo;
+using SAS.EventsService.Application.Events.UseCases.Commands.UpdateEventLocation;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetAllEvents;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetEventById;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetEventsByArea;
@@ -172,6 +173,15 @@ namespace SAS.EventsService.Presentation.Controllers
         public async Task<IActionResult> GetTodaySummary()
         {
             var result = await _mediator.Send(new SummarizeTodayEventsQuery());
+            return HandleResult(result);
+        }
+
+        [HttpPut("{eventId}/location")]
+        public async Task<IActionResult> UpdateEventLocation(Guid eventId, [FromBody] UpdateEventLocationRequest request)
+        {
+            var locationDto = _mapper.Map<LocationDTO>(request);
+            var command = new UpdateEventLocationCommand(eventId, locationDto);
+            var result = await _mediator.Send(command);
             return HandleResult(result);
         }
 

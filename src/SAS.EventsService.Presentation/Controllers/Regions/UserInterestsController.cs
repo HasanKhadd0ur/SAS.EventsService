@@ -47,7 +47,7 @@ namespace SAS.EventsService.Presentation.Controllers
             return HandleResult(result);
         }
 
-        [HttpGet]
+        [HttpGet("")]
         public async Task<IActionResult> GetAllInterests()
         {
             var query = new GetAllInterestsQuery();
