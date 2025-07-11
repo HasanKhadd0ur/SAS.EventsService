@@ -6,6 +6,8 @@ using SAS.EventsService.Application.Regions.UseCases.Commands.CreateTopic;
 using SAS.EventsService.Application.Regions.UseCases.Commands.DeleteTopic;
 using SAS.EventsService.Application.Regions.UseCases.Queries.GetAllTopics;
 using SAS.EventsService.Application.Regions.UseCases.Queries.GetTopicById;
+using SAS.EventsService.Application.UserInterests.UseCases.Queries.GitUserInterestBySpecification;
+using SAS.EventsService.Domain.Regions.Specifications;
 using SAS.EventsService.Presentation.Contracts.Topics.Requests;
 using SAS.EventsService.Presentation.Controllers.ApiBase;
 using System;
@@ -47,11 +49,22 @@ namespace SAS.EventsService.Presentation.Controllers
             return HandleResult(result);
         }
 
-        [HttpGet]
+        [HttpGet("")]
         public async Task<IActionResult> GetAllInterests()
         {
             var query = new GetAllInterestsQuery();
             var result = await _mediator.Send(query);
+            return HandleResult(result);
+        }
+
+        /// <summary>
+        /// Get all interests for a specific user.
+        /// </summary>
+        [HttpGet("my-interests")]
+        public async Task<IActionResult> GetMyInterests([FromQuery] Guid userId)
+        {
+            var spec = new UserInterestsByUserIdSpecification(userId);
+            var result = await _mediator.Send(new GetUserInterestsBySpecificationQuery(spec));
             return HandleResult(result);
         }
     }

@@ -1,4 +1,7 @@
-﻿using SAS.EventsService.Domain.Events.ValueObjects;
+﻿using SAS.EventsService.Application.Events.Common;
+using SAS.EventsService.Domain.Events.ValueObjects;
+using SAS.EventsService.SharedKernel.CQRS.Commands;
+using System;
 
 namespace SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent
 {
@@ -11,5 +14,7 @@ namespace SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent
         double Latitude,
         double Longitude
     );
+    public record UpdateEventLocationRequest(Guid EventId, LocationDTO NewLocation);
+
 
 }

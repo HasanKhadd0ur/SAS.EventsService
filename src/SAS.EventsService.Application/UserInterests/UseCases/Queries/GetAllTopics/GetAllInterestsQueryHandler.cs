@@ -1,11 +1,10 @@
 ﻿using Ardalis.Result;
 using AutoMapper;
 using SAS.EventService.Domain.Entities;
-using SAS.EventsService.Application.Topics.Common;
-using SAS.EventsService.Application.Topics.UseCases.Queries.GetAllTopics;
 using SAS.EventsService.Application.UserInterests.Common;
-using SAS.EventsService.Domain.Topics.Repositories;
+using SAS.EventsService.Domain.Regions.Entities;
 using SAS.EventsService.SharedKernel.CQRS.Queries;
+using SAS.EventsService.SharedKernel.Specification;
 
 namespace SAS.EventsService.Application.Regions.UseCases.Queries.GetAllTopics
 
@@ -23,7 +22,10 @@ namespace SAS.EventsService.Application.Regions.UseCases.Queries.GetAllTopics
 
         public async Task<Result<IEnumerable<UserInterestDto>>> Handle(GetAllInterestsQuery request, CancellationToken cancellationToken)
         {
-            var interests = await _repo.ListAsync();
+            var spec = new BaseSpecification<UserInterest>();
+            spec.AddInclude(e => e.Location);
+            
+            var interests = await _repo.ListAsync(spec);
             var dtoList = _mapper.Map<IEnumerable<UserInterestDto>>(interests);
             return Result.Success(dtoList);
         }
