@@ -61,7 +61,7 @@ namespace SAS.EventsService.Application.Mapping
         public UserInterestProfile()
         {
             CreateMap<UserInterest, UserInterestDto>().ReverseMap();
-
+            CreateMap<LocationDTO, Location>();
         }
     }
 

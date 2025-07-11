@@ -21,7 +21,7 @@ namespace SAS.EventsService.Application.Events.UseCases.Queries.GetAllEvents
         public async Task<Result<ICollection<EventDTO>>> Handle(GetAllEventsQuery request, CancellationToken cancellationToken)
         {
             _eventSpecification.ApplyOptionalPagination(request.PageSize, request.PageNumber);
-
+            _eventSpecification.AddInclude(e => e.Topic);
             var events = await _eventRepo.ListAsync(_eventSpecification);
             return Result.Success(_mapper.Map<ICollection<EventDTO>>(events));
         }
