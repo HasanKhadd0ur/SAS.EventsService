@@ -4,6 +4,6 @@ using System;
 
 namespace SAS.EventsService.Application.Topics.UseCases.Commands.CreateTopic
 {
-    public record CreateTopicCommand(string Name, string Description) : ICommand<Result<Guid>>;
+    public record CreateTopicCommand(string Name,string IconUrl, string Description) : ICommand<Result<Guid>>;
 
 }
