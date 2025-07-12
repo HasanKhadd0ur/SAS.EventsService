@@ -1,6 +1,6 @@
 ﻿using SAS.EventsService.Application.Common;
 
-namespace SAS.EventsService.Application.Events.Common
+namespace SAS.EventsService.Application.NamedEntities.Common
 {
     public class NamedEntityDto : BaseDTO<Guid>
     {

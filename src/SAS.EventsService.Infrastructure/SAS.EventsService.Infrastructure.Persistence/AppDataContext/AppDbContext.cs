@@ -2,6 +2,7 @@
 using SAS.EventService.Domain.Entities;
 using SAS.EventsService.Domain.Events.Entities;
 using SAS.EventsService.Domain.Regions.Entities;
+using SAS.EventsService.Domain.UserInterests.Entities;
 using SAS.EventsService.SharedKernel.DomainEvents;
 
 namespace SAS.EventsService.Infrastructure.Persistence.AppDataContext

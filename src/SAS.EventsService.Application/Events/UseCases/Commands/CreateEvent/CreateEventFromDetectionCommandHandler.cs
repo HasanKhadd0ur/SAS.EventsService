@@ -94,7 +94,9 @@ namespace SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent
                 EventId: @event.Id,
                 Title: @event.EventInfo.Title,
                 RegionName: region.Name,
-                CreatedAt: @event.CreatedAt
+                CreatedAt: @event.CreatedAt,
+                Latitude:@event.Location.Latitude,
+                Longitude:@event.Location.Longitude
             ));
 
             

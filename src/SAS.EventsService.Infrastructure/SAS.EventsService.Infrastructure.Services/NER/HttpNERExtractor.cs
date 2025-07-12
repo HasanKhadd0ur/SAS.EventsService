@@ -1,5 +1,5 @@
 ﻿using SAS.EventsService.Application.Contracts.NER;
-using SAS.EventsService.Application.Events.Common;
+using SAS.EventsService.Application.NamedEntities.Common;
 using System.Net.Http.Json;
 
 namespace SAS.EventsService.Infrastructure.Services.LLMs

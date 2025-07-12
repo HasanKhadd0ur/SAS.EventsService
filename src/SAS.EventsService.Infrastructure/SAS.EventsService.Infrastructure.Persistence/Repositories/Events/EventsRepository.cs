@@ -27,4 +27,5 @@ namespace SAS.EventsService.Infrastructure.Persistence.Repositories.Events
 
         }
     }
+
 }

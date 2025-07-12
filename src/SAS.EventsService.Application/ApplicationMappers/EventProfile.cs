@@ -6,7 +6,7 @@ using SAS.EventsService.Application.Topics.Common;
 using SAS.EventsService.Application.UserInterests.Common;
 using SAS.EventsService.Domain.Events.Entities;
 using SAS.EventsService.Domain.Events.ValueObjects;
-using SAS.EventsService.Domain.Regions.Entities;
+using SAS.EventsService.Domain.UserInterests.Entities;
 
 namespace SAS.EventsService.Application.Mapping
 {

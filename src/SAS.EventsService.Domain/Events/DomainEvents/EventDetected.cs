@@ -7,6 +7,8 @@ namespace SAS.EventsService.Domain.Events.DomainEvents
         Guid EventId,
         string Title,
         string RegionName,
-        DateTime CreatedAt
+        DateTime CreatedAt,
+        double Latitude,
+        double Longitude
     ) : IDomainEvent;
 }

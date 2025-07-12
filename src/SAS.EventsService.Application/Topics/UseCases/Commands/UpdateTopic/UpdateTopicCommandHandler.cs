@@ -26,7 +26,7 @@ namespace SAS.EventsService.Application.Topics.UseCases.Commands
             
             topic.UpdateName(request.Name);
             topic.UpdateDescription(request.Description);
-
+            topic.UpdateIconUrl(request.IconUrl);
             await _unitOfWork.SaveChangesAsync();
 
             return Result.Success();

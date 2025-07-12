@@ -5,6 +5,6 @@ using System.Threading.Tasks;
 
 namespace SAS.EventsService.Presentation.Contracts.Topics.Requests
 {
-    public record CreateTopicRequest(string Name, string Description);
+    public record CreateTopicRequest(string Name,string IconUrl, string Description);
 
 }

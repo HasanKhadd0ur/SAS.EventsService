@@ -1,9 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SAS.EventsService.Application.Contracts.LLMs;
+using SAS.EventsService.Application.Contracts.Notfications;
 using SAS.EventsService.Application.Contracts.Providers;
-using SAS.EventsService.Infrastructure.Services;
 using SAS.EventsService.Infrastructure.Services.LLMs;
+using SAS.EventsService.Infrastructure.Services.Notifications;
 using SAS.EventsService.Infrastructure.Services.Providers;
 
 namespace SAS.EventsService.Infrastructure.Services.DependencyInjection
@@ -28,6 +29,7 @@ namespace SAS.EventsService.Infrastructure.Services.DependencyInjection
             services.AddSingleton<ICurrentUserProvider, CurrentUserProvider>();
 
             services.AddHttpClient<ILLMClient, GeminiClient>();
+            services.AddHttpClient<INotificationService, SignalRNotificationService>();
 
             return services;
         }

@@ -1,4 +1,5 @@
 ﻿using SAS.EventsService.Application.Common;
+using SAS.EventsService.Application.NamedEntities.Common;
 using SAS.EventsService.Application.Topics.Common;
 using SAS.EventsService.Domain.Events.Entities;
 using SAS.EventsService.Domain.Events.ValueObjects;
@@ -14,5 +15,7 @@ namespace SAS.EventsService.Application.Events.Common
         public TopicDTO Topic { get; set; }
         public LocationDTO Location { get; set; }
         public IEnumerable<MessageDto> Messages { get; set; }
+        public IEnumerable<NamedEntityDto> MentionedEntities { get; set; }
+
     }
 }

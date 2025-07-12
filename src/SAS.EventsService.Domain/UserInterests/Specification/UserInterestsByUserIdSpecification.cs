@@ -1,7 +1,7 @@
-﻿using SAS.EventsService.Domain.Regions.Entities;
+﻿using SAS.EventsService.Domain.UserInterests.Entities;
 using SAS.EventsService.SharedKernel.Specification;
 
-namespace SAS.EventsService.Domain.Regions.Specifications
+namespace SAS.EventsService.Domain.UserInterests.Specification
 {
     public class UserInterestsByUserIdSpecification : BaseSpecification<UserInterest>
     {

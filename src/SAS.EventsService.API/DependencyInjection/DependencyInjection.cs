@@ -61,15 +61,25 @@ namespace SAS.EventsService.API.DependencyInjection
         #region Cors
         private static IServiceCollection AddApiCors(this IServiceCollection services, IConfiguration configuration)
         {
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("AllowFrontendDev",
+            //        builder =>
+            //        {
+            //            builder.WithOrigins("http://localhost:4200")
+            //                   .AllowAnyHeader()
+            //                   .AllowAnyMethod();
+            //        });
+            //});
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowFrontendDev",
-                    builder =>
-                    {
-                        builder.WithOrigins("http://localhost:4200")
-                               .AllowAnyHeader()
-                               .AllowAnyMethod();
-                    });
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                });
             });
 
             return services;

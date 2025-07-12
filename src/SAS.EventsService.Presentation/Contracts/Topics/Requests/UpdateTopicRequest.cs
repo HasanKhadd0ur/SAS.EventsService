@@ -2,6 +2,6 @@
 
 namespace SAS.EventsService.Presentation.Contracts.Topics.Requests
 {
-    public record UpdateTopicRequest(Guid Id, string Name,string Description);
+    public record UpdateTopicRequest(Guid Id, string Name, string IconUrl, string Description);
 
 }

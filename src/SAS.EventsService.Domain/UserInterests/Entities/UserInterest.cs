@@ -1,7 +1,7 @@
 ﻿using SAS.EventsService.Domain.Events.Entities;
 using SAS.EventsService.SharedKernel.Entities;
 
-namespace SAS.EventsService.Domain.Regions.Entities
+namespace SAS.EventsService.Domain.UserInterests.Entities
 {
     public class UserInterest :BaseEntity<Guid>
     {
@@ -10,18 +10,18 @@ namespace SAS.EventsService.Domain.Regions.Entities
         public int RadiusInKm { get; set; }
         public Location Location { get; set; }
 
-        public void UpdateName(String newName)
+        public void UpdateName(string newName)
         {
-            this.InterestName = newName;
+            InterestName = newName;
         }
 
         public void UpdateInterestArea(int newRadiusInKm)
         {
-            this.RadiusInKm = newRadiusInKm;
+            RadiusInKm = newRadiusInKm;
         }
         public void UpdateLocation(Location newLocation)
         {
-            this.Location = newLocation;
+            Location = newLocation;
         }
 
     }

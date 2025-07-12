@@ -6,6 +6,7 @@ using SAS.EventsService.SharedKernel.Entities;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using SAS.EventsService.Domain.NamedEntities.Entities;
 
 namespace SAS.EventsService.Domain.Events.Entities
 {
