@@ -23,7 +23,7 @@ namespace SAS.EventsService.Presentation.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateTopic([FromBody] CreateTopicRequest request)
         {
-            var command = new CreateTopicCommand(request.Name,request.Description);
+            var command = new CreateTopicCommand(request.Name,request.IconUrl,request.Description);
             var result = await _mediator.Send(command);
             return HandleResult(result);
         }
