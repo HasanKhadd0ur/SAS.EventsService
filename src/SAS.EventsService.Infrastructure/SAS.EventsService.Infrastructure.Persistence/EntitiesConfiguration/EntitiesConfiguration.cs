@@ -75,6 +75,11 @@ namespace SAS.EventsService.Infrastructure.Persistence.EntitiesConfiguration
             builder.Property(l => l.City).IsRequired().HasMaxLength(100);  // Required property
             builder.Property(l => l.Country).IsRequired().HasMaxLength(100);  // Required property
 
+
+            builder
+                .HasIndex(l => new { l.Latitude, l.Longitude })
+                .HasDatabaseName("IX_Location_Lat_Lon");
+
         }
     }
 
@@ -104,9 +109,11 @@ namespace SAS.EventsService.Infrastructure.Persistence.EntitiesConfiguration
         public void Configure(EntityTypeBuilder<UserInterest> builder)
         {
             builder.HasKey(u => u.Id);  // Set primary key
-            //builder.HasOne(u => u.Region)  // Relationship with Region
-            //       .WithMany()
-            //       .HasForeignKey(u => u.RegionId);
+                                        //builder.HasOne(u => u.Region)  // Relationship with Region
+                                        //       .WithMany()
+                                        //       .HasForeignKey(u => u.RegionId);
+
         }
     }
+
 }

@@ -39,8 +39,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors("AllowFrontendDev");
-
+//app.UseCors("AllowFrontendDev");
+app.UseCors("AllowAll");
 app.UseAuthorization();
 app.UseOutputCache();
 
