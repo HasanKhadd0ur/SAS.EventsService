@@ -1,7 +1,7 @@
-﻿using SAS.EventsService.Domain.Regions.Entities;
+﻿using SAS.EventsService.Domain.UserInterests.Entities;
 using SAS.EventsService.SharedKernel.Repositories;
 
-namespace SAS.EventService.Domain.Entities
+namespace SAS.EventsService.Domain.UserInterests.Repositories
 
 {
     public interface IUserInterestsRepository : IRepository<UserInterest, Guid>

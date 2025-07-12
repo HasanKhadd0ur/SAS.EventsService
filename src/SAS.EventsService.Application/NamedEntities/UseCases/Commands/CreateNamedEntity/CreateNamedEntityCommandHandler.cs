@@ -3,9 +3,9 @@ using AutoMapper;
 using SAS.EventsService.Application.Contracts.Providers;
 using SAS.EventsService.Application.NamedEntities.Common;
 using SAS.EventsService.Application.NamedEntities.UseCases.Commands.CreateNamedEntity;
-using SAS.EventsService.Domain.Common.Errors;
-using SAS.EventsService.Domain.Events.Entities;
-using SAS.EventsService.Domain.Events.Repositories;
+using SAS.EventsService.Domain.NamedEntities.DomainErrors;
+using SAS.EventsService.Domain.NamedEntities.Entities;
+using SAS.EventsService.Domain.NamedEntities.Repositories;
 using SAS.EventsService.SharedKernel.CQRS.Commands;
 using SAS.EventsService.SharedKernel.Utilities;
 

@@ -1,6 +1,6 @@
 ﻿using Ardalis.Result;
-using SAS.EventsService.Domain.Common.Errors;
-using SAS.EventsService.Domain.Events.Repositories;
+using SAS.EventsService.Domain.NamedEntities.DomainErrors;
+using SAS.EventsService.Domain.NamedEntities.Repositories;
 using SAS.EventsService.SharedKernel.CQRS.Commands;
 using SAS.EventsService.SharedKernel.Utilities;
 

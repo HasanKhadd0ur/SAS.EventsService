@@ -1,8 +1,8 @@
 ﻿using Ardalis.Result;
 using AutoMapper;
-using SAS.EventService.Domain.Entities;
 using SAS.EventsService.Application.UserInterests.Common;
-using SAS.EventsService.Domain.Regions.Entities;
+using SAS.EventsService.Domain.UserInterests.Entities;
+using SAS.EventsService.Domain.UserInterests.Repositories;
 using SAS.EventsService.SharedKernel.CQRS.Queries;
 using SAS.EventsService.SharedKernel.Specification;
 

@@ -1,11 +1,11 @@
 ﻿using Ardalis.Result;
 using AutoMapper;
-using SAS.EventService.Domain.Entities;
 using SAS.EventsService.Application.Topics.UseCases.Commands;
 using SAS.EventsService.Domain.Common.Errors;
 using SAS.EventsService.Domain.Events.Entities;
-using SAS.EventsService.Domain.Regions.DomainErrors;
 using SAS.EventsService.Domain.Topics.Repositories;
+using SAS.EventsService.Domain.UserInterests.DomainErrors;
+using SAS.EventsService.Domain.UserInterests.Repositories;
 using SAS.EventsService.SharedKernel.CQRS.Commands;
 using SAS.EventsService.SharedKernel.Utilities;
 

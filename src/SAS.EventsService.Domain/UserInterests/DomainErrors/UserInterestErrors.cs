@@ -1,6 +1,6 @@
 ﻿using SAS.EventsService.SharedKernel.DomainErrors;
 
-namespace SAS.EventsService.Domain.Regions.DomainErrors
+namespace SAS.EventsService.Domain.UserInterests.DomainErrors
 {
     public static class UserInterestErrors
     {

@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SAS.EventService.Domain.Entities;
 using SAS.EventsService.Application.Contracts.Providers;
 using SAS.EventsService.Domain.Events.Repositories;
 using SAS.EventsService.Domain.Regions.Repositories;
 using SAS.EventsService.Domain.Topics.Repositories;
+using SAS.EventsService.Domain.UserInterests.Repositories;
 using SAS.EventsService.Infrastructure.Persistence.AppDataContext;
 using SAS.EventsService.Infrastructure.Persistence.Repositories.Base;
 using SAS.EventsService.Infrastructure.Persistence.Repositories.Events;

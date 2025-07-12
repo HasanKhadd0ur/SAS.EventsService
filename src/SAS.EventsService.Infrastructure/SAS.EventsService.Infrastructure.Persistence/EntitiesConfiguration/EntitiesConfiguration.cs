@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SAS.EventService.Domain.Entities;
 using SAS.EventsService.Domain.Events.Entities;
 using SAS.EventsService.Domain.Regions.Entities;
+using SAS.EventsService.Domain.UserInterests.Entities;
 using System.Reflection.Emit;
 
 namespace SAS.EventsService.Infrastructure.Persistence.EntitiesConfiguration

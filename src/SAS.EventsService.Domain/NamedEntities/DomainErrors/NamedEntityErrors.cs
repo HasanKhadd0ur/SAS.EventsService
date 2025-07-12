@@ -1,6 +1,6 @@
 ﻿using SAS.EventsService.SharedKernel.DomainErrors;
 
-namespace SAS.EventsService.Domain.Common.Errors;
+namespace SAS.EventsService.Domain.NamedEntities.DomainErrors;
 
 public static class NamedEntityErrors
 {

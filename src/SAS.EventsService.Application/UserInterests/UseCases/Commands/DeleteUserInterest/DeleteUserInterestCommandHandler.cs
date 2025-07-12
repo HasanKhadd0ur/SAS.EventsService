@@ -1,7 +1,7 @@
 ﻿using Ardalis.Result;
-using SAS.EventService.Domain.Entities;
 using SAS.EventsService.Application.Regions.UseCases.Commands.DeleteTopic;
-using SAS.EventsService.Domain.Regions.DomainErrors;
+using SAS.EventsService.Domain.UserInterests.DomainErrors;
+using SAS.EventsService.Domain.UserInterests.Repositories;
 using SAS.EventsService.SharedKernel.CQRS.Commands;
 using SAS.EventsService.SharedKernel.Utilities;
 
