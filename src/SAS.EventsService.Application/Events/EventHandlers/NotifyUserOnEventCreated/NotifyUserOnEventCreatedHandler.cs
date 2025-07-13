@@ -8,10 +8,9 @@ public class NotifyUserOnEventCreatedHandler : IDomainEventHandler<EventDetected
     private readonly IUserInterestsRepository _interestRepo;
     private readonly INotificationService _notificationService;
 
-    public NotifyUserOnEventCreatedHandler(IUserInterestsRepository interestRepo, INotificationService notificationService)
+    public NotifyUserOnEventCreatedHandler(IUserInterestsRepository interestRepo)
     {
         _interestRepo = interestRepo;
-        _notificationService = notificationService;
     }
 
     public async Task Handle(EventDetected domainEvent, CancellationToken cancellationToken)
