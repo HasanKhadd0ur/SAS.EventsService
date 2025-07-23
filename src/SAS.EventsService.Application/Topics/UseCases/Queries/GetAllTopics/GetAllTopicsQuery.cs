@@ -4,5 +4,5 @@ using SAS.EventsService.SharedKernel.CQRS.Queries;
 
 namespace SAS.EventsService.Application.Topics.UseCases.Queries.GetAllTopics
 {
-    public record GetAllTopicsQuery : IQuery<Result<IEnumerable<TopicDTO>>>;
+    public record GetAllTopicsQuery : ILoggableQuery<Result<IEnumerable<TopicDTO>>>;
 }
