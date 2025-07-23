@@ -8,6 +8,7 @@ namespace SAS.EventsService.Application.Contracts.Notfications
 {
     public interface INotificationService
     {
-        Task NotifyUserAsync(Guid userId, Guid eventId);
+        Task NotifyUserAsync(Guid userId, EventNotification notification);
     }
+
 }
