@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SAS.EventService.Domain.Entities;
 using SAS.EventsService.Domain.Events.Entities;
+using SAS.EventsService.Domain.Notifications.Entitties;
 using SAS.EventsService.Domain.Regions.Entities;
 using SAS.EventsService.Domain.UserInterests.Entities;
 using SAS.EventsService.SharedKernel.DomainEvents;
@@ -22,7 +23,8 @@ namespace SAS.EventsService.Infrastructure.Persistence.AppDataContext
         public DbSet<Region> Regions{ get; set; }
         public DbSet<Topic> Topics { get; set; }
         public DbSet<UserInterest> UserInterests { get; set; }
-
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<EventNotification> EventNotifications { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

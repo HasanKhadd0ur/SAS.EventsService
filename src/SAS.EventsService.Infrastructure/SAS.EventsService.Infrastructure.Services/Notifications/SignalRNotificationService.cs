@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using SAS.EventsService.Application.Contracts.Notfications;
+using SAS.EventsService.Application.Notifications.Common;
 using SAS.EventsService.Infrastructure.SignalR;
 
 namespace SAS.EventsService.Infrastructure.Services.Notifications
@@ -13,7 +14,7 @@ namespace SAS.EventsService.Infrastructure.Services.Notifications
             _hubContext = hubContext;
         }
 
-        public async Task NotifyUserAsync(Guid userId, EventNotification notification)
+        public async Task NotifyUserAsync(Guid userId, EventNotificationDTO notification)
         {
             await _hubContext
                 .Clients

@@ -3,10 +3,13 @@ using SAS.EventService.Domain.Entities;
 using SAS.EventsService.Application.Events.Common;
 using SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent;
 using SAS.EventsService.Application.Events.UseCases.Commands.UpdateEventLocation;
+using SAS.EventsService.Application.Notifications.Common;
+using SAS.EventsService.Application.Notifications.UseCases.Commands.AddEventNotificationCommand;
 using SAS.EventsService.Application.Topics.Common;
 using SAS.EventsService.Application.UserInterests.Common;
 using SAS.EventsService.Domain.Events.Entities;
 using SAS.EventsService.Domain.Events.ValueObjects;
+using SAS.EventsService.Domain.Notifications.Entitties;
 using SAS.EventsService.Domain.UserInterests.Entities;
 
 namespace SAS.EventsService.Application.Mapping
@@ -47,6 +50,8 @@ namespace SAS.EventsService.Application.Mapping
             CreateMap<Message, MessageDto>();
                 CreateMap<MessageDto, Message>()
                     .ForMember(dest => dest.EventId, opt => opt.Ignore());
+            CreateMap<EventNotificationDTO, AddEventNotificationCommand>();
+            CreateMap<EventNotification, EventNotificationDTO>();
 
 
         }

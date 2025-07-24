@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SAS.EventService.Domain.Entities;
 using SAS.EventsService.Domain.Events.Entities;
+using SAS.EventsService.Domain.Notifications.Entitties;
 using SAS.EventsService.Domain.Regions.Entities;
 using SAS.EventsService.Domain.UserInterests.Entities;
 using System.Reflection.Emit;
@@ -47,7 +48,11 @@ namespace SAS.EventsService.Infrastructure.Persistence.EntitiesConfiguration
             builder.HasOne(e => e.Topic)
                    .WithMany()
                    .HasForeignKey("TopicId");
-            
+    
+            builder.HasIndex("TopicId")
+               .HasDatabaseName("IX_Event_TopicId");
+
+
         }
     }
 
@@ -63,6 +68,24 @@ namespace SAS.EventsService.Infrastructure.Persistence.EntitiesConfiguration
                    .HasForeignKey(m => m.EventId);
         }
     }
+    public class NotificationEntityConfiguration : IEntityTypeConfiguration<Notification>
+    {
+        public void Configure(EntityTypeBuilder<Notification> builder)
+        {
+            builder.HasKey(n => n.Id);
+            builder.Property(n => n.Type).IsRequired();
+            builder.Property(n => n.UserId).IsRequired();
+            builder.Property(n => n.CreatedAt).IsRequired();
+            builder.Property(n => n.IsRead).IsRequired();
+
+            builder.ToTable("Notifications");
+
+            // Configure TPH (Table-Per-Hierarchy) inheritance
+            builder.HasDiscriminator<string>("Type")
+                   .HasValue<EventNotification>(NotificationType.Event.ToString());
+        }
+    }
+
 
     // Location Entity Configuration
     public class LocationEntityConfiguration : IEntityTypeConfiguration<Location>
@@ -100,6 +123,10 @@ namespace SAS.EventsService.Infrastructure.Persistence.EntitiesConfiguration
         {
             builder.HasKey(t => t.Id);  // Set primary key
             builder.Property(t => t.Name).IsRequired().HasMaxLength(100);  // Required property
+
+            builder.HasIndex(t => t.Name)
+              .HasDatabaseName("IX_Topic_Name")
+              .IsUnique(false);
         }
     }
 
