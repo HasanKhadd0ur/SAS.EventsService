@@ -31,10 +31,10 @@ namespace SAS.EventsService.Application.Events.UseCases.Commands.UpdateEventLoca
                 return Result.Invalid(EventErrors.UnExistEvent);
 
             var newLocation = new Location {
-                Latitude = request.NewLocation.Latitude,
-                Longitude = request.NewLocation.Longitude,
-                Country = request.NewLocation.Country,
-                City = request.NewLocation.City
+                Latitude = request.Location.Latitude,
+                Longitude = request.Location.Longitude,
+                Country = request.Location.Country,
+                City = request.Location.City
             };
 
             @event.UpdateLocation(newLocation);

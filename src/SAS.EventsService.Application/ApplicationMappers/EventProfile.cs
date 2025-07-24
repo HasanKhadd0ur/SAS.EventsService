@@ -2,6 +2,7 @@
 using SAS.EventService.Domain.Entities;
 using SAS.EventsService.Application.Events.Common;
 using SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent;
+using SAS.EventsService.Application.Events.UseCases.Commands.UpdateEventLocation;
 using SAS.EventsService.Application.Topics.Common;
 using SAS.EventsService.Application.UserInterests.Common;
 using SAS.EventsService.Domain.Events.Entities;
@@ -41,8 +42,9 @@ namespace SAS.EventsService.Application.Mapping
             
                 CreateMap<Location, LocationDTO>();
                 CreateMap<LocationDTO, Location>();
+                CreateMap<UpdateEventLocationCommand, Location>();
 
-                CreateMap<Message, MessageDto>();
+            CreateMap<Message, MessageDto>();
                 CreateMap<MessageDto, Message>()
                     .ForMember(dest => dest.EventId, opt => opt.Ignore());
 

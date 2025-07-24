@@ -14,7 +14,7 @@ namespace SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent
         double Latitude,
         double Longitude
     );
-    public record UpdateEventLocationRequest(Guid EventId, LocationDTO NewLocation);
+    public record UpdateEventLocationRequest(Guid EventId, LocationDTO Location);
 
 
 }

@@ -1,12 +1,12 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Microsoft.Extensions.Caching.Memory;
 using SAS.EventsService.Application.Contracts.LLMs;
 using SAS.EventsService.Application.Contracts.Providers;
 using SAS.EventsService.Domain.Common.Errors;
 using SAS.EventsService.Domain.Events.Entities;
 using SAS.EventsService.Domain.Events.Repositories;
 using SAS.EventsService.SharedKernel.CQRS.Queries;
+using System.Text;
 using System.Text.Json;
 
 namespace SAS.EventsService.Application.Events.UseCases.Queries.GetTodaySummary
@@ -16,7 +16,7 @@ namespace SAS.EventsService.Application.Events.UseCases.Queries.GetTodaySummary
         private readonly IEventsRepository _eventRepository;
         private readonly IDateTimeProvider _dateTimeProvider;
         private readonly ILLMClient _llmClient;
-        
+
         public SummarizeTodayEventsQueryHandler(
             IEventsRepository eventRepository,
             IDateTimeProvider dateTimeProvider,
@@ -36,20 +36,37 @@ namespace SAS.EventsService.Application.Events.UseCases.Queries.GetTodaySummary
             var spec = new EventsByCreatedAtBetweenSpecification(from, to);
             var events = await _eventRepository.ListAsync(spec);
 
-            if (events is null || events.Count() == 0)
+            if (events is null || !events.Any())
                 return Result.Invalid(EventErrors.NoEvents);
 
-            var prompt = BuildGeminiPrompt(events);
+            var prompt = BuildPrompt(events);
             var summary = await _llmClient.GenerateContentAsync(prompt, cancellationToken);
 
             return Result.Success(summary);
         }
 
-        private string BuildGeminiPrompt(IEnumerable<Event> events)
+        private string BuildPrompt(IEnumerable<Event> events)
         {
-            var json = JsonSerializer.Serialize(events, new JsonSerializerOptions { WriteIndented = true });
-            return $"قم بتقديم تقرير عن الأحداث التالية ({events.Count()}) لتكون مناسبة للنشر على موقع إخباري، بصيغة Markdown (استخدم العناوين والعناصر النقطية إن لزم، ولا تكرر):\n\n{json}";
+            var sb = new StringBuilder();
+
+            sb.AppendLine("قم بتحليل وتلخيص الأحداث التالية، واكتب تقريراً إخباريًا بصيغة Markdown مناسب للنشر. استخدم عناوين رئيسية ونقاط فرعية إن لزم:");
+            sb.AppendLine();
+            sb.AppendLine("### قائمة الأحداث:");
+
+            int index = 1;
+            foreach (var ev in events)
+            {
+                sb.AppendLine($"#### الحدث {index++}:");
+                sb.AppendLine($"- **العنوان:** {ev.EventInfo.Title}");
+                sb.AppendLine($"- **الوصف:** {ev.EventInfo.Summary}");
+                sb.AppendLine($"- **الموقع:** {ev.Location?.ToString() ?? "غير محدد"}");
+                sb.AppendLine($"- **الوقت:** {ev.CreatedAt.ToString("yyyy-MM-dd HH:mm")}");
+                sb.AppendLine();
+            }
+
+            sb.AppendLine("يرجى كتابة ملخص احترافي بناءً على هذه المعلومات.");
+
+            return sb.ToString();
         }
     }
-
 }

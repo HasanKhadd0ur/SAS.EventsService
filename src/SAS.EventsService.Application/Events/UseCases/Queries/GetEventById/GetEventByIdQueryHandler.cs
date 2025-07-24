@@ -2,8 +2,10 @@
 using AutoMapper;
 using SAS.EventsService.Application.Events.Common;
 using SAS.EventsService.Domain.Common.Errors;
+using SAS.EventsService.Domain.Events.Entities;
 using SAS.EventsService.Domain.Events.Repositories;
 using SAS.EventsService.SharedKernel.CQRS.Queries;
+using SAS.EventsService.SharedKernel.Specification;
 
 namespace SAS.EventsService.Application.Events.UseCases.Queries.GetEventById
 {
@@ -20,7 +22,11 @@ namespace SAS.EventsService.Application.Events.UseCases.Queries.GetEventById
 
         public async Task<Result<EventDTO>> Handle(GetEventByIdQuery request, CancellationToken cancellationToken)
         {
-            var @event = await _eventRepo.GetByIdAsync(request.Id);
+            var spec = new BaseSpecification<Event>();
+            spec.AddInclude(e=> e.Location);
+            spec.AddInclude(e => e.Topic);
+            
+            var @event = await _eventRepo.GetByIdAsync(request.Id,spec);
 
             if (@event is null) return Result.Invalid(EventErrors.UnExistEvent);
 
