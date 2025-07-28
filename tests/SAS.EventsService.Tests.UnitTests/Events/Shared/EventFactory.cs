@@ -6,7 +6,7 @@ using SAS.EventsService.Domain.Regions.Entities;
 
 namespace SAS.EventsService.UnitTests.Common
 {
-    public static class EventFactory
+    public class EventFactory
     {
         public static Event CreateValidEvent()
         {

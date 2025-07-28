@@ -7,17 +7,16 @@ namespace SAS.EventsService.UnitTests.Common
 {
     public abstract class EventTestBase
     {
-            protected Event CreateDefaultEvent()
-            {
-                return EventFactory.CreateValidEvent();
-            }
-            protected EventFactory Factory => new();
+        protected Event CreateDefaultEvent()
+        {
+            return EventFactory.CreateValidEvent();
+        }
+        protected  EventFactory EventFactory { get; set; }
 
-            protected void AssertValid<T>(T actual, T expected)
-            {
-                Assert.NotNull(actual);
-                Assert.Equal(expected, actual);
-            }
+        protected void AssertValid<T>(T actual, T expected)
+        {
+            Assert.NotNull(actual);
+            Assert.Equal(expected, actual);
         }
     }
 }

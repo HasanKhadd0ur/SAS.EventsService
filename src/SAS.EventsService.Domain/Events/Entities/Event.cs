@@ -28,7 +28,8 @@ namespace SAS.EventsService.Domain.Events.Entities
         {
             Messages = new List<Message>();
             NamedEntityMentions = new List<NamedEntityMention>();
-
+            MentionedEntities = new List<NamedEntity>();
+            IsReviewed = false;
         }
 
         public void AddMessage(Message message)
@@ -56,6 +57,12 @@ namespace SAS.EventsService.Domain.Events.Entities
 
             MentionedEntities.Add(entity);
         }
+        public void MarkAsReviewed()
+        {
+            IsReviewed = true;
+            UpdateLastModifiedTime(DateTime.UtcNow);
+        }
+
         public void UpdateEventInfo(EventInfo newInfo)
         {
             
