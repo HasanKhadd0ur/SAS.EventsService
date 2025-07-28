@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using SAS.EventsService.Domain.NamedEntities.Entities;
+using SAS.EventsService.Domain.Events.DomainExceptions;
 
 namespace SAS.EventsService.Domain.Events.Entities
 {
@@ -34,16 +35,16 @@ namespace SAS.EventsService.Domain.Events.Entities
 
         public void AddMessage(Message message)
         {
-            if (message == null) {
-                throw new DomainException("Message Should not be null");
+            if (message is null) {
+                throw EventExceptions.MessageNull();
             }
             Messages.Add(message);
 
         }
         public void AddNamedEntityMention(NamedEntity entity)
         {
-            if (entity == null)
-                throw new DomainException("NamedEntity cannot be null");
+            if (entity is null)
+                throw EventExceptions.NamedEntityNull();
 
             if (NamedEntityMentions.Any(m => m.NamedEntityId == entity.Id)) return;
 
@@ -73,7 +74,7 @@ namespace SAS.EventsService.Domain.Events.Entities
         public void UpdateLocation(Location newLocation)
         {
             if (newLocation is null)
-                throw new DomainException("Location must not be null");
+                throw EventExceptions.LocationNull();
 
             Location = newLocation;
         }
