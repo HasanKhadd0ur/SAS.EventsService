@@ -42,13 +42,13 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                bat 'docker build -t sas-eventsservice:latest -f src\\SAS.EventsService.API\\Dockerfile .'
+                // bat 'docker build -t sas-eventsservice:latest -f src\\SAS.EventsService.API\\Dockerfile .'
             }
         }
 
         stage('Docker Compose Up') {
             steps {
-                bat 'docker-compose up -d --build'
+                // bat 'docker-compose up -d --build'
             }
         }
     }
