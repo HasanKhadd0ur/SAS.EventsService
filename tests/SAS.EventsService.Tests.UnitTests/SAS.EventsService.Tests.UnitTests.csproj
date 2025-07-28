@@ -23,8 +23,6 @@
     <Folder Include="Events\Application\" />
     <Folder Include="Events\Infrastructure\" />
     <Folder Include="Events\Mocks\" />
-    <Folder Include="Topics\Domain\" />
-    <Folder Include="Topics\Shared\" />
   </ItemGroup>
 
   <ItemGroup>
