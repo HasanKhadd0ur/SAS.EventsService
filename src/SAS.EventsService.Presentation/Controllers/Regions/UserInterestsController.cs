@@ -1,4 +1,4 @@
-﻿using Ardalis.Result;
+using Ardalis.Result;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

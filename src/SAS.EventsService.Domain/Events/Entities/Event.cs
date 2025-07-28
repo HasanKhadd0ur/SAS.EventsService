@@ -1,12 +1,13 @@
-﻿using SAS.EventService.Domain.Entities;
+using SAS.EventService.Domain.Entities;
 using SAS.EventsService.Domain.Events.ValueObjects;
 using SAS.EventsService.Domain.Regions.Entities;
-using SAS.EventsService.SharedKernel.DomainExceptions.Base;
-using SAS.EventsService.SharedKernel.Entities;
+using SAS.SharedKernel.DomainExceptions.Base;
+using SAS.SharedKernel.Entities;
 using System;
 using System.Linq;
 using System.Collections.Generic;
 using SAS.EventsService.Domain.NamedEntities.Entities;
+using SAS.EventsService.Domain.Events.DomainExceptions;
 
 namespace SAS.EventsService.Domain.Events.Entities
 {
@@ -19,6 +20,7 @@ namespace SAS.EventsService.Domain.Events.Entities
         public Topic Topic { get; set; }
         public Location Location { get; set; }
         public Region Region { get; set; }
+        public Boolean IsReviewed { get; set; }
         public ICollection<NamedEntity> MentionedEntities { get; set; }
         public ICollection<NamedEntityMention> NamedEntityMentions { get; set; }
         public ICollection<Message> Messages { get; set; }
@@ -26,21 +28,23 @@ namespace SAS.EventsService.Domain.Events.Entities
         public Event()
         {
             Messages = new List<Message>();
-
+            NamedEntityMentions = new List<NamedEntityMention>();
+            MentionedEntities = new List<NamedEntity>();
+            IsReviewed = false;
         }
 
         public void AddMessage(Message message)
         {
-            if (message == null) {
-                throw new DomainException("Message Should not be null");
+            if (message is null) {
+                throw EventExceptions.MessageNull();
             }
             Messages.Add(message);
 
         }
         public void AddNamedEntityMention(NamedEntity entity)
         {
-            if (entity == null)
-                throw new DomainException("NamedEntity cannot be null");
+            if (entity is null)
+                throw EventExceptions.NamedEntityNull();
 
             if (NamedEntityMentions.Any(m => m.NamedEntityId == entity.Id)) return;
 
@@ -54,6 +58,12 @@ namespace SAS.EventsService.Domain.Events.Entities
 
             MentionedEntities.Add(entity);
         }
+        public void MarkAsReviewed()
+        {
+            IsReviewed = true;
+            UpdateLastModifiedTime(DateTime.UtcNow);
+        }
+
         public void UpdateEventInfo(EventInfo newInfo)
         {
             
@@ -63,8 +73,8 @@ namespace SAS.EventsService.Domain.Events.Entities
         }
         public void UpdateLocation(Location newLocation)
         {
-            if (newLocation == null)
-                throw new DomainException("Location must not be null");
+            if (newLocation is null)
+                throw EventExceptions.LocationNull();
 
             Location = newLocation;
         }
@@ -73,6 +83,15 @@ namespace SAS.EventsService.Domain.Events.Entities
         {
             LastUpdatedAt = modificationTime;
         }
+
+        public void ChangeTopic(Topic newTopic)
+        {
+            if (newTopic is null)
+                throw EventExceptions.TopicNull();
+            Topic = newTopic;
+            UpdateLastModifiedTime(DateTime.UtcNow);
+        }
+
 
     }
 }

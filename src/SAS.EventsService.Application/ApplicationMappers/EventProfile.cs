@@ -1,11 +1,15 @@
-﻿using AutoMapper;
+using AutoMapper;
 using SAS.EventService.Domain.Entities;
 using SAS.EventsService.Application.Events.Common;
 using SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent;
+using SAS.EventsService.Application.Events.UseCases.Commands.UpdateEventLocation;
+using SAS.EventsService.Application.Notifications.Common;
+using SAS.EventsService.Application.Notifications.UseCases.Commands.AddEventNotificationCommand;
 using SAS.EventsService.Application.Topics.Common;
 using SAS.EventsService.Application.UserInterests.Common;
 using SAS.EventsService.Domain.Events.Entities;
 using SAS.EventsService.Domain.Events.ValueObjects;
+using SAS.EventsService.Domain.Notifications.Entitties;
 using SAS.EventsService.Domain.UserInterests.Entities;
 
 namespace SAS.EventsService.Application.Mapping
@@ -41,11 +45,23 @@ namespace SAS.EventsService.Application.Mapping
             
                 CreateMap<Location, LocationDTO>();
                 CreateMap<LocationDTO, Location>();
+                CreateMap<UpdateEventLocationCommand, Location>();
 
-                CreateMap<Message, MessageDto>();
+            CreateMap<Message, MessageDto>();
                 CreateMap<MessageDto, Message>()
                     .ForMember(dest => dest.EventId, opt => opt.Ignore());
+            CreateMap<EventNotificationDTO, AddEventNotificationCommand>();
+            //CreateMap<EventNotification, EventNotificationDTO>();
+            //CreateMap<Notification, NotificationDTO>()
+            //   .Include<EventNotification, NotificationDTO>();
+            CreateMap<EventNotification, EventNotificationDTO>()
+                .IncludeBase<Notification, NotificationDTO>();
 
+            CreateMap<Notification, NotificationDTO>();
+            //CreateMap<EventNotification, NotificationDTO>()
+            //   .ForMember(dest => dest.EventId, opt => opt.MapFrom(src => src.EventId))
+            //   .ForMember(dest => dest.EventName, opt => opt.MapFrom(src => src.EventName))
+            //   .IncludeBase<Notification, NotificationDTO>();
 
         }
     }

@@ -1,5 +1,5 @@
-﻿using SAS.EventsService.Domain.Events.Entities;
-using SAS.EventsService.SharedKernel.Specification;
+using SAS.EventsService.Domain.Events.Entities;
+using SAS.SharedKernel.Specification;
 
 public class BaseEventSpecification : BaseSpecification<Event>
 {
@@ -59,11 +59,11 @@ public class EventsByLocationRadiusSpecification : BaseEventSpecification
 {
     public EventsByLocationRadiusSpecification(double latitude, double longitude, double radiusInKm)
     {
-        Criteria = e => GetDistanceInKm(
-                            e.Location.Latitude,
-                            e.Location.Longitude,
-                            latitude,
-                            longitude) <= radiusInKm;
+        //Criteria = e => GetDistanceInKm(
+        //                    e.Location.Latitude,
+        //                    e.Location.Longitude,
+        //                    latitude,
+        //                    longitude) <= radiusInKm;
     }
 
     private static double GetDistanceInKm(double lat1, double lon1, double lat2, double lon2)

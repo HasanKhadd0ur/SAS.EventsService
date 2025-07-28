@@ -1,4 +1,4 @@
-﻿using Ardalis.Result;
+using Ardalis.Result;
 using AutoMapper;
 using SAS.EventsService.Application.Topics.Common;
 using SAS.EventsService.Application.Topics.UseCases.Queries.GetTopicById;
@@ -6,7 +6,7 @@ using SAS.EventsService.Application.UserInterests.Common;
 using SAS.EventsService.Domain.Common.Errors;
 using SAS.EventsService.Domain.Topics.Repositories;
 using SAS.EventsService.Domain.UserInterests.Repositories;
-using SAS.EventsService.SharedKernel.CQRS.Queries;
+using SAS.SharedKernel.CQRS.Queries;
 
 namespace SAS.EventsService.Application.Regions.UseCases.Queries.GetTopicById
 {

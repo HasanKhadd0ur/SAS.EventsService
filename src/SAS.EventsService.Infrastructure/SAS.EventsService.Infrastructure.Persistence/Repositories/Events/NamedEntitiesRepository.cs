@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SAS.EventsService.Domain.NamedEntities.Entities;
 using SAS.EventsService.Domain.NamedEntities.Repositories;
 using SAS.EventsService.Domain.UserInterests.Entities;

@@ -1,6 +1,6 @@
-﻿using Ardalis.Result;
+using Ardalis.Result;
 using SAS.EventService.Domain.Entities;
-using SAS.EventsService.SharedKernel.CQRS.Commands;
+using SAS.SharedKernel.CQRS.Commands;
 
 namespace SAS.EventsService.Application.Topics.UseCases.Commands
 {

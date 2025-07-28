@@ -1,4 +1,4 @@
-﻿namespace SAS.EventsService.Application.Contracts.AccessControl
+namespace SAS.EventsService.Application.Contracts.AccessControl
 {
     public interface IAccessControlService
     {

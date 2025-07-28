@@ -1,4 +1,4 @@
-﻿namespace SAS.EventsService.Application.Contracts.LLMs
+namespace SAS.EventsService.Application.Contracts.LLMs
 {
     public interface ILLMClient
     {

@@ -1,5 +1,5 @@
-﻿using SAS.EventsService.Domain.UserInterests.Entities;
-using SAS.EventsService.SharedKernel.Specification;
+using SAS.EventsService.Domain.UserInterests.Entities;
+using SAS.SharedKernel.Specification;
 
 namespace SAS.EventsService.Domain.UserInterests.Specification
 {

@@ -1,4 +1,4 @@
-﻿using SAS.EventsService.Application.Contracts.Email;
+using SAS.EventsService.Application.Contracts.Email;
 
 namespace SAS.EventsService.Infrastructure.Services.Email
 {

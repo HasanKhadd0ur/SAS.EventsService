@@ -1,4 +1,4 @@
-﻿using SAS.EventsService.Application.Events.Common;
+using SAS.EventsService.Application.Events.Common;
 using System;
 
 namespace SAS.EventsService.Presentation.Contracts.Topics.Requests

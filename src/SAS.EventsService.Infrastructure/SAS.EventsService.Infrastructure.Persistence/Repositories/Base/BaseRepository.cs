@@ -1,11 +1,11 @@
-﻿
+
 using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using SAS.EventsService.Infrastructure.Persistence.AppDataContext;
-using SAS.EventsService.SharedKernel.Entities;
-using SAS.EventsService.SharedKernel.Repositories;
-using SAS.EventsService.SharedKernel.Utilities;
+using SAS.SharedKernel.Entities;
+using SAS.SharedKernel.Repositories;
+using SAS.SharedKernel.Utilities;
 
 namespace SAS.EventsService.Infrastructure.Persistence.Repositories.Base
 {

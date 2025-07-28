@@ -1,4 +1,4 @@
-﻿
+
 namespace SAS.EventsService.Application.Contracts.Providers
 {
     public interface IDateTimeProvider

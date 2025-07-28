@@ -1,6 +1,6 @@
-﻿using MediatR;
+using MediatR;
 using Microsoft.Extensions.Logging;
-using SAS.EventsService.SharedKernel.CQRS.Commands;
+using SAS.SharedKernel.CQRS.Commands;
 
 namespace SAS.EventsService.Application.Behaviors.LoggingBehavior
 {

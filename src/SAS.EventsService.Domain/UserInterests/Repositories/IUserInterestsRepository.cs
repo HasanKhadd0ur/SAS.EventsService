@@ -1,5 +1,5 @@
-﻿using SAS.EventsService.Domain.UserInterests.Entities;
-using SAS.EventsService.SharedKernel.Repositories;
+using SAS.EventsService.Domain.UserInterests.Entities;
+using SAS.SharedKernel.Repositories;
 
 namespace SAS.EventsService.Domain.UserInterests.Repositories
 

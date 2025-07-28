@@ -1,4 +1,4 @@
-﻿
+
 namespace SAS.EventsService.Tests.ArchitectureTests
 {
     public class ArchitectureTest

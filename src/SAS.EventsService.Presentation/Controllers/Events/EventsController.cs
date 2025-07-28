@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SAS.EventsService.Application.Events.Common;
@@ -21,6 +21,9 @@ using System.Threading.Tasks;
 
 namespace SAS.EventsService.Presentation.Controllers
 {
+
+    [ApiController]
+    [Route("api/[controller]")]
     public class EventsController : APIController
     {
         private readonly IMediator _mediator;
@@ -102,6 +105,7 @@ namespace SAS.EventsService.Presentation.Controllers
         public async Task<IActionResult> GetByTopic([FromQuery] string topic)
         {
             var spec = new EventsByTopicNameSpecification(topic);
+            spec.ApplyOrderByDescending(e => e.CreatedAt);
             var result = await _mediator.Send(new GetEventsBySpecificationQuery(spec));
             return HandleResult(result);
         }
@@ -179,8 +183,7 @@ namespace SAS.EventsService.Presentation.Controllers
         [HttpPut("{eventId}/location")]
         public async Task<IActionResult> UpdateEventLocation(Guid eventId, [FromBody] UpdateEventLocationRequest request)
         {
-            var locationDto = _mapper.Map<LocationDTO>(request);
-            var command = new UpdateEventLocationCommand(eventId, locationDto);
+            var command = _mapper.Map<UpdateEventLocationCommand>(request);
             var result = await _mediator.Send(command);
             return HandleResult(result);
         }

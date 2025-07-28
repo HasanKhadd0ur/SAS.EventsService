@@ -1,4 +1,4 @@
-﻿using SAS.EventsService.SharedKernel.DomainErrors;
+using SAS.SharedKernel.DomainErrors;
 
 namespace SAS.EventsService.Domain.Common.Errors;
 

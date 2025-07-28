@@ -1,21 +1,23 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SAS.EventsService.Application.Contracts.Providers;
 using SAS.EventsService.Domain.Events.Repositories;
 using SAS.EventsService.Domain.NamedEntities.Entities;
 using SAS.EventsService.Domain.NamedEntities.Repositories;
+using SAS.EventsService.Domain.Notifications.Repositories;
 using SAS.EventsService.Domain.Regions.Repositories;
 using SAS.EventsService.Domain.Topics.Repositories;
 using SAS.EventsService.Domain.UserInterests.Repositories;
 using SAS.EventsService.Infrastructure.Persistence.AppDataContext;
 using SAS.EventsService.Infrastructure.Persistence.Repositories.Base;
 using SAS.EventsService.Infrastructure.Persistence.Repositories.Events;
+using SAS.EventsService.Infrastructure.Persistence.Repositories.Notifications;
 using SAS.EventsService.Infrastructure.Persistence.Repositories.Regions;
 using SAS.EventsService.Infrastructure.Persistence.Repositories.Topics;
 using SAS.EventsService.Infrastructure.Persistence.UoW;
-using SAS.EventsService.SharedKernel.Repositories;
-using SAS.EventsService.SharedKernel.Utilities;
+using SAS.SharedKernel.Repositories;
+using SAS.SharedKernel.Utilities;
 
 namespace SAS.EventsService.Infrastructure.Persistence.DependencyInjection
 {
@@ -59,6 +61,7 @@ namespace SAS.EventsService.Infrastructure.Persistence.DependencyInjection
             services.AddScoped<IUserInterestsRepository, UserInterestsRepository>();
             services.AddScoped<INamedEntitiesRepository,NamedEntitiesRepository>();
             services.AddScoped<INamedEntityTypesRepository,NamedEntityTypesRepository>();
+            services.AddScoped<INotificationRepository, NotificationRepository>();
             return services;
 
         }

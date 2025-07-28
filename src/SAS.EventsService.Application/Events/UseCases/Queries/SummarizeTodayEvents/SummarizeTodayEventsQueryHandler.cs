@@ -1,12 +1,12 @@
-ï»¿using Ardalis.Result;
+using Ardalis.Result;
 using MediatR;
-using Microsoft.Extensions.Caching.Memory;
 using SAS.EventsService.Application.Contracts.LLMs;
 using SAS.EventsService.Application.Contracts.Providers;
 using SAS.EventsService.Domain.Common.Errors;
 using SAS.EventsService.Domain.Events.Entities;
 using SAS.EventsService.Domain.Events.Repositories;
-using SAS.EventsService.SharedKernel.CQRS.Queries;
+using SAS.SharedKernel.CQRS.Queries;
+using System.Text;
 using System.Text.Json;
 
 namespace SAS.EventsService.Application.Events.UseCases.Queries.GetTodaySummary
@@ -16,7 +16,7 @@ namespace SAS.EventsService.Application.Events.UseCases.Queries.GetTodaySummary
         private readonly IEventsRepository _eventRepository;
         private readonly IDateTimeProvider _dateTimeProvider;
         private readonly ILLMClient _llmClient;
-        
+
         public SummarizeTodayEventsQueryHandler(
             IEventsRepository eventRepository,
             IDateTimeProvider dateTimeProvider,
@@ -36,20 +36,37 @@ namespace SAS.EventsService.Application.Events.UseCases.Queries.GetTodaySummary
             var spec = new EventsByCreatedAtBetweenSpecification(from, to);
             var events = await _eventRepository.ListAsync(spec);
 
-            if (events is null || events.Count() == 0)
+            if (events is null || !events.Any())
                 return Result.Invalid(EventErrors.NoEvents);
 
-            var prompt = BuildGeminiPrompt(events);
+            var prompt = BuildPrompt(events);
             var summary = await _llmClient.GenerateContentAsync(prompt, cancellationToken);
 
             return Result.Success(summary);
         }
 
-        private string BuildGeminiPrompt(IEnumerable<Event> events)
+        private string BuildPrompt(IEnumerable<Event> events)
         {
-            var json = JsonSerializer.Serialize(events, new JsonSerializerOptions { WriteIndented = true });
-            return $"Ù‚Ù… Ø¨ØªÙ‚Ø¯ÙŠÙ… ØªÙ‚Ø±ÙŠØ± Ø¹Ù† Ø§Ù„Ø£Ø­Ø¯Ø§Ø« Ø§Ù„ØªØ§Ù„ÙŠØ© ({events.Count()}) Ù„ØªÙƒÙˆÙ† Ù…Ù†Ø§Ø³Ø¨Ø© Ù„Ù„Ù†Ø´Ø± Ø¹Ù„Ù‰ Ù…ÙˆÙ‚Ø¹ Ø¥Ø®Ø¨Ø§Ø±ÙŠØŒ Ø¨ØµÙŠØºØ© Markdown (Ø§Ø³ØªØ®Ø¯Ù… Ø§Ù„Ø¹Ù†Ø§ÙˆÙŠÙ† ÙˆØ§Ù„Ø¹Ù†Ø§ØµØ± Ø§Ù„Ù†Ù‚Ø·ÙŠØ© Ø¥Ù† Ù„Ø²Ù…ØŒ ÙˆÙ„Ø§ ØªÙƒØ±Ø±):\n\n{json}";
+            var sb = new StringBuilder();
+
+            sb.AppendLine("Şã ÈÊÍáíá æÊáÎíÕ ÇáÃÍÏÇË ÇáÊÇáíÉ¡ æÇßÊÈ ÊŞÑíÑÇğ ÅÎÈÇÑíğÇ ÈÕíÛÉ Markdown ãäÇÓÈ ááäÔÑ. ÇÓÊÎÏã ÚäÇæíä ÑÆíÓíÉ æäŞÇØ İÑÚíÉ Åä áÒã:");
+            sb.AppendLine();
+            sb.AppendLine("### ŞÇÆãÉ ÇáÃÍÏÇË:");
+
+            int index = 1;
+            foreach (var ev in events)
+            {
+                sb.AppendLine($"#### ÇáÍÏË {index++}:");
+                sb.AppendLine($"- **ÇáÚäæÇä:** {ev.EventInfo.Title}");
+                sb.AppendLine($"- **ÇáæÕİ:** {ev.EventInfo.Summary}");
+                sb.AppendLine($"- **ÇáãæŞÚ:** {ev.Location?.ToString() ?? "ÛíÑ ãÍÏÏ"}");
+                sb.AppendLine($"- **ÇáæŞÊ:** {ev.CreatedAt.ToString("yyyy-MM-dd HH:mm")}");
+                sb.AppendLine();
+            }
+
+            sb.AppendLine("íÑÌì ßÊÇÈÉ ãáÎÕ ÇÍÊÑÇİí ÈäÇÁğ Úáì åĞå ÇáãÚáæãÇÊ.");
+
+            return sb.ToString();
         }
     }
-
 }

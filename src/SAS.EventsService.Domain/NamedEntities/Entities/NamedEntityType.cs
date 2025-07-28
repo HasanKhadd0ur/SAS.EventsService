@@ -1,4 +1,4 @@
-﻿using SAS.EventsService.SharedKernel.Entities;
+using SAS.SharedKernel.Entities;
 
 namespace SAS.EventsService.Domain.NamedEntities.Entities
 {

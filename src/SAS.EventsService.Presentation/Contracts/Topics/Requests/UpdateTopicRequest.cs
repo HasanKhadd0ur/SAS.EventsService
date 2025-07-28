@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace SAS.EventsService.Presentation.Contracts.Topics.Requests
 {
