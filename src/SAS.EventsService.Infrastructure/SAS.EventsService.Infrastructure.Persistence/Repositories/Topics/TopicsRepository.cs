@@ -1,8 +1,8 @@
-﻿using SAS.EventService.Domain.Entities;
+using SAS.EventService.Domain.Entities;
 using SAS.EventsService.Domain.Topics.Repositories;
 using SAS.EventsService.Infrastructure.Persistence.AppDataContext;
 using SAS.EventsService.Infrastructure.Persistence.Repositories.Base;
-using SAS.EventsService.SharedKernel.Specification;
+using SAS.SharedKernel.Specification;
 
 namespace SAS.EventsService.Infrastructure.Persistence.Repositories.Topics
 {

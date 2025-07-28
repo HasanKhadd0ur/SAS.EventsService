@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SAS.EventsService.Application.Events.Common;

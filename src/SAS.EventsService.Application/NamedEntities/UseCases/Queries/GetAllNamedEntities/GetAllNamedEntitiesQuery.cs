@@ -1,6 +1,6 @@
-﻿using Ardalis.Result;
+using Ardalis.Result;
 using SAS.EventsService.Application.NamedEntities.Common;
-using SAS.EventsService.SharedKernel.CQRS.Queries;
+using SAS.SharedKernel.CQRS.Queries;
 
 namespace SAS.EventsService.Application.NamedEntities.UseCases.Queries.GetAllNamedEntities
 {

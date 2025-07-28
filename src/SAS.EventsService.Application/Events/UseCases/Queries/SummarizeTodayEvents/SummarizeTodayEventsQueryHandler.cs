@@ -1,11 +1,11 @@
-ï»¿using Ardalis.Result;
+using Ardalis.Result;
 using MediatR;
 using SAS.EventsService.Application.Contracts.LLMs;
 using SAS.EventsService.Application.Contracts.Providers;
 using SAS.EventsService.Domain.Common.Errors;
 using SAS.EventsService.Domain.Events.Entities;
 using SAS.EventsService.Domain.Events.Repositories;
-using SAS.EventsService.SharedKernel.CQRS.Queries;
+using SAS.SharedKernel.CQRS.Queries;
 using System.Text;
 using System.Text.Json;
 
@@ -49,22 +49,22 @@ namespace SAS.EventsService.Application.Events.UseCases.Queries.GetTodaySummary
         {
             var sb = new StringBuilder();
 
-            sb.AppendLine("Ù‚Ù… Ø¨ØªØ­Ù„ÙŠÙ„ ÙˆØªÙ„Ø®ÙŠØµ Ø§Ù„Ø£Ø­Ø¯Ø§Ø« Ø§Ù„ØªØ§Ù„ÙŠØ©ØŒ ÙˆØ§ÙƒØªØ¨ ØªÙ‚Ø±ÙŠØ±Ø§Ù‹ Ø¥Ø®Ø¨Ø§Ø±ÙŠÙ‹Ø§ Ø¨ØµÙŠØºØ© Markdown Ù…Ù†Ø§Ø³Ø¨ Ù„Ù„Ù†Ø´Ø±. Ø§Ø³ØªØ®Ø¯Ù… Ø¹Ù†Ø§ÙˆÙŠÙ† Ø±Ø¦ÙŠØ³ÙŠØ© ÙˆÙ†Ù‚Ø§Ø· ÙØ±Ø¹ÙŠØ© Ø¥Ù† Ù„Ø²Ù…:");
+            sb.AppendLine("Şã ÈÊÍáíá æÊáÎíÕ ÇáÃÍÏÇË ÇáÊÇáíÉ¡ æÇßÊÈ ÊŞÑíÑÇğ ÅÎÈÇÑíğÇ ÈÕíÛÉ Markdown ãäÇÓÈ ááäÔÑ. ÇÓÊÎÏã ÚäÇæíä ÑÆíÓíÉ æäŞÇØ İÑÚíÉ Åä áÒã:");
             sb.AppendLine();
-            sb.AppendLine("### Ù‚Ø§Ø¦Ù…Ø© Ø§Ù„Ø£Ø­Ø¯Ø§Ø«:");
+            sb.AppendLine("### ŞÇÆãÉ ÇáÃÍÏÇË:");
 
             int index = 1;
             foreach (var ev in events)
             {
-                sb.AppendLine($"#### Ø§Ù„Ø­Ø¯Ø« {index++}:");
-                sb.AppendLine($"- **Ø§Ù„Ø¹Ù†ÙˆØ§Ù†:** {ev.EventInfo.Title}");
-                sb.AppendLine($"- **Ø§Ù„ÙˆØµÙ:** {ev.EventInfo.Summary}");
-                sb.AppendLine($"- **Ø§Ù„Ù…ÙˆÙ‚Ø¹:** {ev.Location?.ToString() ?? "ØºÙŠØ± Ù…Ø­Ø¯Ø¯"}");
-                sb.AppendLine($"- **Ø§Ù„ÙˆÙ‚Øª:** {ev.CreatedAt.ToString("yyyy-MM-dd HH:mm")}");
+                sb.AppendLine($"#### ÇáÍÏË {index++}:");
+                sb.AppendLine($"- **ÇáÚäæÇä:** {ev.EventInfo.Title}");
+                sb.AppendLine($"- **ÇáæÕİ:** {ev.EventInfo.Summary}");
+                sb.AppendLine($"- **ÇáãæŞÚ:** {ev.Location?.ToString() ?? "ÛíÑ ãÍÏÏ"}");
+                sb.AppendLine($"- **ÇáæŞÊ:** {ev.CreatedAt.ToString("yyyy-MM-dd HH:mm")}");
                 sb.AppendLine();
             }
 
-            sb.AppendLine("ÙŠØ±Ø¬Ù‰ ÙƒØªØ§Ø¨Ø© Ù…Ù„Ø®Øµ Ø§Ø­ØªØ±Ø§ÙÙŠ Ø¨Ù†Ø§Ø¡Ù‹ Ø¹Ù„Ù‰ Ù‡Ø°Ù‡ Ø§Ù„Ù…Ø¹Ù„ÙˆÙ…Ø§Øª.");
+            sb.AppendLine("íÑÌì ßÊÇÈÉ ãáÎÕ ÇÍÊÑÇİí ÈäÇÁğ Úáì åĞå ÇáãÚáæãÇÊ.");
 
             return sb.ToString();
         }

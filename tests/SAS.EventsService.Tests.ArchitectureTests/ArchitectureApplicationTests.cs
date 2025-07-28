@@ -1,8 +1,8 @@
-﻿
+
 using FluentAssertions;
 using NetArchTest.Rules;
-using SAS.EventsService.SharedKernel.CQRS.Commands;
-using SAS.EventsService.SharedKernel.CQRS.Queries;
+using SAS.SharedKernel.CQRS.Commands;
+using SAS.SharedKernel.CQRS.Queries;
 
 namespace SAS.EventsService.Tests.ArchitectureTests
 {

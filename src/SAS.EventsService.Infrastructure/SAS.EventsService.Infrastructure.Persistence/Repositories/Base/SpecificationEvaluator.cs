@@ -1,7 +1,7 @@
-﻿
+
 using Microsoft.EntityFrameworkCore;
-using SAS.EventsService.SharedKernel.Entities;
-using SAS.EventsService.SharedKernel.Utilities;
+using SAS.SharedKernel.Entities;
+using SAS.SharedKernel.Utilities;
 using System.Linq;
 
 

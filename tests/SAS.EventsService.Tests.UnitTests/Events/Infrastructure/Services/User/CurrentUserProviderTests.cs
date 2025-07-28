@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Moq;
 using SAS.EventsService.Infrastructure.Services.Providers;

@@ -1,11 +1,11 @@
-﻿using Ardalis.Result;
+using Ardalis.Result;
 using FluentAssertions;
 using Moq;
 using SAS.EventService.Domain.Entities;
 using SAS.EventsService.Application.Contracts.Providers;
 using SAS.EventsService.Application.Topics.UseCases.Commands.CreateTopic;
 using SAS.EventsService.Domain.Topics.Repositories;
-using SAS.EventsService.SharedKernel.Utilities;
+using SAS.SharedKernel.Utilities;
 
 namespace SAS.EventsService.Tests.UnitTests.Topics.Application.UseCases.Commands
 {

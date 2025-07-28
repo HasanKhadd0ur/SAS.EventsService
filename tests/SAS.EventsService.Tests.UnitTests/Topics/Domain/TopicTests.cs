@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using SAS.EventsService.Tests.UnitTests.Topics.Shared;
 
 namespace SAS.EventsService.Tests.UnitTests.Topics.Domain

@@ -1,4 +1,4 @@
-﻿using SAS.EventsService.Application.Common;
+using SAS.EventsService.Application.Common;
 
 namespace SAS.EventsService.Application.NamedEntities.Common
 {

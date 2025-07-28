@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using SAS.EventsService.Application.Events.Common;
 using SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent;
 using SAS.EventsService.Application.Events.UseCases.Commands.UpdateEventInfo;
@@ -16,10 +16,10 @@ namespace SAS.EventsService.Presentation.Mappers
     {
         public EventRequestToCommandProfile()
         {
-            // CreateEventRequest → CreateEventFromDetectionCommand
+            // CreateEventRequest ? CreateEventFromDetectionCommand
             CreateMap<CreateEventRequest, CreateEventFromDetectionCommand>();
 
-            // UpdateEventInfoRequest → UpdateEventInfoCommand
+            // UpdateEventInfoRequest ? UpdateEventInfoCommand
             CreateMap<UpdateEventInfoRequest, UpdateEventInfoCommand>();
             
             CreateMap<GetEventsByLocationRadiusRequest,GetEventsByLocationRadiusQuery>();
@@ -31,7 +31,7 @@ namespace SAS.EventsService.Presentation.Mappers
     {
         public UserInterestsRequestToCommandProfile()
         {
-            // CreateUserInterestRequest → CreateUserInterestCommand
+            // CreateUserInterestRequest ? CreateUserInterestCommand
             CreateMap<CreateUserInterestRequest, CreateUserInterestCommand>();
             CreateMap<LocationDTO, Location>();
         }

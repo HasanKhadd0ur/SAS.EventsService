@@ -1,4 +1,4 @@
-﻿using Ardalis.Result;
+using Ardalis.Result;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using SAS.EventsService.Application.Contracts.Users;

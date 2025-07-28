@@ -1,4 +1,4 @@
-﻿using Ardalis.Result;
+using Ardalis.Result;
 using AutoMapper;
 using SAS.EventsService.Application.Contracts.Providers;
 using SAS.EventsService.Application.NamedEntities.Common;
@@ -6,8 +6,8 @@ using SAS.EventsService.Application.NamedEntities.UseCases.Commands.CreateNamedE
 using SAS.EventsService.Domain.NamedEntities.DomainErrors;
 using SAS.EventsService.Domain.NamedEntities.Entities;
 using SAS.EventsService.Domain.NamedEntities.Repositories;
-using SAS.EventsService.SharedKernel.CQRS.Commands;
-using SAS.EventsService.SharedKernel.Utilities;
+using SAS.SharedKernel.CQRS.Commands;
+using SAS.SharedKernel.Utilities;
 
 namespace SAS.EventsService.Application.NamedEntities.UseCases.Commands
 {

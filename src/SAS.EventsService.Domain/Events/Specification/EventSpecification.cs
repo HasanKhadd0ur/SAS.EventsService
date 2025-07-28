@@ -1,5 +1,5 @@
-﻿using SAS.EventsService.Domain.Events.Entities;
-using SAS.EventsService.SharedKernel.Specification;
+using SAS.EventsService.Domain.Events.Entities;
+using SAS.SharedKernel.Specification;
 
 public class BaseEventSpecification : BaseSpecification<Event>
 {

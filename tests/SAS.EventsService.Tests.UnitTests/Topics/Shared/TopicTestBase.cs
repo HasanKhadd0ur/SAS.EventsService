@@ -1,4 +1,4 @@
-﻿using SAS.EventService.Domain.Entities;
+using SAS.EventService.Domain.Entities;
 
 namespace SAS.EventsService.Tests.UnitTests.Topics.Shared
 {

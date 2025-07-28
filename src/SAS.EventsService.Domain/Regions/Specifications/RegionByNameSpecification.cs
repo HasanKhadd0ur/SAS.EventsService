@@ -1,5 +1,5 @@
-﻿using SAS.EventsService.Domain.Regions.Entities;
-using SAS.EventsService.SharedKernel.Specification;
+using SAS.EventsService.Domain.Regions.Entities;
+using SAS.SharedKernel.Specification;
 
 namespace SAS.EventsService.Domain.Regions.Specifications
 {

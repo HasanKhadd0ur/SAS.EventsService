@@ -1,12 +1,12 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Ardalis.Result;
 using SAS.EventsService.Application.Contracts.Providers;
 using SAS.EventsService.Domain.Events.Entities;
 using SAS.EventsService.Domain.Events.Repositories;
 using SAS.EventsService.Domain.Topics.Repositories;
-using SAS.EventsService.SharedKernel.CQRS.Commands;
+using SAS.SharedKernel.CQRS.Commands;
 using SAS.EventsService.Domain.Regions.Repositories;
-using SAS.EventsService.SharedKernel.Utilities;
+using SAS.SharedKernel.Utilities;
 using SAS.EventsService.Domain.Common.Errors;
 using SAS.EventsService.Domain.Regions.Entities;
 using SAS.EventsService.Domain.Events.DomainEvents;

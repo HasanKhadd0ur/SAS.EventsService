@@ -1,4 +1,4 @@
-﻿using SAS.EventService.Domain.Entities;
+using SAS.EventService.Domain.Entities;
 using SAS.EventsService.Domain.Events.Entities;
 using SAS.EventsService.UnitTests.Common;
 

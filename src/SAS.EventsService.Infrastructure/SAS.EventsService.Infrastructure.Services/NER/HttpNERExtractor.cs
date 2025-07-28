@@ -1,4 +1,4 @@
-﻿using SAS.EventsService.Application.Contracts.NER;
+using SAS.EventsService.Application.Contracts.NER;
 using SAS.EventsService.Application.NamedEntities.Common;
 using System.Net.Http.Json;
 

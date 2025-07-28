@@ -1,4 +1,4 @@
-﻿using SAS.EventsService.Application.Contracts.Providers;
+using SAS.EventsService.Application.Contracts.Providers;
 using System.Security.Cryptography;
 using System.Text;
 

@@ -1,5 +1,5 @@
-﻿using SAS.EventsService.Domain.Notifications.Entitties;
-using SAS.EventsService.SharedKernel.Repositories;
+using SAS.EventsService.Domain.Notifications.Entitties;
+using SAS.SharedKernel.Repositories;
 
 namespace SAS.EventsService.Domain.Notifications.Repositories
 {

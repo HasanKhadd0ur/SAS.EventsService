@@ -1,4 +1,4 @@
-﻿using System.Security.Claims;
+using System.Security.Claims;
 using SAS.EventsService.Application.Contracts.Providers;
 using Microsoft.AspNetCore.Http;
 

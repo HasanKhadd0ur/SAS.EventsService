@@ -1,4 +1,4 @@
-﻿namespace SAS.EventsService.Presentation.Contracts.Events.Requests
+namespace SAS.EventsService.Presentation.Contracts.Events.Requests
 {
     public record GetEventsByLocationRadiusRequest(
         double Latitude,

@@ -1,4 +1,4 @@
-﻿using Ardalis.Result;
+using Ardalis.Result;
 using AutoMapper;
 using FluentAssertions;
 using Moq;
@@ -12,7 +12,7 @@ using SAS.EventsService.Domain.Events.Repositories;
 using SAS.EventsService.Domain.Regions.Entities;
 using SAS.EventsService.Domain.Regions.Repositories;
 using SAS.EventsService.Domain.Topics.Repositories;
-using SAS.EventsService.SharedKernel.Utilities;
+using SAS.SharedKernel.Utilities;
 using SAS.EventsService.UnitTests.Common;
 using Xunit;
 

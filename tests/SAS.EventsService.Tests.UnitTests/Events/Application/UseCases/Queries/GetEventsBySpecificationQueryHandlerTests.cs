@@ -1,11 +1,11 @@
-﻿using AutoMapper;
+using AutoMapper;
 using FluentAssertions;
 using Moq;
 using SAS.EventsService.Application.Events.Common;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetEventsBySepcification;
 using SAS.EventsService.Domain.Events.Entities;
 using SAS.EventsService.Domain.Events.Repositories;
-using SAS.EventsService.SharedKernel.Specification;
+using SAS.SharedKernel.Specification;
 
 namespace SAS.EventsService.Tests.UnitTests.Events.Application.UseCases.Queries
 {

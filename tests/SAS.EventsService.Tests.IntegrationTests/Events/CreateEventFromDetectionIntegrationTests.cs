@@ -1,4 +1,4 @@
-﻿using Ardalis.Result;
+using Ardalis.Result;
 using AutoMapper;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +9,7 @@ using SAS.EventsService.Domain.Events.Repositories;
 using SAS.EventsService.Domain.Regions.Repositories;
 using SAS.EventsService.Domain.Topics.Repositories;
 using SAS.EventsService.Infrastructure.Persistence.AppDataContext;
-using SAS.EventsService.SharedKernel.Utilities;
+using SAS.SharedKernel.Utilities;
 using SAS.EventsService.Tests.IntegrationTests.Events;
 using SAS.EventsService.Tests.IntegrationTests.Fixtures;
 using Xunit;

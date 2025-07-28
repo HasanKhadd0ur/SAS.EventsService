@@ -1,4 +1,4 @@
-﻿namespace SAS.EventsService.Domain.Events.ValueObjects
+namespace SAS.EventsService.Domain.Events.ValueObjects
 {
     public record EventInfo(
         string Title,

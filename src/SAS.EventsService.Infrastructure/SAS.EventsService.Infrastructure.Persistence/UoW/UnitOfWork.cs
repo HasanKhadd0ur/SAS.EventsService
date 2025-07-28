@@ -1,9 +1,9 @@
-﻿using MediatR;
+using MediatR;
 using Microsoft.EntityFrameworkCore.Storage;
 using SAS.EventsService.Infrastructure.Persistence.AppDataContext;
-using SAS.EventsService.SharedKernel.DomainEvents;
-using SAS.EventsService.SharedKernel.Entities;
-using SAS.EventsService.SharedKernel.Utilities;
+using SAS.SharedKernel.DomainEvents;
+using SAS.SharedKernel.Entities;
+using SAS.SharedKernel.Utilities;
 
 namespace SAS.EventsService.Infrastructure.Persistence.UoW
 

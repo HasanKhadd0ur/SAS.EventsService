@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using SAS.EventService.Domain.Entities;
 using SAS.EventsService.Application.Events.Common;
 using SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent;

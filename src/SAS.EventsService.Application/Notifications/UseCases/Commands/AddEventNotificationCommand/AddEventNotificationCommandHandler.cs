@@ -1,8 +1,8 @@
-﻿
+
 using Ardalis.Result;
 using SAS.EventsService.Domain.Notifications.Entitties;
 using SAS.EventsService.Domain.Notifications.Repositories;
-using SAS.EventsService.SharedKernel.CQRS.Commands;
+using SAS.SharedKernel.CQRS.Commands;
 
 namespace SAS.EventsService.Application.Notifications.UseCases.Commands.AddEventNotificationCommand
 {

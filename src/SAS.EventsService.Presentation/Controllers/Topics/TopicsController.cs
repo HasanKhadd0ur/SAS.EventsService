@@ -1,4 +1,4 @@
-﻿using Ardalis.Result;
+using Ardalis.Result;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SAS.EventsService.Presentation.Controllers.ApiBase;

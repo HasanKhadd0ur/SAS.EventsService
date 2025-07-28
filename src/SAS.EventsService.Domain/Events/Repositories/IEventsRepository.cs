@@ -1,6 +1,6 @@
-﻿using SAS.EventsService.Domain.Events.Entities;
-using SAS.EventsService.SharedKernel.Repositories;
-using SAS.EventsService.SharedKernel.Utilities;
+using SAS.EventsService.Domain.Events.Entities;
+using SAS.SharedKernel.Repositories;
+using SAS.SharedKernel.Utilities;
 
 namespace SAS.EventsService.Domain.Events.Repositories
 {

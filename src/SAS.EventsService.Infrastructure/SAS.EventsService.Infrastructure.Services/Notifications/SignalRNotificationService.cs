@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.SignalR;
+using Microsoft.AspNetCore.SignalR;
 using SAS.EventsService.Application.Contracts.Notfications;
 using SAS.EventsService.Application.Notifications.Common;
 using SAS.EventsService.Infrastructure.SignalR;

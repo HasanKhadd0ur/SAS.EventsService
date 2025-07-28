@@ -1,9 +1,9 @@
-﻿using Ardalis.Result;
+using Ardalis.Result;
 using SAS.EventService.Domain.Entities;
 using SAS.EventsService.Application.Contracts.Providers;
 using SAS.EventsService.Domain.Topics.Repositories;
-using SAS.EventsService.SharedKernel.CQRS.Commands;
-using SAS.EventsService.SharedKernel.Utilities;
+using SAS.SharedKernel.CQRS.Commands;
+using SAS.SharedKernel.Utilities;
 
 namespace SAS.EventsService.Application.Topics.UseCases.Commands.CreateTopic
 {

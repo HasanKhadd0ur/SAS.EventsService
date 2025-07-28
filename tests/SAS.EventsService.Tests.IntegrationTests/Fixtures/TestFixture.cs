@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using SAS.EventsService.Infrastructure.Persistence.AppDataContext;
 using SAS.EventsService.Tests.IntegrationTests.Fixtures;
 

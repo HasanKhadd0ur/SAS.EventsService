@@ -1,4 +1,4 @@
-﻿
+
 using Ardalis.Result;
 using AutoMapper;
 using SAS.EventsService.Application.Contracts.Providers;
@@ -7,9 +7,9 @@ using SAS.EventsService.Application.Notifications.UseCases.Queries.GetNotificati
 using SAS.EventsService.Domain.Notifications.DomainErrors;
 using SAS.EventsService.Domain.Notifications.Entitties;
 using SAS.EventsService.Domain.Notifications.Repositories;
-using SAS.EventsService.SharedKernel.CQRS.Queries;
-using SAS.EventsService.SharedKernel.Repositories;
-using SAS.EventsService.SharedKernel.Specification;
+using SAS.SharedKernel.CQRS.Queries;
+using SAS.SharedKernel.Repositories;
+using SAS.SharedKernel.Specification;
 
 namespace SAS.EventsService.Application.Notifications.UseCases.Queries.GetNotificationsByCurrentUser
 {

@@ -1,9 +1,9 @@
-﻿using Ardalis.Result;
+using Ardalis.Result;
 using AutoMapper;
 using SAS.EventsService.Application.Events.Common;
 using SAS.EventsService.Domain.Common.Errors;
 using SAS.EventsService.Domain.Events.Repositories;
-using SAS.EventsService.SharedKernel.CQRS.Queries;
+using SAS.SharedKernel.CQRS.Queries;
 
 namespace SAS.EventsService.Application.Events.UseCases.Queries.GetAllEvents
 {

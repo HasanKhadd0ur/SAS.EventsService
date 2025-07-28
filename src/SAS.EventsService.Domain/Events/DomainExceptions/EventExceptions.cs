@@ -1,4 +1,4 @@
-﻿using SAS.EventsService.SharedKernel.DomainExceptions.Base;
+using SAS.SharedKernel.DomainExceptions.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;

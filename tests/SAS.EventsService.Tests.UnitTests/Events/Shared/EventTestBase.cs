@@ -1,4 +1,4 @@
-﻿using SAS.EventsService.Domain.Events.Entities;
+using SAS.EventsService.Domain.Events.Entities;
 using SAS.EventsService.Domain.Events.ValueObjects;
 using SAS.EventsService.Domain.NamedEntities.Entities;
 using SAS.EventsService.Domain.Regions.Entities;

@@ -1,4 +1,4 @@
-﻿using Ardalis.Result;
+using Ardalis.Result;
 using FluentAssertions;
 using Moq;
 using SAS.EventService.Domain.Entities;
@@ -7,7 +7,7 @@ using SAS.EventsService.Domain.Common.Errors;
 using SAS.EventsService.Domain.Events.Entities;
 using SAS.EventsService.Domain.Events.Repositories;
 using SAS.EventsService.Domain.Topics.Repositories;
-using SAS.EventsService.SharedKernel.Utilities;
+using SAS.SharedKernel.Utilities;
 
 namespace SAS.EventsService.Tests.UnitTests.Events.Application.UseCases.Commands
 {

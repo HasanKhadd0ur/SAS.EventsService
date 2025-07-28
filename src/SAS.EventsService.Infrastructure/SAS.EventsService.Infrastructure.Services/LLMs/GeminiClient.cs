@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration;
 using SAS.EventsService.Application.Contracts.LLMs;
 using System.Text;
 using System.Text.Json;
@@ -36,7 +36,7 @@ namespace SAS.EventsService.Infrastructure.Services.LLMs
             var response = await _httpClient.PostAsync(url, content, cancellationToken);
 
             if (!response.IsSuccessStatusCode)
-                return $"❌ Gemini API error: {response.StatusCode} - {await response.Content.ReadAsStringAsync()}";
+                return $"? Gemini API error: {response.StatusCode} - {await response.Content.ReadAsStringAsync()}";
 
             var responseContent = await response.Content.ReadAsStringAsync();
 

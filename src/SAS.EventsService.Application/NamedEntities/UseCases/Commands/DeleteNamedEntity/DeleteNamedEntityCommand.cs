@@ -1,5 +1,5 @@
-﻿using Ardalis.Result;
-using SAS.EventsService.SharedKernel.CQRS.Commands;
+using Ardalis.Result;
+using SAS.SharedKernel.CQRS.Commands;
 
 namespace SAS.EventsService.Application.NamedEntities.UseCases.Commands.DeleteNamedEntity
 {

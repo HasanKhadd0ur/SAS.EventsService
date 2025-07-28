@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SAS.EventsService.Domain.Notifications.Entitties;
 using SAS.EventsService.Domain.Notifications.Repositories;
 using SAS.EventsService.Infrastructure.Persistence.AppDataContext;

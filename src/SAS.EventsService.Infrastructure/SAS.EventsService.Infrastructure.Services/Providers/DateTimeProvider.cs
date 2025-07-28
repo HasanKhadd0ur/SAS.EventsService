@@ -1,4 +1,4 @@
-﻿using SAS.EventsService.Application.Contracts.Providers;
+using SAS.EventsService.Application.Contracts.Providers;
 
 namespace SAS.EventsService.Infrastructure.Services.Providers
 {

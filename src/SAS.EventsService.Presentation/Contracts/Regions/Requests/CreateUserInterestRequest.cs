@@ -1,5 +1,5 @@
-﻿using SAS.EventsService.Application.Events.Common;
-using SAS.EventsService.SharedKernel.CQRS.Commands;
+using SAS.EventsService.Application.Events.Common;
+using SAS.SharedKernel.CQRS.Commands;
 
 namespace SAS.EventsService.Presentation.Contracts.Topics.Requests
 {

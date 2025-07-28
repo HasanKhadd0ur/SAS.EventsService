@@ -1,4 +1,4 @@
-﻿using SAS.EventsService.SharedKernel.Entities;
+using SAS.SharedKernel.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

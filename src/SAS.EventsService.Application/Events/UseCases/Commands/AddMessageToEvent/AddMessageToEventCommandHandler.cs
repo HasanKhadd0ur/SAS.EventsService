@@ -1,11 +1,11 @@
-﻿using Ardalis.Result;
+using Ardalis.Result;
 using AutoMapper;
 using SAS.EventsService.Application.Contracts.Providers;
 using SAS.EventsService.Domain.Common.Errors;
 using SAS.EventsService.Domain.Events.Entities;
 using SAS.EventsService.Domain.Events.Repositories;
-using SAS.EventsService.SharedKernel.CQRS.Commands;
-using SAS.EventsService.SharedKernel.Utilities;
+using SAS.SharedKernel.CQRS.Commands;
+using SAS.SharedKernel.Utilities;
 
 namespace SAS.EventsService.Application.Events.UseCases.Commands.AddMessageToEvent
 {

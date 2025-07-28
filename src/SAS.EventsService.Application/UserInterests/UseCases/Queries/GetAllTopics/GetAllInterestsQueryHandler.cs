@@ -1,10 +1,10 @@
-﻿using Ardalis.Result;
+using Ardalis.Result;
 using AutoMapper;
 using SAS.EventsService.Application.UserInterests.Common;
 using SAS.EventsService.Domain.UserInterests.Entities;
 using SAS.EventsService.Domain.UserInterests.Repositories;
-using SAS.EventsService.SharedKernel.CQRS.Queries;
-using SAS.EventsService.SharedKernel.Specification;
+using SAS.SharedKernel.CQRS.Queries;
+using SAS.SharedKernel.Specification;
 
 namespace SAS.EventsService.Application.Regions.UseCases.Queries.GetAllTopics
 

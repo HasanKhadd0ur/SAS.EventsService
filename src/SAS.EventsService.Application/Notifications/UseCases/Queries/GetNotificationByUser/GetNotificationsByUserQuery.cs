@@ -1,7 +1,7 @@
-﻿
+
 using Ardalis.Result;
 using SAS.EventsService.Application.Notifications.Common;
-using SAS.EventsService.SharedKernel.CQRS.Queries;
+using SAS.SharedKernel.CQRS.Queries;
 
 namespace SAS.EventsService.Application.Notifications.UseCases.Queries.GetNotificationByUser
 {

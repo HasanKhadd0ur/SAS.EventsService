@@ -1,10 +1,10 @@
-﻿using MediatR;
+using MediatR;
 using SAS.EventsService.Application.Contracts.Notfications;
 using SAS.EventsService.Application.Notifications.Common;
 using SAS.EventsService.Application.Notifications.UseCases.Commands.AddEventNotificationCommand;
 using SAS.EventsService.Domain.Events.DomainEvents;
 using SAS.EventsService.Domain.UserInterests.Repositories;
-using SAS.EventsService.SharedKernel.DomainEvents;
+using SAS.SharedKernel.DomainEvents;
 using System.Threading;
 using System.Threading.Tasks;
 

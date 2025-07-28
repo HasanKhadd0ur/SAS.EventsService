@@ -1,7 +1,7 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using NetArchTest.Rules;
-using SAS.EventsService.SharedKernel.DomainEvents;
-using SAS.EventsService.SharedKernel.Repositories;
+using SAS.SharedKernel.DomainEvents;
+using SAS.SharedKernel.Repositories;
 
 namespace SAS.EventsService.Tests.ArchitectureTests
 {

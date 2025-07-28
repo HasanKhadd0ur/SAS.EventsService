@@ -1,12 +1,12 @@
-﻿
+
 using Ardalis.Result;
 using AutoMapper;
 using SAS.EventsService.Application.Notifications.Common;
 using SAS.EventsService.Domain.Notifications.DomainErrors;
 using SAS.EventsService.Domain.Notifications.Entitties;
 using SAS.EventsService.Domain.Notifications.Repositories;
-using SAS.EventsService.SharedKernel.CQRS.Queries;
-using SAS.EventsService.SharedKernel.Specification;
+using SAS.SharedKernel.CQRS.Queries;
+using SAS.SharedKernel.Specification;
 
 namespace SAS.EventsService.Application.Notifications.UseCases.Queries.GetNotificationByUser
 {

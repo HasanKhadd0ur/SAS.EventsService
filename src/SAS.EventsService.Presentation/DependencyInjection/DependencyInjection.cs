@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using SAS.EventsService.Presentation.Mappers;
 
 namespace SAS.EventsService.Presentation.DependencyInjection

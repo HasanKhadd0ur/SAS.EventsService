@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,7 +21,7 @@ using SAS.EventsService.Infrastructure.Persistence.Repositories.Topics;
 using SAS.EventsService.Infrastructure.Persistence.UoW;
 using SAS.EventsService.Infrastructure.Services;
 using SAS.EventsService.Infrastructure.Services.Providers;
-using SAS.EventsService.SharedKernel.Utilities;
+using SAS.SharedKernel.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

@@ -1,4 +1,4 @@
-﻿using SAS.EventsService.SharedKernel.DomainEvents;
+using SAS.SharedKernel.DomainEvents;
 
 namespace SAS.EventsService.Domain.Events.DomainEvents
 {

@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SAS.EventsService.Application.Contracts.Providers;
@@ -16,8 +16,8 @@ using SAS.EventsService.Infrastructure.Persistence.Repositories.Notifications;
 using SAS.EventsService.Infrastructure.Persistence.Repositories.Regions;
 using SAS.EventsService.Infrastructure.Persistence.Repositories.Topics;
 using SAS.EventsService.Infrastructure.Persistence.UoW;
-using SAS.EventsService.SharedKernel.Repositories;
-using SAS.EventsService.SharedKernel.Utilities;
+using SAS.SharedKernel.Repositories;
+using SAS.SharedKernel.Utilities;
 
 namespace SAS.EventsService.Infrastructure.Persistence.DependencyInjection
 {

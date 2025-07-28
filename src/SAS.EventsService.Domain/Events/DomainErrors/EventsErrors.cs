@@ -1,5 +1,5 @@
-﻿using Ardalis.Result;
-using SAS.EventsService.SharedKernel.DomainErrors;
+using Ardalis.Result;
+using SAS.SharedKernel.DomainErrors;
 
 namespace SAS.EventsService.Domain.Common.Errors;
 

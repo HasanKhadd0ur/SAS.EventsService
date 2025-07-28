@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SAS.EventsService.Domain.UserInterests.Entities;
 using SAS.EventsService.Domain.UserInterests.Repositories;
 using SAS.EventsService.Infrastructure.Persistence.AppDataContext;

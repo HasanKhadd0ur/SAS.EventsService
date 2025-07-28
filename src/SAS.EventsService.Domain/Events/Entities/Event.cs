@@ -1,8 +1,8 @@
-﻿using SAS.EventService.Domain.Entities;
+using SAS.EventService.Domain.Entities;
 using SAS.EventsService.Domain.Events.ValueObjects;
 using SAS.EventsService.Domain.Regions.Entities;
-using SAS.EventsService.SharedKernel.DomainExceptions.Base;
-using SAS.EventsService.SharedKernel.Entities;
+using SAS.SharedKernel.DomainExceptions.Base;
+using SAS.SharedKernel.Entities;
 using System;
 using System.Linq;
 using System.Collections.Generic;

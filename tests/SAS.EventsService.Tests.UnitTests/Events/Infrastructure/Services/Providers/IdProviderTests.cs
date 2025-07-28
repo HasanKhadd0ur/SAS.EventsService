@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using SAS.EventsService.Infrastructure.Services;
 
 namespace SAS.EventsService.Tests.UnitTests.Events.Infrastructure.Services.Providers

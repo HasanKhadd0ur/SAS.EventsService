@@ -1,4 +1,4 @@
-﻿using SAS.EventsService.Domain.Regions.Entities;
+using SAS.EventsService.Domain.Regions.Entities;
 using SAS.EventsService.Domain.Regions.Repositories;
 using SAS.EventsService.Domain.Regions.Specifications;
 using SAS.EventsService.Infrastructure.Persistence.AppDataContext;
