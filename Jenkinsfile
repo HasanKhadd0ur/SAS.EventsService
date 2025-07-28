@@ -43,7 +43,6 @@ pipeline {
         stage('Docker Build') {
             steps {
                 bat 'docker build -t sas-eventsservice:latest -f src\\SAS.EventsService.API\\Dockerfile .'
-                bat 'docker build -t sas-identityservice:latest -f src\\SAS.IdentityService.API\\Dockerfile .'
             }
         }
 
