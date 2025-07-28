@@ -81,6 +81,7 @@ namespace SAS.EventsService.Infrastructure.Persistence.EntitiesConfiguration
             builder.ToTable("Notifications");
 
             // Configure TPH (Table-Per-Hierarchy) inheritance
+
             builder.HasDiscriminator<string>("Type")
                    .HasValue<EventNotification>(NotificationType.Event.ToString());
         }

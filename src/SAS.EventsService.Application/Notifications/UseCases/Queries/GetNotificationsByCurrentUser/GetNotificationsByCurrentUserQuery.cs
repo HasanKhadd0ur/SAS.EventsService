@@ -7,5 +7,5 @@ namespace SAS.EventsService.Application.Notifications.UseCases.Queries.GetNotifi
 {
     public record GetNotificationsByCurrentUserQuery(
    int? PageNumber,
-   int? PageSize) : IQuery<Result<ICollection<NotificationDTO>>>;
+   int? PageSize) : IQuery<Result<ICollection<EventNotificationDTO>>>;
 }

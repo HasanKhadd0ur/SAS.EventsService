@@ -21,6 +21,9 @@ using System.Threading.Tasks;
 
 namespace SAS.EventsService.Presentation.Controllers
 {
+
+    [ApiController]
+    [Route("api/[controller]")]
     public class EventsController : APIController
     {
         private readonly IMediator _mediator;

@@ -51,8 +51,17 @@ namespace SAS.EventsService.Application.Mapping
                 CreateMap<MessageDto, Message>()
                     .ForMember(dest => dest.EventId, opt => opt.Ignore());
             CreateMap<EventNotificationDTO, AddEventNotificationCommand>();
-            CreateMap<EventNotification, EventNotificationDTO>();
+            //CreateMap<EventNotification, EventNotificationDTO>();
+            //CreateMap<Notification, NotificationDTO>()
+            //   .Include<EventNotification, NotificationDTO>();
+            CreateMap<EventNotification, EventNotificationDTO>()
+                .IncludeBase<Notification, NotificationDTO>();
 
+            CreateMap<Notification, NotificationDTO>();
+            //CreateMap<EventNotification, NotificationDTO>()
+            //   .ForMember(dest => dest.EventId, opt => opt.MapFrom(src => src.EventId))
+            //   .ForMember(dest => dest.EventName, opt => opt.MapFrom(src => src.EventName))
+            //   .IncludeBase<Notification, NotificationDTO>();
 
         }
     }

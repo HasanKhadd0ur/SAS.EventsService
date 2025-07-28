@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SAS.EventsService.Application.Notifications.Common;
 using SAS.EventsService.Application.Notifications.UseCases.Commands.AddEventNotificationCommand;
@@ -18,7 +19,7 @@ namespace SAS.EventsService.Presentation.Controllers.Notifications
         {
             _mediator = mediator;
         }
-
+        [Authorize]
         [HttpGet("my")]
         public async Task<IActionResult> GetCurrentUserNotifications([FromQuery] int? pageNumber, [FromQuery] int? pageSize)
         {

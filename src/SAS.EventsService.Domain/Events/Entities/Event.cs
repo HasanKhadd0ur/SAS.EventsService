@@ -19,6 +19,7 @@ namespace SAS.EventsService.Domain.Events.Entities
         public Topic Topic { get; set; }
         public Location Location { get; set; }
         public Region Region { get; set; }
+        public Boolean IsReviewed { get; set; }
         public ICollection<NamedEntity> MentionedEntities { get; set; }
         public ICollection<NamedEntityMention> NamedEntityMentions { get; set; }
         public ICollection<Message> Messages { get; set; }
@@ -26,6 +27,7 @@ namespace SAS.EventsService.Domain.Events.Entities
         public Event()
         {
             Messages = new List<Message>();
+            NamedEntityMentions = new List<NamedEntityMention>();
 
         }
 
@@ -63,7 +65,7 @@ namespace SAS.EventsService.Domain.Events.Entities
         }
         public void UpdateLocation(Location newLocation)
         {
-            if (newLocation == null)
+            if (newLocation is null)
                 throw new DomainException("Location must not be null");
 
             Location = newLocation;
