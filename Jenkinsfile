@@ -44,8 +44,9 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                bat 'docker build -t sas-eventsservice:latest -f src\\SAS.EventsService.API\\Dockerfile src\\SAS.EventsService.API'
-                bat 'docker build -t sas-identityservice:latest -f src\\SAS.IdentityService.API\\Dockerfile src\\SAS.IdentityService.API'
+                // Use repo root (.) as build context for Docker so COPY works correctly
+                bat 'docker build -t sas-eventsservice:latest -f src\\SAS.EventsService.API\\Dockerfile .'
+                bat 'docker build -t sas-identityservice:latest -f src\\SAS.IdentityService.API\\Dockerfile .'
             }
         }
 
