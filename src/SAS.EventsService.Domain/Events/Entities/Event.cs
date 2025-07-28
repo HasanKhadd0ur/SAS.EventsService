@@ -83,12 +83,12 @@ namespace SAS.EventsService.Domain.Events.Entities
         {
             LastUpdatedAt = modificationTime;
         }
+
         public void ChangeTopic(Topic newTopic)
         {
             if (newTopic is null)
                 throw EventExceptions.TopicNull();
             Topic = newTopic;
-
             UpdateLastModifiedTime(DateTime.UtcNow);
         }
 

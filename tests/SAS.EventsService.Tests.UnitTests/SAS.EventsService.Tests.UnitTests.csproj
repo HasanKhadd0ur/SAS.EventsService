@@ -11,6 +11,7 @@
     <PackageReference Include="coverlet.collector" Version="6.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
     <PackageReference Include="FluentAssertions" Version="8.5.0" />
+    <PackageReference Include="Moq" Version="4.20.72" />
     <PackageReference Include="xunit" Version="2.9.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
   </ItemGroup>
@@ -20,13 +21,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Events\Application\" />
-    <Folder Include="Events\Infrastructure\" />
-    <Folder Include="Events\Mocks\" />
+    <ProjectReference Include="..\..\src\SAS.EventsService.Application\SAS.EventsService.Application.csproj" />
+    <ProjectReference Include="..\..\src\SAS.EventsService.Domain\SAS.EventsService.Domain.csproj" />
+    <ProjectReference Include="..\..\src\SAS.EventsService.Infrastructure\SAS.EventsService.Infrastructure.Services\SAS.EventsService.Infrastructure.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\SAS.EventsService.Domain\SAS.EventsService.Domain.csproj" />
+    <Folder Include="Topics\Infrastructure\Services\" />
   </ItemGroup>
 
 </Project>
