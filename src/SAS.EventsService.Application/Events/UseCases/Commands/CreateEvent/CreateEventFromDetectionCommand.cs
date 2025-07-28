@@ -13,6 +13,4 @@ namespace SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent
         double Latitude,
         double Longitude
     ) : ICommand<Result<Guid>>;
-
-
 }

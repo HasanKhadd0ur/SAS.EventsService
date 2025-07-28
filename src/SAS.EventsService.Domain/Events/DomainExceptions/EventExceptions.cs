@@ -23,5 +23,9 @@ namespace SAS.EventsService.Domain.Events.DomainExceptions
         {
             return new DomainException("Location must not be null");
         }
+        public static DomainException TopicNull()
+        {
+            return new DomainException("Topic must not be null");
+        }
     }
 }
