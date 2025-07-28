@@ -14,6 +14,7 @@ namespace SAS.EventsService.Application.Events.Common
         public EventInfo EventInfo { get; set; }
         public TopicDTO Topic { get; set; }
         public LocationDTO Location { get; set; }
+        public Boolean IsReviewed { get; set; }
         public IEnumerable<MessageDto> Messages { get; set; }
         public IEnumerable<NamedEntityDto> MentionedEntities { get; set; }
 
