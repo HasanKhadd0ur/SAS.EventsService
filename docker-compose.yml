@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  sas-eventsservice:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sas-eventsservice
+    ports:
+      - "5200:5200"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5200
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=EventsDb;User Id=sa;Password=Your_password123;
+    depends_on:
+      - sqlserver
+    networks:
+      - sas-network
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sqlserver
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Your_password123
+      - MSSQL_PID=Developer
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    networks:
+      - sas-network
+
+volumes:
+  sqlserver_data:
+
+networks:
+  sas-network:
+    driver: bridge
