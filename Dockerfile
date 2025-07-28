@@ -4,8 +4,9 @@
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
 USER $APP_UID
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
+EXPOSE 5200
+# EXPOSE 8080
+# EXPOSE 8081
 
 
 # This stage is used to build the service project
