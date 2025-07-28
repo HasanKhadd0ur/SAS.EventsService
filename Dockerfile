@@ -8,7 +8,6 @@ EXPOSE 5200
 # EXPOSE 8080
 # EXPOSE 8081
 
-
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
@@ -21,7 +20,7 @@ COPY ["src/SAS.EventsService.Infrastructure/SAS.EventsService.Infrastructure.Ser
 COPY ["src/SAS.EventsService.Presentation/SAS.EventsService.Presentation.csproj", "src/SAS.EventsService.Presentation/"]
 RUN dotnet restore "./src/SAS.EventsService.API/SAS.EventsService.API.csproj"
 COPY . .
-WORKDIR "/src/src/SAS.EventsService.API"
+WORKDIR "/src/SAS.EventsService.API"
 RUN dotnet build "./SAS.EventsService.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage

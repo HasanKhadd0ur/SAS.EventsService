@@ -23,28 +23,25 @@ pipeline {
 
         stage('Unit Tests') {
             steps {
-                // Adjust the path to your unit tests folder
-                bat 'dotnet test D:\\SAS\\SAS.EventsService\\tests\\SAS.EventsService.Tests.UnitTests --no-build --verbosity normal'
+                bat 'dotnet test D:\\SAS\\SAS.EventsService\\tests\\SAS.EventsService.Tests.UnitTests --no-build --no-restore --verbosity normal'
             }
         }
 
         stage('Integration Tests') {
             steps {
-                // Adjust the path to your integration tests folder
-                bat 'dotnet test D:\\SAS\\SAS.EventsService\\tests\\SAS.EventsService.Tests.IntegrationTests --no-build --verbosity normal'
+                bat 'dotnet test D:\\SAS\\SAS.EventsService\\tests\\SAS.EventsService.Tests.IntegrationTests --no-build --no-restore --verbosity normal'
             }
         }
 
         stage('Architecture Validation') {
             steps {
                 echo 'Running architecture validation tests...'
-                bat 'dotnet test D:\\SAS\\SAS.EventsService\\tests\\SAS.EventsService.Tests.ArchitectureTests --no-build --verbosity normal'
+                bat 'dotnet test D:\\SAS\\SAS.EventsService\\tests\\SAS.EventsService.Tests.ArchitectureTests --no-build --no-restore --verbosity normal'
             }
         }
 
         stage('Docker Build') {
             steps {
-                // Use repo root (.) as build context for Docker so COPY works correctly
                 bat 'docker build -t sas-eventsservice:latest -f src\\SAS.EventsService.API\\Dockerfile .'
                 bat 'docker build -t sas-identityservice:latest -f src\\SAS.IdentityService.API\\Dockerfile .'
             }

@@ -11,11 +11,12 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:5200
-      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=EventsDb;User Id=sa;Password=Your_password123;
+      - "ConnectionStrings__DefaultConnection=Server=sqlserver;Database=EventsDb;User Id=sa;Password=Your_password123;"
     depends_on:
       - sqlserver
     networks:
       - sas-network
+    restart: unless-stopped
 
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2019-latest
@@ -30,6 +31,7 @@ services:
       - sqlserver_data:/var/opt/mssql
     networks:
       - sas-network
+    restart: unless-stopped
 
 volumes:
   sqlserver_data:
