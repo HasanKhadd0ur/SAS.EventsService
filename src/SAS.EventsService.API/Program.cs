@@ -30,6 +30,7 @@ try
     // Access configuration
     var configuration = builder.Configuration;
 
+    builder.Services.AddResponseCaching();
 
 
     // Add services to the container.
@@ -60,7 +61,7 @@ try
     }
 
     app.UseHttpsRedirection();
-
+    app.UseResponseCaching();
     //app.UseCors("AllowFrontendDev");
     app.UseCors("AllowAll");
     app.UseAuthorization();

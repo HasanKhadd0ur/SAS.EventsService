@@ -1,6 +1,7 @@
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Mscc.GenerativeAI;
 using SAS.EventsService.Application.Events.Common;
 using SAS.EventsService.Application.Events.UseCases.Commands.AddMessageToEvent;
 using SAS.EventsService.Application.Events.UseCases.Commands.BulkAddMessagesToEvent;
@@ -79,7 +80,7 @@ namespace SAS.EventsService.Presentation.Controllers
         /// </summary>
         /// <returns>A list of all events.</returns>
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] int? pageNumber, [FromQuery] int? pageSize)
+        public async Task<IActionResult> GetAll([FromQuery] int? pageNumber=1, [FromQuery] int? pageSize=10)
         {
             var query = new GetAllEventsQuery(pageNumber, pageSize);
             var result = await _mediator.Send(query);
@@ -125,9 +126,13 @@ namespace SAS.EventsService.Presentation.Controllers
         /// Get events updated after a specific date.
         /// </summary>
         [HttpGet("updated-after")]
-        public async Task<IActionResult> GetByUpdatedAfter([FromQuery] DateTime lastUpdated)
+        public async Task<IActionResult> GetByUpdatedAfter(
+                [FromQuery] DateTime lastUpdated,
+                [FromQuery] int? pageNumber = null,
+                [FromQuery] int? pageSize = null)
         {
             var spec = new EventsByLastUpdatedAfterSpecification(lastUpdated);
+            spec.ApplyOptionalPagination(pageSize, pageNumber);
             var result = await _mediator.Send(new GetEventsBySpecificationQuery(spec));
             return HandleResult(result);
         }
@@ -136,9 +141,16 @@ namespace SAS.EventsService.Presentation.Controllers
         /// Get events created between two dates.
         /// </summary>
         [HttpGet("created-between")]
-        public async Task<IActionResult> GetByCreatedBetween([FromQuery] DateTime from, [FromQuery] DateTime to)
+        [ResponseCache(Duration = 3000, VaryByQueryKeys = new[] { "from", "to" })]
+        public async Task<IActionResult> GetByCreatedBetween(
+            [FromQuery] DateTime from, 
+            [FromQuery] DateTime to,
+            [FromQuery] int? pageNumber = null,
+            [FromQuery] int? pageSize = null)
         {
             var spec = new EventsByCreatedAtBetweenSpecification(from, to);
+            spec.ApplyOptionalPagination(pageSize, pageNumber);
+
             var result = await _mediator.Send(new GetEventsBySpecificationQuery(spec));
             return HandleResult(result);
         }
@@ -147,9 +159,16 @@ namespace SAS.EventsService.Presentation.Controllers
         /// Get events created on a specific date.
         /// </summary>
         [HttpGet("by-date")]
-        public async Task<IActionResult> GetByDate([FromQuery] DateTime date)
+        [ResponseCache(Duration = 3000, VaryByQueryKeys = new[] { "date" })]
+        public async Task<IActionResult> GetByDate(
+            [FromQuery] DateTime date,
+            [FromQuery] int? pageNumber = null,
+            [FromQuery] int? pageSize = null
+            )
         {
             var spec = new EventsByDateSpecification(date);
+            spec.ApplyOptionalPagination(pageSize, pageNumber);
+
             var result = await _mediator.Send(new GetEventsBySpecificationQuery(spec));
             return HandleResult(result);
         }

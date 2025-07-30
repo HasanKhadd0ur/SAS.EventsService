@@ -29,13 +29,13 @@ namespace SAS.EventsService.Infrastructure.Persistence.Repositories.Base
 
         public async Task<IEnumerable<T>> ListAsync()
         {
-            return await dbSet.ToListAsync();
+            return await dbSet.AsNoTracking().ToListAsync();
         }
         public async Task<IEnumerable<T>> ListAsync(ISpecification<T> specification)
         {
             var q = ApplySpecification(specification);
 
-            return await q.ToListAsync();
+            return await q.AsNoTracking().ToListAsync();
         }
 
         public Task DeleteAsync(T entity)
