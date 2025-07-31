@@ -17,6 +17,10 @@ namespace SAS.EventsService.Application.Events.Common
         public Boolean IsReviewed { get; set; }
         public IEnumerable<MessageDto> Messages { get; set; }
         public IEnumerable<NamedEntityDto> MentionedEntities { get; set; }
+        public IEnumerable<ReviewDto> Reviews { get; set; }
 
     }
+
+
 }
+
