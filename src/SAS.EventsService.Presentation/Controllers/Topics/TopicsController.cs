@@ -1,13 +1,13 @@
 using Ardalis.Result;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SAS.EventsService.Presentation.Controllers.ApiBase;
-using SAS.EventsService.Presentation.Contracts.Topics.Requests;
 using SAS.EventsService.Application.Topics.UseCases.Commands.CreateTopic;
 using SAS.EventsService.Application.Topics.UseCases.Queries.GetAllTopics;
-using System.Threading.Tasks;
 using SAS.EventsService.Application.Topics.UseCases.Queries.GetTopicById;
+using SAS.EventsService.Presentation.Contracts.Topics.Requests;
+using SAS.EventsService.Presentation.Controllers.ApiBase;
 using System;
+using System.Threading.Tasks;
 
 namespace SAS.EventsService.Presentation.Controllers
 {

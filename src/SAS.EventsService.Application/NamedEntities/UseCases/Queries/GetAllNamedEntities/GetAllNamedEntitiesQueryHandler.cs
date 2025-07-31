@@ -23,6 +23,7 @@ namespace SAS.EventsService.Application.NamedEntities.UseCases.Queries.GetAllNam
         public async Task<Result<ICollection<NamedEntityDto>>> Handle(GetAllNamedEntitiesQuery request, CancellationToken cancellationToken)
         {
             var spec = new BaseSpecification<NamedEntity>();
+            spec.AddInclude(e => e.Type);
             spec.ApplyOptionalPagination(request.PageSize, request.PageNumber);
 
             var entities = await _repository.ListAsync(spec);

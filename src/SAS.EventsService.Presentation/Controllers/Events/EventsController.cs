@@ -5,11 +5,15 @@ using Mscc.GenerativeAI;
 using SAS.EventsService.Application.Events.Common;
 using SAS.EventsService.Application.Events.UseCases.Commands.AddMessageToEvent;
 using SAS.EventsService.Application.Events.UseCases.Commands.BulkAddMessagesToEvent;
+using SAS.EventsService.Application.Events.UseCases.Commands.ChangeEventTopic;
 using SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent;
+using SAS.EventsService.Application.Events.UseCases.Commands.DeleteEvent;
+using SAS.EventsService.Application.Events.UseCases.Commands.MarkEventAsReviewed;
 using SAS.EventsService.Application.Events.UseCases.Commands.UpdateEventInfo;
 using SAS.EventsService.Application.Events.UseCases.Commands.UpdateEventLocation;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetAllEvents;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetEventById;
+using SAS.EventsService.Application.Events.UseCases.Queries.GetEventNamedEntities;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetEventsByArea;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetEventsBySepcification;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetTodaySummary;
@@ -206,7 +210,34 @@ namespace SAS.EventsService.Presentation.Controllers
             var result = await _mediator.Send(command);
             return HandleResult(result);
         }
+        
+        [HttpGet("{eventId}/named-entities")]
+        public async Task<IActionResult> GetEventNamedEntities(Guid eventId)
+        {
+            var result = await _mediator.Send(new GetEventNamedEntitiesQuery(eventId));
+            return HandleResult(result);
+        }
 
+        [HttpPost("{eventId}/mark-reviewed")]
+        public async Task<IActionResult> MarkAsReviewed(Guid eventId)
+        {
+            var result = await _mediator.Send(new MarkEventAsReviewedCommand(eventId));
+            return HandleResult(result);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var result = await _mediator.Send(new DeleteEventCommand(id));
+            return HandleResult(result);
+        }
+
+        [HttpPut("{eventId}/change-topic")]
+        public async Task<IActionResult> ChangeTopic(Guid eventId,Guid topicId)
+        {
+            var result = await _mediator.Send(new ChangeEventTopicCommand(eventId, topicId));
+            return HandleResult(result);
+        }
 
     }
 }
