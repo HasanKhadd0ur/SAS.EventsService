@@ -15,6 +15,7 @@ using SAS.EventsService.Application.Events.UseCases.Queries.GetAllEvents;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetEventById;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetEventNamedEntities;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetEventsByArea;
+using SAS.EventsService.Application.Events.UseCases.Queries.GetEventsByNamedEntity;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetEventsBySepcification;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetTodaySummary;
 using SAS.EventsService.Domain.Events.ValueObjects;
@@ -237,6 +238,15 @@ namespace SAS.EventsService.Presentation.Controllers
         {
             var result = await _mediator.Send(new ChangeEventTopicCommand(eventId, topicId));
             return HandleResult(result);
+        }
+        [HttpGet("by-named-entity/{namedEntityId:guid}")]
+        public async Task<IActionResult> GetEventsByNamedEntityId(
+              Guid namedEntityId,
+              [FromQuery] int? pageNumber = null,
+              [FromQuery] int? pageSize = null)
+        {
+            var result = await _mediator.Send(new GetEventsByNamedEntityIdQuery(namedEntityId, pageNumber, pageSize));
+            return this.HandleResult(result); // uses Ardalis.SharedKernel.Web extensions
         }
 
     }

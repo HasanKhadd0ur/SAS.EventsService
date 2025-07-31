@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SAS.EventsService.Infrastructure.Persistence.AppDataContext;
 
@@ -11,9 +12,11 @@ using SAS.EventsService.Infrastructure.Persistence.AppDataContext;
 namespace SAS.EventsService.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250731190457_FixNamedEntit23ies")]
+    partial class FixNamedEntit23ies
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -180,7 +183,7 @@ namespace SAS.EventsService.Infrastructure.Persistence.Migrations
 
                     b.HasIndex("NamedEntityId");
 
-                    b.ToTable("NamedEntityMentions", (string)null);
+                    b.ToTable("NamedEntityMentions");
                 });
 
             modelBuilder.Entity("SAS.EventsService.Domain.NamedEntities.Entities.NamedEntity", b =>
@@ -193,6 +196,9 @@ namespace SAS.EventsService.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("EventId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime?>("LastMentionedAt")
                         .HasColumnType("datetime2");
 
@@ -200,6 +206,8 @@ namespace SAS.EventsService.Infrastructure.Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EventId");
 
                     b.HasIndex("TypeId");
 
@@ -418,6 +426,10 @@ namespace SAS.EventsService.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("SAS.EventsService.Domain.NamedEntities.Entities.NamedEntity", b =>
                 {
+                    b.HasOne("SAS.EventsService.Domain.Events.Entities.Event", null)
+                        .WithMany("MentionedEntities")
+                        .HasForeignKey("EventId");
+
                     b.HasOne("SAS.EventsService.Domain.NamedEntities.Entities.NamedEntityType", "Type")
                         .WithMany()
                         .HasForeignKey("TypeId")
@@ -440,6 +452,8 @@ namespace SAS.EventsService.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("SAS.EventsService.Domain.Events.Entities.Event", b =>
                 {
+                    b.Navigation("MentionedEntities");
+
                     b.Navigation("Messages");
 
                     b.Navigation("NamedEntityMentions");

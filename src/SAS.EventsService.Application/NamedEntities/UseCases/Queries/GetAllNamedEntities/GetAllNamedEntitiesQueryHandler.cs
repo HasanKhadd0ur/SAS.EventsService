@@ -24,6 +24,8 @@ namespace SAS.EventsService.Application.NamedEntities.UseCases.Queries.GetAllNam
         {
             var spec = new BaseSpecification<NamedEntity>();
             spec.AddInclude(e => e.Type);
+            spec.ApplyOrderByDescending( e => e.LastMentionedAt ?? DateTime.MinValue);
+
             spec.ApplyOptionalPagination(request.PageSize, request.PageNumber);
 
             var entities = await _repository.ListAsync(spec);
