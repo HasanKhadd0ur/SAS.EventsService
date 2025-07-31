@@ -3,12 +3,13 @@ using SAS.EventsService.Application.Contracts.Notfications;
 using SAS.EventsService.Application.Notifications.Common;
 using SAS.EventsService.Application.Notifications.UseCases.Commands.AddEventNotificationCommand;
 using SAS.EventsService.Domain.Events.DomainEvents;
+using SAS.EventsService.Domain.Events.Repositories;
 using SAS.EventsService.Domain.UserInterests.Repositories;
 using SAS.SharedKernel.DomainEvents;
 using System.Threading;
 using System.Threading.Tasks;
 
-public class NotifyUserOnEventCreatedHandler : IDomainEventHandler<EventDetected>
+public partial class NotifyUserOnEventCreatedHandler : IDomainEventHandler<EventDetected>
 {
     private readonly IUserInterestsRepository _interestRepo;
     private readonly INotificationService _notificationService;

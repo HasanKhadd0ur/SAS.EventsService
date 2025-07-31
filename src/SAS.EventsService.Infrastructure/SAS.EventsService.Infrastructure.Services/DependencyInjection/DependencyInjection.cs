@@ -1,11 +1,14 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SAS.EventsService.Application.Contracts.LLMs;
+using SAS.EventsService.Application.Contracts.NER;
 using SAS.EventsService.Application.Contracts.Notfications;
 using SAS.EventsService.Application.Contracts.Providers;
 using SAS.EventsService.Infrastructure.Services.LLMs;
+using SAS.EventsService.Infrastructure.Services.NER;
 using SAS.EventsService.Infrastructure.Services.Notifications;
 using SAS.EventsService.Infrastructure.Services.Providers;
 using System.Security.Cryptography;
@@ -37,6 +40,15 @@ namespace SAS.EventsService.Infrastructure.Services.DependencyInjection
             services.AddSingleton<INotificationService, SignalRNotificationService>();
 
             services.AddSignalR();
+
+            services.Configure<NERServiceSettings>(configuration.GetSection("NERService"));
+
+            // Register HttpNERExtractor with HttpClient factory reading BaseUrl from config
+            services.AddHttpClient<INamedEntityExtractor, HttpNERExtractor>((sp, client) =>
+            {
+                var nerSettings = sp.GetRequiredService<IOptions<NERServiceSettings>>().Value;
+                client.BaseAddress = new Uri(nerSettings.BaseUrl);
+            });
 
             var issuer = configuration["JwtSettings:Issuer"] ?? throw new ArgumentNullException("JwtSettings:Issuer");
             var audience = configuration["JwtSettings:Audience"] ?? throw new ArgumentNullException("JwtSettings:Audience");
