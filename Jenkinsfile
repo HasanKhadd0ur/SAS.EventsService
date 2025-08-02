@@ -42,7 +42,8 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                bat 'timeout /t 120 /nobreak'
+                // bat 'timeout /t 120 /nobreak'
+                  bat 'ping 127.0.0.1 -n 121 > nul'
                 // bat 'docker build -t sas-eventsservice:latest -f src\\SAS.EventsService.API\\Dockerfile .'
                  bat 'echon "docker build -t sas-eventsservice:latest -f src\\SAS.EventsService.API\\Dockerfile ."'
             
@@ -51,7 +52,8 @@ pipeline {
 
         stage('Docker Compose Up') {
             steps {
-                bat 'timeout /t 120 /nobreak'
+                // bat 'timeout /t 120 /nobreak'
+                  bat 'ping 127.0.0.1 -n 121 > nul'
                 bat 'echo "docker-compose up -d --build"'
             }
         }
