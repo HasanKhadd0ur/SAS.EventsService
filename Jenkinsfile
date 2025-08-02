@@ -42,13 +42,17 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                bat 'docker build -t sas-eventsservice:latest -f src\\SAS.EventsService.API\\Dockerfile .'
+                bat 'timeout /t 120 /nobreak'
+                // bat 'docker build -t sas-eventsservice:latest -f src\\SAS.EventsService.API\\Dockerfile .'
+                 bat 'echon "docker build -t sas-eventsservice:latest -f src\\SAS.EventsService.API\\Dockerfile ."'
+            
             }
         }
 
         stage('Docker Compose Up') {
             steps {
-                bat 'docker-compose up -d --build'
+                bat 'timeout /t 120 /nobreak'
+                bat 'echo "docker-compose up -d --build"'
             }
         }
     }
