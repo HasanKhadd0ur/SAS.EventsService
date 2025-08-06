@@ -90,3 +90,12 @@ public class EventWithMessagesByIdSpecification : BaseSpecification<Event>
         AddInclude(e => e.Messages);
     }
 }
+public class EventsByDomainIdSpecification : BaseEventSpecification
+{
+    public EventsByDomainIdSpecification(Guid domainId) : base()
+    {
+
+        Criteria = e => e.DomainId == domainId;
+        AddInclude(e => e.Topic);
+    }
+}

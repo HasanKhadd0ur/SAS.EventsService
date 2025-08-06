@@ -29,6 +29,7 @@ namespace SAS.EventsService.Infrastructure.Persistence.AppDataContext
         public DbSet<NamedEntityMention> NamedEntityMentions { get; set; }
         public DbSet<NamedEntity> NamedEntities { get; set; }
         public DbSet<NamedEntityType> NamedEntityTypes { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
 
 

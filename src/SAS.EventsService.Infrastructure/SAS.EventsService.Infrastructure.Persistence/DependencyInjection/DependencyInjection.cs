@@ -75,7 +75,10 @@ namespace SAS.EventsService.Infrastructure.Persistence.DependencyInjection
 
             services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection") ,sqlOptions =>
+{
+    sqlOptions.CommandTimeout(180);
+});
             });
 
             return services;

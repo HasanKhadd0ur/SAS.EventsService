@@ -7,7 +7,6 @@ using SAS.EventsService.Application.Regions.UseCases.Commands.DeleteTopic;
 using SAS.EventsService.Application.Regions.UseCases.Queries.GetAllTopics;
 using SAS.EventsService.Application.Regions.UseCases.Queries.GetTopicById;
 using SAS.EventsService.Application.UserInterests.UseCases.Queries.GitUserInterestBySpecification;
-using SAS.EventsService.Domain.Regions.Specifications;
 using SAS.EventsService.Domain.UserInterests.Specification;
 using SAS.EventsService.Presentation.Contracts.Topics.Requests;
 using SAS.EventsService.Presentation.Controllers.ApiBase;

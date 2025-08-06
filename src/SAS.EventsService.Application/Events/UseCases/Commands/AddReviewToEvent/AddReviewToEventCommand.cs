@@ -5,9 +5,10 @@ namespace SAS.EventsService.Application.Events.UseCases.Commands.AddReviewToEven
 {
     public record AddReviewToEventCommand(
         Guid EventId,
-        Guid UserId,
-        string UserName,
         string Comment
-    ) : ICommand<Result>;
+    ) : ILoggableCommand<Result>
+    {
+
+    };
 
 }

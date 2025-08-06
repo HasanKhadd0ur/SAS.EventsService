@@ -1,4 +1,3 @@
-
 using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -13,28 +12,28 @@ namespace SAS.EventsService.Infrastructure.Persistence.Repositories.Base
     {
         protected AppDbContext _dbContext;
         internal DbSet<T> dbSet;
+
         public BaseRepository(AppDbContext context)
         {
             _dbContext = context;
-
             dbSet = context.Set<T>();
         }
+
         public async Task<T> AddAsync(T entity)
         {
             EntityEntry<T> entry = await dbSet.AddAsync(entity);
             await _dbContext.SaveChangesAsync();
             return entry.Entity;
-
         }
 
         public async Task<IEnumerable<T>> ListAsync()
         {
             return await dbSet.AsNoTracking().ToListAsync();
         }
+
         public async Task<IEnumerable<T>> ListAsync(ISpecification<T> specification)
         {
             var q = ApplySpecification(specification);
-
             return await q.AsNoTracking().ToListAsync();
         }
 
@@ -61,9 +60,23 @@ namespace SAS.EventsService.Infrastructure.Persistence.Repositories.Base
         {
             return SpecificationEvaluator<T, TId>.GetQuery(dbSet.AsQueryable(), specification);
         }
+
         public async Task AddRangeAsync(IEnumerable<T> entities)
         {
-            await _dbContext.BulkInsertAsync(entities.ToList());
+            if (entities == null || !entities.Any())
+                return;
+
+            var bulkConfig = new BulkConfig
+            {
+                BatchSize = 500,          // Tune this according to your environment
+                BulkCopyTimeout = 300,    // 5 minutes timeout to avoid timeout errors
+                UseTempDB = true,         // Optional: improves performance on large batches
+                PreserveInsertOrder = false,
+                SetOutputIdentity = false,
+                EnableStreaming = true
+            };
+
+            await _dbContext.BulkInsertAsync(entities.ToList(), bulkConfig);
         }
 
         public async Task<T?> FirstOrDefaultAsync(ISpecification<T> spec)
@@ -72,5 +85,4 @@ namespace SAS.EventsService.Infrastructure.Persistence.Repositories.Base
             return await query.FirstOrDefaultAsync();
         }
     }
-
 }

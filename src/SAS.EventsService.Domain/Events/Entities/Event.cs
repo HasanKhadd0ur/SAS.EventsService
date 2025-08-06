@@ -16,6 +16,7 @@ namespace SAS.EventsService.Domain.Events.Entities
     {
 
         public DateTime CreatedAt { get; set; }
+        public Guid DomainId { get; set; }
         public DateTime LastUpdatedAt { get; set; }
         public EventInfo EventInfo { get; set; }
         public Topic Topic { get; set; }
