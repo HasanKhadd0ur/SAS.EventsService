@@ -12,7 +12,6 @@ namespace SAS.EventsService.Infrastructure.Services.NER
         private readonly HttpClient _httpClient;
         private readonly INamedEntityTypesRepository _typeRepository;
         private readonly ILogger<HttpNERExtractor> _logger;
-
         // In-memory cache: normalized type name -> NamedEntityTypeDto
         private readonly Dictionary<string, NamedEntityTypeDto> _typeCache = new(StringComparer.OrdinalIgnoreCase);
 
@@ -66,7 +65,8 @@ namespace SAS.EventsService.Infrastructure.Services.NER
                     results.Add(new NamedEntityDto
                     {
                         EntityName = entity.text,
-                        Type = cachedType
+                        Type = cachedType,
+                        LastMentionedAt= DateTime.UtcNow,
                     });
                 }
 

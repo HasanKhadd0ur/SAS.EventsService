@@ -4,13 +4,21 @@ using Microsoft.AspNetCore.Mvc;
 using Mscc.GenerativeAI;
 using SAS.EventsService.Application.Events.Common;
 using SAS.EventsService.Application.Events.UseCases.Commands.AddMessageToEvent;
+using SAS.EventsService.Application.Events.UseCases.Commands.AddReviewToEvent;
 using SAS.EventsService.Application.Events.UseCases.Commands.BulkAddMessagesToEvent;
+using SAS.EventsService.Application.Events.UseCases.Commands.ChangeEventTopic;
 using SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent;
+using SAS.EventsService.Application.Events.UseCases.Commands.DeleteEvent;
+using SAS.EventsService.Application.Events.UseCases.Commands.EditReview;
+using SAS.EventsService.Application.Events.UseCases.Commands.MarkEventAsReviewed;
 using SAS.EventsService.Application.Events.UseCases.Commands.UpdateEventInfo;
 using SAS.EventsService.Application.Events.UseCases.Commands.UpdateEventLocation;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetAllEvents;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetEventById;
+using SAS.EventsService.Application.Events.UseCases.Queries.GetEventNamedEntities;
+using SAS.EventsService.Application.Events.UseCases.Queries.GetEventReviews;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetEventsByArea;
+using SAS.EventsService.Application.Events.UseCases.Queries.GetEventsByNamedEntity;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetEventsBySepcification;
 using SAS.EventsService.Application.Events.UseCases.Queries.GetTodaySummary;
 using SAS.EventsService.Domain.Events.ValueObjects;
@@ -80,7 +88,7 @@ namespace SAS.EventsService.Presentation.Controllers
         /// </summary>
         /// <returns>A list of all events.</returns>
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] int? pageNumber=1, [FromQuery] int? pageSize=10)
+        public async Task<IActionResult> GetAll([FromQuery] int? pageNumber , [FromQuery] int? pageSize)
         {
             var query = new GetAllEventsQuery(pageNumber, pageSize);
             var result = await _mediator.Send(query);
@@ -206,7 +214,90 @@ namespace SAS.EventsService.Presentation.Controllers
             var result = await _mediator.Send(command);
             return HandleResult(result);
         }
+        
+        [HttpGet("{eventId}/named-entities")]
+        public async Task<IActionResult> GetEventNamedEntities(Guid eventId)
+        {
+            var result = await _mediator.Send(new GetEventNamedEntitiesQuery(eventId));
+            return HandleResult(result);
+        }
 
+        [HttpPost("{eventId}/mark-reviewed")]
+        public async Task<IActionResult> MarkAsReviewed(Guid eventId)
+        {
+            var result = await _mediator.Send(new MarkEventAsReviewedCommand(eventId));
+            return HandleResult(result);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var result = await _mediator.Send(new DeleteEventCommand(id));
+            return HandleResult(result);
+        }
+
+        [HttpPut("{eventId}/change-topic")]
+        public async Task<IActionResult> ChangeTopic(Guid eventId,Guid topicId)
+        {
+            var result = await _mediator.Send(new ChangeEventTopicCommand(eventId, topicId));
+            return HandleResult(result);
+        }
+        [HttpGet("by-named-entity/{namedEntityId:guid}")]
+        public async Task<IActionResult> GetEventsByNamedEntityId(
+              Guid namedEntityId,
+              [FromQuery] int? pageNumber = null,
+              [FromQuery] int? pageSize = null)
+        {
+            var result = await _mediator.Send(new GetEventsByNamedEntityIdQuery(namedEntityId, pageNumber, pageSize));
+            return HandleResult(result); 
+        }
+        // POST: /api/events/{eventId}/reviews
+        [HttpPost("{eventId}/reviews")]
+        public async Task<IActionResult> AddReview(Guid eventId, [FromBody] AddReviewToEventCommand command)
+        {
+            if (eventId != command.EventId)
+                return BadRequest("Route eventId does not match command.EventId");
+
+            var result = await _mediator.Send(command);
+            return HandleResult(result);
+        }
+
+        // PUT: /api/events/{eventId}/reviews/{reviewId}
+        [HttpPut("/reviews/{reviewId}")]
+        public async Task<IActionResult> EditReview(Guid eventId, Guid reviewId, [FromBody] EditEventReviewCommand command)
+        {
+            
+            var result = await _mediator.Send(command);
+            return HandleResult(result);
+        }
+        // GET: /api/events/{eventId}/reviews
+        [HttpGet("{eventId}/reviews")]
+        public async Task<IActionResult> GetReviewsByEvent(Guid eventId)
+        {
+            var query = new GetEventReviewsQuery(eventId);
+            var result = await _mediator.Send(query);
+            return HandleResult(result);
+        }
+
+        /// <summary>
+        /// Get events by DomainId.
+        /// </summary>
+        /// <param name="domainId">The DomainId Guid.</param>
+        /// <param name="pageNumber">Optional page number for pagination.</param>
+        /// <param name="pageSize">Optional page size for pagination.</param>
+        /// <returns>List of events matching the DomainId.</returns>
+        [HttpGet("by-domain/{domainId:guid}")]
+        public async Task<IActionResult> GetByDomainId(
+            Guid domainId,
+            [FromQuery] int? pageNumber = null,
+            [FromQuery] int? pageSize = null)
+        {
+            var spec = new EventsByDomainIdSpecification(domainId);
+            spec.ApplyOptionalPagination(pageSize, pageNumber);
+
+            var result = await _mediator.Send(new GetEventsBySpecificationQuery(spec));
+            return HandleResult(result);
+        }
 
     }
 }

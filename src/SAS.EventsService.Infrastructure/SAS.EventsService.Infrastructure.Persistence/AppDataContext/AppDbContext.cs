@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SAS.EventService.Domain.Entities;
 using SAS.EventsService.Domain.Events.Entities;
+using SAS.EventsService.Domain.NamedEntities.Entities;
 using SAS.EventsService.Domain.Notifications.Entitties;
 using SAS.EventsService.Domain.Regions.Entities;
 using SAS.EventsService.Domain.UserInterests.Entities;
@@ -25,6 +26,11 @@ namespace SAS.EventsService.Infrastructure.Persistence.AppDataContext
         public DbSet<UserInterest> UserInterests { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<EventNotification> EventNotifications { get; set; }
+        public DbSet<NamedEntityMention> NamedEntityMentions { get; set; }
+        public DbSet<NamedEntity> NamedEntities { get; set; }
+        public DbSet<NamedEntityType> NamedEntityTypes { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -11,6 +11,9 @@ using SAS.EventsService.Domain.Events.Entities;
 using SAS.EventsService.Domain.Events.ValueObjects;
 using SAS.EventsService.Domain.Notifications.Entitties;
 using SAS.EventsService.Domain.UserInterests.Entities;
+using SAS.EventsService.Application.NamedEntities.Common;
+using SAS.EventsService.Domain.NamedEntities.Entities;
+
 
 namespace SAS.EventsService.Application.Mapping
 {
@@ -70,6 +73,8 @@ namespace SAS.EventsService.Application.Mapping
         public TopicProfile()
         {
             CreateMap<Topic, TopicDTO>();
+            CreateMap<NamedEntityType, NamedEntityTypeDto>();
+            CreateMap<NamedEntity, NamedEntityDto>();
         }
     }
     public class UserInterestProfile : Profile

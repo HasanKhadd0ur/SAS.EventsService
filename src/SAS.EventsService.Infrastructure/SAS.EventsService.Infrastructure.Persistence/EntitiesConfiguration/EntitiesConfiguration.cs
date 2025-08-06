@@ -14,7 +14,6 @@ namespace SAS.EventsService.Infrastructure.Persistence.EntitiesConfiguration
     {
         public void Configure(EntityTypeBuilder<Event> builder)
         {
-            builder.HasKey(e => e.Id);  // Set primary key
 
             // Configure value object (EventInfo)
             builder.OwnsOne(e => e.EventInfo, ei =>
@@ -51,9 +50,37 @@ namespace SAS.EventsService.Infrastructure.Persistence.EntitiesConfiguration
     
             builder.HasIndex("TopicId")
                .HasDatabaseName("IX_Event_TopicId");
+            // Configure one-to-many relationship between Event and NamedEntityMention
+            builder
+                .HasMany(e => e.NamedEntityMentions)
+                .WithOne(nem => nem.Event)
+                .HasForeignKey(nem => nem.EventId)
+                .IsRequired();
 
+            // Configure many-to-many via NamedEntityMention join entity
+            builder
+                .HasMany(e => e.MentionedEntities)
+                .WithMany() // Assuming NamedEntity does not have navigation to Event
+                .UsingEntity<NamedEntityMention>(
+                    j => j
+                        .HasOne(nem => nem.NamedEntity)
+                        .WithMany()
+                        .HasForeignKey(nem => nem.NamedEntityId)
+                        .IsRequired(),
+                    j => j
+                        .HasOne(nem => nem.Event)
+                        .WithMany(e => e.NamedEntityMentions)
+                        .HasForeignKey(nem => nem.EventId)
+                        .IsRequired(),
+                    j =>
+                    {
+                        j.HasKey(t => t.Id);
+                        j.ToTable("NamedEntityMentions");
+                    }
+                );
+        
 
-        }
+    }
     }
 
     // Message Entity Configuration

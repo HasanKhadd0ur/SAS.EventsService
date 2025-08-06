@@ -10,6 +10,7 @@ namespace SAS.EventsService.Application.Events.Common
     public class EventDTO : BaseDTO<Guid>
     {
         public DateTime CreatedAt { get; set; }
+        public Guid DomainId { get; set; }
         public DateTime LastUpdatedAt { get; set; }
         public EventInfo EventInfo { get; set; }
         public TopicDTO Topic { get; set; }
@@ -17,6 +18,10 @@ namespace SAS.EventsService.Application.Events.Common
         public Boolean IsReviewed { get; set; }
         public IEnumerable<MessageDto> Messages { get; set; }
         public IEnumerable<NamedEntityDto> MentionedEntities { get; set; }
+        public IEnumerable<ReviewDto> Reviews { get; set; }
 
     }
+
+
 }
+

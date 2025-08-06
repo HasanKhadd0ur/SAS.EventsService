@@ -2,8 +2,10 @@ using Ardalis.Result;
 using AutoMapper;
 using SAS.EventsService.Application.NamedEntities.Common;
 using SAS.EventsService.Domain.Common.Errors;
+using SAS.EventsService.Domain.Events.Entities;
 using SAS.EventsService.Domain.Events.Repositories;
 using SAS.SharedKernel.CQRS.Queries;
+using SAS.SharedKernel.Specification;
 
 namespace SAS.EventsService.Application.Events.UseCases.Queries.GetEventNamedEntities
 {
@@ -21,7 +23,12 @@ namespace SAS.EventsService.Application.Events.UseCases.Queries.GetEventNamedEnt
 
         public async Task<Result<ICollection<NamedEntityDto>>> Handle(GetEventNamedEntitiesQuery request, CancellationToken cancellationToken)
         {
-            var @event = await _eventsRepository.GetByIdAsync(request.EventId);
+            var spec = new BaseSpecification<Event>();
+            spec.AddInclude(e => e.MentionedEntities);
+            spec.IncludeStrings.Add("MentionedEntities.Type");
+
+
+            var @event = await _eventsRepository.GetByIdAsync(request.EventId,spec);
             if (@event is null)
                 return Result.Invalid(EventErrors.UnExistEvent);
 

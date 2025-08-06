@@ -19,19 +19,22 @@ namespace SAS.EventsService.Application.NamedEntities.UseCases.Commands
         private readonly IIdProvider _idProvider;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IDateTimeProvider _dateProvider;
 
         public CreateNamedEntityCommandHandler(
             INamedEntitiesRepository entitiesRepo,
             INamedEntityTypesRepository typesRepo,
             IIdProvider idProvider,
             IUnitOfWork unitOfWork,
-            IMapper mapper)
+            IMapper mapper,
+            IDateTimeProvider dateProvider)
         {
             _entitiesRepo = entitiesRepo;
             _typesRepo = typesRepo;
             _idProvider = idProvider;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _dateProvider = dateProvider;
         }
 
         public async Task<Result<Guid>> Handle(CreateNamedEntityCommand request, CancellationToken cancellationToken)
@@ -46,7 +49,8 @@ namespace SAS.EventsService.Application.NamedEntities.UseCases.Commands
                 Id = _idProvider.GenerateId<NamedEntity>(),
                 EntityName = request.EntityName,
                 TypeId = request.TypeId,
-                Type = type
+                Type = type,
+                LastMentionedAt=_dateProvider.UtcNow
             };
 
             await _entitiesRepo.AddAsync(entity);

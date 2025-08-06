@@ -6,5 +6,6 @@ namespace SAS.EventsService.Application.NamedEntities.Common
     {
         public string EntityName { get; set; }
         public NamedEntityTypeDto Type { get; set; }
+        public DateTime? LastMentionedAt { get; set; }
     }
 }
