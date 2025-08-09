@@ -21,5 +21,9 @@ namespace SAS.EventsService.Infrastructure.Services.Notifications
                 .User(userId.ToString())
                 .SendAsync("EventNearby", notification);
         }
+        public Task SendEventDetectedAsync(EventNotificationDTO eventNotification)
+        {
+            return _hubContext.Clients.All.SendAsync("EventNearby", eventNotification);
+        }
     }
 }

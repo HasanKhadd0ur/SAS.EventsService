@@ -37,7 +37,7 @@ namespace SAS.EventsService.Application.Events.UseCases.Commands.UpdateEventInfo
 
             @event.UpdateEventInfo(request.NewEventInfo);
 
-            @event.UpdateLastModifiedTime(_dateTimeProvider.UtcNow);
+            //@event.UpdateLastModifiedTime(_dateTimeProvider.UtcNow);
 
             await _repository.UpdateAsync(@event);
             

@@ -6,6 +6,7 @@ using System;
 namespace SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent
 {
     public record CreateEventRequest(
+        Guid DomainId,
         EventInfo EventInfo,
         string TopicName,
         string CountryName,

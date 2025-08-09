@@ -73,7 +73,7 @@ namespace SAS.EventsService.Domain.Events.Entities
             
             EventInfo = newInfo;
 
-            UpdateLastModifiedTime(DateTime.UtcNow);
+            //UpdateLastModifiedTime(DateTime.UtcNow);
         }
         public void UpdateLocation(Location newLocation)
         {

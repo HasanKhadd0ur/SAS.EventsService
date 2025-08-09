@@ -94,7 +94,7 @@ public class EventsByDomainIdSpecification : BaseEventSpecification
 {
     public EventsByDomainIdSpecification(Guid domainId) : base()
     {
-
+        ApplyOrderByDescending(e => e.LastUpdatedAt);
         Criteria = e => e.DomainId == domainId;
         AddInclude(e => e.Topic);
     }

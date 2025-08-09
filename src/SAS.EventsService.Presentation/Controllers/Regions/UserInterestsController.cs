@@ -2,6 +2,7 @@ using Ardalis.Result;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SAS.EventsService.Application.Contracts.Providers;
 using SAS.EventsService.Application.Regions.UseCases.Commands.CreateTopic;
 using SAS.EventsService.Application.Regions.UseCases.Commands.DeleteTopic;
 using SAS.EventsService.Application.Regions.UseCases.Queries.GetAllTopics;
@@ -19,11 +20,14 @@ namespace SAS.EventsService.Presentation.Controllers
     {
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
+        private readonly ICurrentUserProvider _currentUser;
 
-        public UserInterestsController(IMediator mediator, IMapper mapper)
+
+        public UserInterestsController(IMediator mediator, IMapper mapper, ICurrentUserProvider currentUser)
         {
             _mediator = mediator;
             _mapper = mapper;
+            _currentUser = currentUser;
         }
 
         [HttpPost]
@@ -61,11 +65,16 @@ namespace SAS.EventsService.Presentation.Controllers
         /// Get all interests for a specific user.
         /// </summary>
         [HttpGet("my-interests")]
-        public async Task<IActionResult> GetMyInterests([FromQuery] Guid userId)
+        public async Task<IActionResult> GetMyInterests()
         {
+            var userId = _currentUser.UserId;
+            if (userId == null)
+                return Unauthorized(Result.Error("User is not authenticated."));
+
             var spec = new UserInterestsByUserIdSpecification(userId);
             var result = await _mediator.Send(new GetUserInterestsBySpecificationQuery(spec));
             return HandleResult(result);
         }
+
     }
 }

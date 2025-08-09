@@ -78,7 +78,7 @@ namespace SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent
             var @event = _mapper.Map<Event>(request);
 
             @event.EventInfo = request.EventInfo; // Ensure EventInfo is set from the request
-            
+            @event.DomainId = request.DomainId;
             @event.Location = location;
             @event.Region = region;
             @event.Topic = topic;

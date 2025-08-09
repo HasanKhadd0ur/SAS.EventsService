@@ -149,7 +149,7 @@ namespace SAS.EventsService.Presentation.Controllers
         /// Get events created between two dates.
         /// </summary>
         [HttpGet("created-between")]
-        [ResponseCache(Duration = 3000, VaryByQueryKeys = new[] { "from", "to" })]
+        [ResponseCache(Duration = 300, VaryByQueryKeys = new[] { "from", "to" })]
         public async Task<IActionResult> GetByCreatedBetween(
             [FromQuery] DateTime from, 
             [FromQuery] DateTime to,
@@ -167,7 +167,7 @@ namespace SAS.EventsService.Presentation.Controllers
         /// Get events created on a specific date.
         /// </summary>
         [HttpGet("by-date")]
-        [ResponseCache(Duration = 3000, VaryByQueryKeys = new[] { "date" })]
+        [ResponseCache(Duration = 300, VaryByQueryKeys = new[] { "date" })]
         public async Task<IActionResult> GetByDate(
             [FromQuery] DateTime date,
             [FromQuery] int? pageNumber = null,

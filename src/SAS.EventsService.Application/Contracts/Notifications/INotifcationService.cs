@@ -4,6 +4,7 @@ namespace SAS.EventsService.Application.Contracts.Notfications
     public interface INotificationService
     {
         Task NotifyUserAsync(Guid userId, EventNotificationDTO notification);
+        Task SendEventDetectedAsync(EventNotificationDTO eventNotification);
     }
 
 }

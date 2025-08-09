@@ -5,6 +5,7 @@ using SAS.SharedKernel.CQRS.Commands;
 namespace SAS.EventsService.Application.Events.UseCases.Commands.CreateEvent
 {
     public record CreateEventFromDetectionCommand(
+        Guid DomainId,
         EventInfo EventInfo,
         string TopicName,
         string CountryName,

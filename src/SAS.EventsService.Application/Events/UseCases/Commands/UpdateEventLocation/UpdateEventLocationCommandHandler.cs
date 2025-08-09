@@ -38,7 +38,7 @@ namespace SAS.EventsService.Application.Events.UseCases.Commands.UpdateEventLoca
             };
 
             @event.UpdateLocation(newLocation);
-            @event.UpdateLastModifiedTime(_dateTimeProvider.UtcNow);
+            //@event.UpdateLastModifiedTime(_dateTimeProvider.UtcNow);
 
             await _eventsRepository.UpdateAsync(@event);
             await _unitOfWork.SaveChangesAsync(cancellationToken);

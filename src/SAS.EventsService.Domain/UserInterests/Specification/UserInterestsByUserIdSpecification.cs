@@ -8,6 +8,8 @@ namespace SAS.EventsService.Domain.UserInterests.Specification
         public UserInterestsByUserIdSpecification(Guid userId)
             : base(ui => ui.UserId == userId)
         {
+            AddInclude(e => e.Location);
+
         }
     }
 }
