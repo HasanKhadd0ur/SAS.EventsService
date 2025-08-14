@@ -49,6 +49,7 @@ namespace SAS.EventsService.Tests.UnitTests.Events.Application.UseCases.Commands
         {
             // Arrange
             var cmd = new CreateEventFromDetectionCommand(
+                Guid.NewGuid(),
                 EventFactory.CreateEventInfo(),
                 "MissingTopic", "Country", "Region", "City", 10, 20);
 
@@ -68,6 +69,7 @@ namespace SAS.EventsService.Tests.UnitTests.Events.Application.UseCases.Commands
         {
             // Arrange
             var cmd = new CreateEventFromDetectionCommand(
+                Guid.NewGuid(),
                 EventFactory.CreateEventInfo(),
                 "ValidTopic", "Country", "Region", "City", 10, 20);
 

@@ -42,6 +42,7 @@ namespace SAS.EventsService.Tests.IntegrationTests.EventTests
                 _services.GetRequiredService<IDateTimeProvider>());
 
             var command = new CreateEventFromDetectionCommand(
+                Guid.NewGuid(),
                 new SAS.EventsService.Domain.Events.ValueObjects.EventInfo("Title", "Summary", 0.9, "Neutral"),
                 "ValidTopic",
                 "CountryName",
