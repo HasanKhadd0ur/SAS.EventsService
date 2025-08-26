@@ -50,6 +50,14 @@ namespace SAS.EventsService.Infrastructure.Services.DependencyInjection
                 client.BaseAddress = new Uri(nerSettings.BaseUrl);
             });
 
+
+            return services;
+        }
+
+        #endregion Add Servcies 
+        #region Add Auth 
+        public static IServiceCollection AddMyCustomAuth(IServiceCollection services, IConfiguration configuration)
+        {
             var issuer = configuration["JwtSettings:Issuer"] ?? throw new ArgumentNullException("JwtSettings:Issuer");
             var audience = configuration["JwtSettings:Audience"] ?? throw new ArgumentNullException("JwtSettings:Audience");
             var publicKeyBase64 = configuration["JwtSettings:PublicKeyPath"] ?? throw new ArgumentNullException("JwtSettings:PublicKeyPath");
@@ -92,12 +100,10 @@ namespace SAS.EventsService.Infrastructure.Services.DependencyInjection
                         }
                     };
                 });
- 
+
             return services;
         }
-
-        #endregion Add Servcies 
-
+        #endregion Add Auth
         #region Background jobs 
         private static IServiceCollection AddBackgroundServices(this IServiceCollection services, IConfiguration configuration)
         {
